@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="지난 연차 프로젝트에서 node+socket.io 를 이용하여 탑승자와 운전자 실시간 데이터 통신 부분을 구현을 하고 나니 노드가 재밌다는 생각이 들었다. 그래서 조현영님의 블로그 및 Node.js 교과서 를 통해 node 를 조금씩 공부하는 중이다. 지난 주에는 ex">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="흑염소">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Node / Express framework 이용해서 실시간 SNS 만들기 (1)">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="흑염소의 개발블로그">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>Node / Express framework 이용해서 실시간 SNS 만들기 (1) - 흑염소의 개발블로그</title>
+
+    <!-- Tachyons Core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-149033629-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+<!-- Main Content -->
+<!-- Banner -->
+<!-- Banner -->
+<div class="w-100 bg-1 ph5-ns ph3 text-light">
+    
+    <nav class="db dt-l w-100 mw8 center border-box pv3">
+        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="흑염소의 개발블로그">
+            <img src="http://www.codeblocq.com/assets/projects/hexo-theme-anodyne/assets/anodyne.svg" class="dib h3" alt="흑염소의 개발블로그">
+        </a>
+        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
+                    Home
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/tags" 
+                    title="Tags">
+                    Tags
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/projects" 
+                    title="Projects">
+                    Projects
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/about.html" 
+                    title="About">
+                    About
+                </a>
+            
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <div class="w-100 mw8 center vh-40 dt">
+        <div class="dtc v-mid white">
+            <h1 class="f1-l f2-m tc tc-m tl-ns">Node / Express framework 이용해서 실시간 SNS 만들기 (1)</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-10-27</p>
+        </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="relative w-100 mw8 center white dn dn-m db-ns">
+        <i class="header-icon fa fa-file-text-o"></i>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
+    <div class="content">
+        <div class="mw8 center">
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+                        <div class="tags-container-vertical">
+                            <div class="tags-sub-container">
+                                <a class="fw3 ph1 dib" href="/tags/node/">#node</a> <a class="fw3 ph1 dib" href="/tags/express-framework/">#express-framework</a>
+                            </div>
+                        </div>
+                    
+
+                    <!-- Main Post Content -->
+                    <p>지난 연차 프로젝트에서 <code>node+socket.io</code> 를 이용하여 탑승자와 운전자 실시간 데이터 통신 부분을 구현을 하고 나니 노드가 재밌다는 생각이 들었다. 그래서 조현영님의 <a href="https://www.zerocho.com/" target="_blank" rel="noopener">블로그</a> 및 <a href="http://www.yes24.com/Product/Goods/62597864?Acode=101" target="_blank" rel="noopener">Node.js 교과서</a> 를 통해 node 를 조금씩 공부하는 중이다. 지난 주에는 express framework을 이용해서 <code>NodeBird</code> 라는 SNS 서비스를 만들어보았는데 나만의 서비스를 만들기 전에 그 과정을 한 번 복습하여 중요한 개념들을 다시 정리하고자 한다. 개인적인 공부의 기록이라, 실제로 프로젝트를 따라해보고 싶은 분들은 아래의 링크들을 타고 가보시는 것을 추천드린다.<br><br><br></p>
+<h2 id="프로젝트-구조"><a href="#프로젝트-구조" class="headerlink" title="프로젝트 구조"></a>프로젝트 구조</h2><p>express framework 는 express generator 를 통해 자동으로 프로젝트를 생성해주어도 되지만, 이쪽에서는 직접 생성하도록 했다. 그 과정에서 express 구조를 한 번 더 복습할 수 있게 되었다.<br><br><br></p>
+<h4 id="구조세팅"><a href="#구조세팅" class="headerlink" title="구조세팅"></a>구조세팅</h4><ol>
+<li>가장 먼저 해야할 것 : package.json 생성 및 프로젝트 정보 입력<ul>
+<li>npm init 통해서 생성 가능 </li>
+<li>직접 파일 생성 해줘도 됨 </li>
+<li>다른 항목들은 프로젝트의 취지에 맞게 자유롭게 작성해도 되지만, scripts의 start 부분은 꼭 반드시 작성해주어야 하는 것임. </li>
+</ul>
+</li>
+<li>sequelize 를 통해서 데이터베이스 설정 <ul>
+<li><code>npm i -g sequelize-cli</code> </li>
+<li><code>npm i sequelize mysql2</code> : <code>node_modules</code>와 <code>package-lock.json</code> 생성됨 </li>
+<li><code>sequelize init</code> : 시퀄라이즈의 시작. <code>config</code>, <code>migrations</code>, <code>models</code>, <code>seeders</code> 폴더가 자동 생성됨. </li>
+</ul>
+</li>
+<li>필요한 폴더/파일 생성<ul>
+<li>views : 템플릿 파일 </li>
+<li>routes : 라우터 파일들</li>
+<li>public : 정적파일 모음 </li>
+<li>passport : passport 패키지 </li>
+<li>app.js : 서버 코드 파일 <br>
+
+</li>
+</ul>
+</li>
+</ol>
+<p>1-3번의 결과 생성되는 프로젝트의 구조는 다음과 같다. </p>
+<ul>
+<li>nodebird <ul>
+<li>config</li>
+<li>migrations</li>
+<li>models</li>
+<li>node_modules</li>
+<li>passport</li>
+<li>public</li>
+<li>routes</li>
+<li>seeders</li>
+<li>views </li>
+<li>app.js</li>
+<li>package-lock.json</li>
+<li>package.json<br><br><br></li>
+</ul>
+</li>
+</ul>
+<h4 id="필요한-npm-패키지-설치"><a href="#필요한-npm-패키지-설치" class="headerlink" title="필요한 npm 패키지 설치"></a>필요한 npm 패키지 설치</h4><p>npm i + </p>
+<ol>
+<li>express</li>
+<li>cookie-parser</li>
+<li>express-session </li>
+<li>morgan</li>
+<li>connect-flash</li>
+<li>pug</li>
+<li>nodemon : 서버 코드 수정시 서버를 자동시작해줌.<br> 설치 명령어는 <code>npm i -g nodemon</code> + <code>npm i -D nodemon</code>.<br><br><br></li>
+</ol>
+<h4 id="app-js-작성-설명은-주석-참조"><a href="#app-js-작성-설명은-주석-참조" class="headerlink" title="app.js 작성 : 설명은 주석 참조"></a>app.js 작성 : 설명은 주석 참조</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">//필요한 모듈들 로드 </span><br><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">const cookieParser = require(&apos;cookie-parser&apos;);</span><br><span class="line">const morgan = require(&apos;morgan&apos;);</span><br><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line">const session = require(&apos;express-session&apos;);</span><br><span class="line">const flash = require(&apos;connect-flash&apos;);</span><br><span class="line">require(&apos;dotenv&apos;).config(); //env 따로 관리 </span><br><span class="line"></span><br><span class="line">//요청이 들어왔을때, 페이지 분기처리하는 라우터 등록 </span><br><span class="line">const pageRouter = require(&apos;./routes/page&apos;);</span><br><span class="line"></span><br><span class="line">//express app 생성 </span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">//app 기본 설정 </span><br><span class="line">app.set(&apos;views&apos;, path.join(__dirname, &apos;views&apos;)); //모든 view 파일들은 views 이름의 폴더에 넣어준다. </span><br><span class="line">app.set(&apos;view engine&apos;, &apos;pug&apos;);  //view engine 은 pug를 사용 </span><br><span class="line">app.set(&apos;port&apos;, process.env.PORT || &apos;3000&apos;);    //process.env 객체에 PORT 속성이 있으면 그 값을 사용, 아니면 3000번 기본값을 사용 </span><br><span class="line"></span><br><span class="line">//사용할 미들웨어 설정 </span><br><span class="line">app.use(morgan(&apos;dev&apos;)); //요청에 대한 정보를 콘솔에 기록 </span><br><span class="line">app.use(express.static(path.join(__dirname, &apos;public&apos;))); //정적파일 저장위치 명시</span><br><span class="line">app.use(express.json()); //body-parser </span><br><span class="line">app.use(express.urlencoded(&#123;extended: false&#125;)); //body-parser </span><br><span class="line">app.use(cookieParser(process.env.COOKIE_SECRET)); //요청에 동봉된 쿠키를 해석. 매개변수 : 클라이언트에서 수정 막음 </span><br><span class="line">app.use(session(&#123;   //세션설정(for 로그인 등)</span><br><span class="line">    resave : false,</span><br><span class="line">    saveUninitialized : false,</span><br><span class="line">    secret : process.env.COOKIE_SECRET,</span><br><span class="line">    cookie : &#123;</span><br><span class="line">        httpOnly : true,</span><br><span class="line">        secure : false,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;));</span><br><span class="line">app.use(flash()); //일회성 메시지들을 웹 브라우저에 나타낼때 사용. </span><br><span class="line"></span><br><span class="line">app.use(&apos;/&apos;, pageRouter);</span><br><span class="line"></span><br><span class="line">//에러처리 미들웨어 404 </span><br><span class="line">app.use((req, res, next)=&gt; &#123;</span><br><span class="line">    const err = new Error(&apos;NOT FOUND&apos;);</span><br><span class="line">    err.status = 404;</span><br><span class="line">    next(err);</span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line">//에러 핸들링 미들웨어 </span><br><span class="line">app.use((err, req, res)=&gt; &#123;</span><br><span class="line">    res.locals.message = err.message;</span><br><span class="line">    res.locals.error = req.app.get(&apos;env&apos;) == &apos;development&apos; ? err : &#123;&#125;;</span><br><span class="line">    res.status(err.status || 500);</span><br><span class="line">    res.render(&apos;error&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(app.get(&apos;port&apos;), ()=&gt;&#123;</span><br><span class="line">    console.log(app.get(&apos;port&apos;), &apos;번 포트에서 서버 연결!&apos;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="dotenv-env-파일-생성"><a href="#dotenv-env-파일-생성" class="headerlink" title="dotenv + .env 파일 생성"></a>dotenv + <code>.env</code> 파일 생성</h4><p>cookieParser 나 express-session 의 비밀키들은 직접 코드 상에서 코딩할 경우에 소스 코드가 유출된다면 키도 같이 유출되므로 별도로 관리하는 것이 좋다. <code>.env</code> 라는 이름의 파일을 만들어서 그 안에 이제부터 비밀키를 관리/보관하는 것이 좋다. (<em>나는 이부분을 잘못이해해서 .env라는 확장자를 가진 파일을 생성했는데, 아무 확장자 없이 그냥 <code>.env</code>라는 파일을 하나 생성하는 것이었다…</em>)</p>
+<ul>
+<li>콘솔창에 : <code>npm i dotenv</code></li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//.env 파일 안에 </span><br><span class="line">COOKIE_SECRET=nodebirdsecret</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>이렇게 해놓으면 dotenv 패키지를 통해 .env 파일 안에서 비밀키를 관리할 수 있고, 코딩을 할 때에는 그냥 <code>process.env</code> 를 통해 바로 비밀키에 접근할 수 있게 된다! </p>
+<p>실제로 위의 app.js 파일을 보면 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;dotenv&apos;).config(); //env 따로 관리 </span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">app.use(cookieParser(process.env.COOKIE_SECRET));</span><br></pre></td></tr></table></figure>
+
+<p>요런 코드가 보이는데 dotenv 모듈을 로드해주고, 그 dotenv 를 통해서 .env 파일에 접근하여 미리 등록한 비밀키를 사용하는 방법이다. 코드 상에서는 비밀키의 값을 알 수 없으므로 소스코드가 외부에 노출되어도 전혀 문제가 없다.<br><br><br></p>
+<h4 id="기본적인-router-및-view-파일들-작성"><a href="#기본적인-router-및-view-파일들-작성" class="headerlink" title="기본적인 router 및 view 파일들 작성"></a>기본적인 router 및 view 파일들 작성</h4><ol>
+<li>page.js : 요청에 따른 페이지 분기처리. <ul>
+<li>router.get(‘/profile’) : 내정보 페이지 </li>
+<li>router.get(‘/join’) : 회원가입 페이지 </li>
+<li>router.get(‘/‘){} : 메인 페이지 </li>
+<li>res.flush(‘에러메시지’) 설정을 통해서 오류 발생 시 메시지 표현을 할 수 있게 된다. </li>
+</ul>
+</li>
+<li>layout.pug : 기본 레이아웃 </li>
+<li>main.pug : 기본레이아웃 확장 + 사진업로드 및 게시글 작성</li>
+<li>join.pug : 기본레이아웃 확장 + 회원가입 폼</li>
+<li>profile.pug :  기본레이아웃 확장 + 내정보보기 </li>
+<li>error.pug : 기본레이아웃 확장 + 에러메시지 </li>
+</ol>
+<p>pug 파일들은 마치 jsp 파일들처럼 분기처리를 해서 표시 항목을 설정할 수 있다. if문과 for 문을 통해서 보여줄 화면을 유동적으로 설정할 수 있다. pug 파일들에 스타일을 적용할 css 파일은 <code>public</code> 폴더 내부에 생성 및 보관하도록 한다!<br><br><br> </p>
+<h4 id="서버-시작-및-화면확인"><a href="#서버-시작-및-화면확인" class="headerlink" title="서버 시작 및 화면확인"></a>서버 시작 및 화면확인</h4><p>서버 시작 : <code>npm start</code><br>웹 브라우저 접속해서 꾸며진 화면 확인 : <code>http://localhost:3000</code><br><br><br></p>
+<h2 id="데이터베이스-생성"><a href="#데이터베이스-생성" class="headerlink" title="데이터베이스 생성"></a>데이터베이스 생성</h2><p>데이터베이스는 sequelize 를 이용해 생성하기로 했다. 해시태그와 팔로잉 기능이 있고 사용자 간의 관계가 중요하므로 관계형 데이터베이스 mysql 을 사용했다.<br>필요한 테이블과 각 테이블에 필요한 컬럼들을 정의한다. </p>
+<p>필요한 테이블은 아래와 같다. DB를 관리하는 <code>models</code> 폴더 아래에 각 테이블 이름에 맞는 <code>user.js</code>, <code>post.js</code>, <code>hashtag.js</code> 파일들을 생성하고 테이블 구조에 맞게 컬럼 설정을 해준다. 관계 설정은 각 테이블마다 해주는 방법도 있지만, 관계를 한번에 알아볼 수 있도록 <code>/models/index.js</code>에서 한번에 해주기로 한다. </p>
+<ul>
+<li>user : email, nick, password, provider(local or kakao), snsId</li>
+<li>post : content, img</li>
+<li>hashtag : title</li>
+<li>관계 설정은 <code>/models/index.js</code>에서 한번에! </li>
+</ul>
+<p><em>꿀팁!</em> 각 테이블에서 <code>timestamps</code>와 <code>paranoid</code>를 <code>true</code> 로 설정해놓으면 생성시간, 수정시간, 삭제시간에 대한 컬럼이 자동으로 생성된다. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  timestamps : true,  </span><br><span class="line">  paranoid : true,</span><br><span class="line">  //결과 : createdAt, updatedAt, deletedAt 컬럼 생성됨 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="models-index-js"><a href="#models-index-js" class="headerlink" title="/models/index.js"></a>/models/index.js</h4><p>주석에 각 테이블들을 간단히 설명해놓았다. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">const Sequelize = require(&apos;sequelize&apos;);</span><br><span class="line">const env = process.env.NODE_ENV || &apos;development&apos;;</span><br><span class="line">const config = require(&apos;../config/config&apos;)[env];</span><br><span class="line">const db = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">const sequelize = new Sequelize(</span><br><span class="line">  config.database, config.username, config.password, config, </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">db.sequelize = sequelize;</span><br><span class="line">db.Sequelize = Sequelize; </span><br><span class="line"></span><br><span class="line">//모델과 연결 </span><br><span class="line">db.User = require(&apos;./user&apos;)(sequelize, Sequelize);</span><br><span class="line">db.Post = require(&apos;./post&apos;)(sequelize, Sequelize);</span><br><span class="line">db.Hashtag = require(&apos;./hashtag&apos;)(sequelize, Sequelize);</span><br><span class="line"></span><br><span class="line">//모델 간 관계설정 </span><br><span class="line">//user - post : 1 대 다</span><br><span class="line">db.User.hasMany(db.Post);</span><br><span class="line">db.Post.belongsTo(db.User);</span><br><span class="line"></span><br><span class="line">//post - hashtag : 다 대 다 </span><br><span class="line">// 중간의 관계 테이블 : PostHashtag</span><br><span class="line">//시퀄라이즈에 의해 자동으로 서로의 setter, getter 가 각각의 model 에 생성된다. </span><br><span class="line">db.Post.belongsToMany(db.Hashtag, &#123;through : &apos;PostHashtag&apos;&#125;);</span><br><span class="line">db.Hashtag.belongsToMany(db.Post, &#123;through : &apos;PostHashtag&apos;&#125;);</span><br><span class="line"></span><br><span class="line">//one user - another user : 다 대 다 관계 </span><br><span class="line">//관계 테이블 : Follow </span><br><span class="line">//두 user 테이블 간의 id 가 중복되므로 따로 foreign key와 테이블 이름을 설정 </span><br><span class="line">//as : JOIN 작업시 사용하는 이름 - 두 테이블 이름이 같으므로, Followers와 Followings 로 각각 지정함 </span><br><span class="line">db.User.belongsToMany(db.User, &#123;</span><br><span class="line">  foreighKey : &apos;followingId&apos;,</span><br><span class="line">  as : &apos;Followers&apos;,</span><br><span class="line">  through : &apos;Follow&apos;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">db.User.belongsToMany(db.User, &#123;</span><br><span class="line">  foreighKey : &apos;followerId&apos;,</span><br><span class="line">  as : &apos;Followings&apos;,</span><br><span class="line">  through : &apos;Follow&apos;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">module.exports = db;</span><br></pre></td></tr></table></figure>
+
+<p>세 개의 기본 테이블 User, Post, Hashtag 와 더불어 테이블 간 관계에서 발생하는 PostHashtag, Follow 테이블까지 포함하여 총 5개의 테이블이 생성된다.<br><br><br> </p>
+<h4 id="sequelize-로-테이블-생성"><a href="#sequelize-로-테이블-생성" class="headerlink" title="sequelize 로 테이블 생성"></a>sequelize 로 테이블 생성</h4><p>sequelize는 config.json 을 읽어서 데이터베이스를 생성해주는 기능을 가지고 있다. 해당 파일에 mysql 계정 설정을 해보자. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// /config/config.json</span><br><span class="line">&#123;</span><br><span class="line">  &quot;development&quot;: &#123;</span><br><span class="line">    &quot;username&quot;: &quot;[계정이름]&quot;,</span><br><span class="line">    &quot;password&quot;: &quot;[계정비번]&quot;,</span><br><span class="line">    &quot;database&quot;: &quot;nodebird&quot;,</span><br><span class="line">    &quot;host&quot;: &quot;127.0.0.1&quot;,</span><br><span class="line">    &quot;dialect&quot;: &quot;mysql&quot;,</span><br><span class="line">    &quot;operatorsAliases&quot;: false</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;test&quot;: &#123;</span><br><span class="line">    &quot;username&quot;: &quot;root&quot;,</span><br><span class="line">    &quot;password&quot;: null,</span><br><span class="line">    &quot;database&quot;: &quot;database_test&quot;,</span><br><span class="line">    &quot;host&quot;: &quot;127.0.0.1&quot;,</span><br><span class="line">    &quot;dialect&quot;: &quot;mysql&quot;,</span><br><span class="line">    &quot;operatorsAliases&quot;: false</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;production&quot;: &#123;</span><br><span class="line">    &quot;username&quot;: &quot;root&quot;,</span><br><span class="line">    &quot;password&quot;: null,</span><br><span class="line">    &quot;database&quot;: &quot;database_production&quot;,</span><br><span class="line">    &quot;host&quot;: &quot;127.0.0.1&quot;,</span><br><span class="line">    &quot;dialect&quot;: &quot;mysql&quot;,</span><br><span class="line">    &quot;operatorsAliases&quot;: false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>개발용이라서 개발용에만 계정설정을 해줬는데, 나중에 배포할 때는 다른 두 곳도 설정해야한다. mysql 계정이름과 비번을 입력해주고 <code>sequelize db:create</code> 명령어를 이용해서 데이터베이스를 생성!<br><br><br> </p>
+<h4 id="모델과-서버-연결"><a href="#모델과-서버-연결" class="headerlink" title="모델과 서버 연결"></a>모델과 서버 연결</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const &#123;sequelize&#125; = require(&apos;./models&apos;); //sequelize 이용해 서버와 모델(db) 연결 01 : ./models/index.js</span><br><span class="line"></span><br><span class="line">sequelize.sync();   //sequelize 이용해 서버와 모델(db) 연결 02</span><br></pre></td></tr></table></figure>
+
+<p>sequelize는 테이블 생성 쿼리문에 <code>IF NOT EXISTS</code>를 넣어주므로 테이블이 없다면 자동생성해준다. <code>npm start</code> 명령어로 서버를 실행해주면 테이블이 생성된 것을 mysql workbench에서 바로 확인할 수 있다.<br><br><br> </p>
+<p><a href="https://miniminis.github.io/2019/10/27/node-express-framework-02/">Express framework 이용해서 실시간 SNS 만들기 (2) 바로읽기</a><br><br><br> </p>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a href="http://www.yes24.com/Product/Goods/62597864?Acode=101" target="_blank" rel="noopener">조현영 개발자님의 Node.js 교과서</a></li>
+<li><a href="https://github.com/ZeroCho/nodejs-book" target="_blank" rel="noopener">Node.js 교과서 예제코드 Git 주소</a></li>
+<li><a href="https://github.com/Miniminis/nodeJS-study-note/tree/master/nodebird" target="_blank" rel="noopener">나의 소스 코드 : 책을 따라하며 발생했던 에러 해결포함</a></li>
+</ul>
+
+                    
+                    <!-- Tags Bottom -->
+                    
+                        <div class="tags-container-bottom">
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/node/">#node</a> <a class="fw3 ph1 dib" href="/tags/express-framework/">#express-framework</a>
+                        </div>
+                    
+
+                    <!-- Comments -->
+                    
+<div id="disqus_thread" class="mt5">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="https://img1.daumcdn.net/thumb/C500x500/?fname=http://t1.daumcdn.net/brunch/service/user/22GJ/image/yRk2mTiHwL4iKOXVcxuRUGKpOXA.jpg" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="흑염소">
+        </div>
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            어제는 케냐에서 NGO 사업관리를 하다가 오늘은 개발을 배우고 있는 흑염소입니다. 기술이 해결할 사회문제들, 기술을 통해 변화할 사회에 많은 관심을 가지고 있습니다. 
+        </div>
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 2: Categories -->
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2020/03/03/python-crawling-basic02/">Python-crawling / 이미지, 웹페이지 크롤링하여 컴퓨터에 저장하기</a>
+        </p>
+    
+        <p>
+            <a href="/2020/03/03/python-crawling-basic01/">Python-crawling / 파이썬 크롤링 데이터 컴퓨터에 저장시 PermissionE</a>
+        </p>
+    
+        <p>
+            <a href="/2020/03/02/android-proguard/">Android / 안드로이드 proguard 난독화 해제하지 않고 firebase cras</a>
+        </p>
+    
+        <p>
+            <a href="/2019/10/27/node-express-framework-03/">Node / Express framework 이용해서 실시간 SNS 만들기 (3)</a>
+        </p>
+    
+        <p>
+            <a href="/2019/10/27/node-express-framework-02/">Node / Express framework 이용해서 실시간 SNS 만들기 (2)</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="bg-1 ph2 ph5-ns pv5">
+        <div class="mv8">
+            <div class="center tc">
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://github.com/Miniminis" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="mailto:minhee4735@gmail.com" target="_blank">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="/rss2.xml" target="_blank">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://brunch.co.kr/@miniblackgoat" target="_blank">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="f6 f5-ns center tc white pt5 fw3">
+                All right reserved @Blackgoat. | Design & Hexo <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+            </div>
+        </div>
+    </div>
+
+<!-- After Footer -->
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'miniminis-github-io-2';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

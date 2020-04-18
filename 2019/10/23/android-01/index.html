@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="사실은 연차프로젝트를 진행할 때부터 우리 조는 모두 안드로이드 앱 배포까지를 염두해두고 있었다. (물론 가능하다면…) 그러나 취업준비와 프로젝트 진행을 동시에 병행하기는 역시 쉽지 않은터라, 조원들이 다같이 안드로이드를 시작하기에는 힘들었다. 나는 개인적으로 우리 서비">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="흑염소">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Android / 안드로이드 환경설정, 주요 기능, HelloAndroid 프로그램 만들어보기">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="흑염소의 개발블로그">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>Android / 안드로이드 환경설정, 주요 기능, HelloAndroid 프로그램 만들어보기 - 흑염소의 개발블로그</title>
+
+    <!-- Tachyons Core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-149033629-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+<!-- Main Content -->
+<!-- Banner -->
+<!-- Banner -->
+<div class="w-100 bg-1 ph5-ns ph3 text-light">
+    
+    <nav class="db dt-l w-100 mw8 center border-box pv3">
+        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="흑염소의 개발블로그">
+            <img src="http://www.codeblocq.com/assets/projects/hexo-theme-anodyne/assets/anodyne.svg" class="dib h3" alt="흑염소의 개발블로그">
+        </a>
+        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
+                    Home
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/tags" 
+                    title="Tags">
+                    Tags
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/projects" 
+                    title="Projects">
+                    Projects
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/about.html" 
+                    title="About">
+                    About
+                </a>
+            
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <div class="w-100 mw8 center vh-40 dt">
+        <div class="dtc v-mid white">
+            <h1 class="f1-l f2-m tc tc-m tl-ns">Android / 안드로이드 환경설정, 주요 기능, HelloAndroid 프로그램 만들어보기</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-10-23</p>
+        </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="relative w-100 mw8 center white dn dn-m db-ns">
+        <i class="header-icon fa fa-file-text-o"></i>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
+    <div class="content">
+        <div class="mw8 center">
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+                        <div class="tags-container-vertical">
+                            <div class="tags-sub-container">
+                                <a class="fw3 ph1 dib" href="/tags/android/">#android</a>
+                            </div>
+                        </div>
+                    
+
+                    <!-- Main Post Content -->
+                    <p>사실은 <a href="https://miniminis.github.io/projects/">연차프로젝트</a>를 진행할 때부터 우리 조는 모두 안드로이드 앱 배포까지를 염두해두고 있었다. (물론 가능하다면…) 그러나 취업준비와 프로젝트 진행을 동시에 병행하기는 역시 쉽지 않은터라, 조원들이 다같이 안드로이드를 시작하기에는 힘들었다. 나는 개인적으로 우리 서비스를 안드로이드에서까지 보는 것으로 목표를 잡았었기에 조금씩이지만 안드로이드를 배우면서 프로젝트를 업그레이드 시켜보고자 한다. 물론 전체 프로젝트는 무리겠고, 일부 기능만! 그럼 개발환경 설정부터 하나하나 시작해보도록 하자.<br><br><br></p>
+<h2 id="개발환경설정"><a href="#개발환경설정" class="headerlink" title="개발환경설정"></a>개발환경설정</h2><ol>
+<li>JDK 설정 (설치)</li>
+<li>Android Studio 설치 - 최신버전 추천 </li>
+</ol>
+<ul>
+<li>SDK 설치 </li>
+<li>AVD 설치 </li>
+<li>에뮬레이터 생성<br><br><br></li>
+</ul>
+<h2 id="안드로이드-주요-특징"><a href="#안드로이드-주요-특징" class="headerlink" title="안드로이드 주요 특징"></a>안드로이드 주요 특징</h2><ol>
+<li>핵심 커널이 리눅스로 구성되어있다. </li>
+<li>어플리케이션 개발언어는 java 를 사용한다. </li>
+<li>안드로이드 SDK 에서 많은 라이브러리를 사용하고 있어서 개발이 용이하다.<br><br><br></li>
+</ol>
+<h2 id="안드로이드-구조"><a href="#안드로이드-구조" class="headerlink" title="안드로이드 구조"></a>안드로이드 구조</h2><ol>
+<li>응용프로그램 : 안드로이드 스마트폰에서 사용할 수 있는 일반적인 응용 프로그램 <ul>
+<li>home, contacts, phone, browser … </li>
+</ul>
+</li>
+<li>응용프로그램 프레임워크 <ul>
+<li>안드로이드 API 가 존재하는 곳 </li>
+<li>안드로이드 폰 하드웨어 접근할 때는 java에 직접 접근하는 것이 아니라 이 API 를 통해서 가능하다! </li>
+<li>activity manager, window manager, content providers, view system, package manager 등 </li>
+</ul>
+</li>
+<li>라이브러리 <ul>
+<li>SQLite 등 </li>
+<li>시스템 접근 때문에 C로 작성됨 </li>
+</ul>
+</li>
+<li>안드로이드 런타임 : java core 라이브러리 + Dalvik Virtual Machine 또는 ART Runtime 으로 구성 </li>
+<li>리눅스 커널 <ul>
+<li>하드웨어 운영과 관련된 저수준의 관리기능 </li>
+<li>메모리 관리, 디바이스 드라이버, 보안 등<br><br><br></li>
+</ul>
+</li>
+</ol>
+<h2 id="실습-“Hello-Android”-프로그램-만들어보기"><a href="#실습-“Hello-Android”-프로그램-만들어보기" class="headerlink" title="[실습] “Hello Android” 프로그램 만들어보기"></a>[실습] “Hello Android” 프로그램 만들어보기</h2><h3 id="안드로이드-프로그램-개발-과정"><a href="#안드로이드-프로그램-개발-과정" class="headerlink" title="안드로이드 프로그램 개발 과정"></a>안드로이드 프로그램 개발 과정</h3><ol>
+<li>안드로이드 프로젝트를 생성한다. <ul>
+<li>설정 파일에서 SDK 설정 가능! </li>
+<li>[Start a new Android Studio project] 클릭!</li>
+<li>참고 : <ul>
+<li>빌드도구 : 컴파일, 빌드, 패키징 처리. maven 에서 gradle 로 이동하는 추세 </li>
+<li>IntelliJ 기반의 안드로이드 스튜디오는 gradle 로 설정하는 것이 보통이다. </li>
+<li>Eclipse ADT : 복잡하고 힘듬. 요즘은 거의 사용되지 않는다. </li>
+</ul>
+</li>
+<li>[Import an Android code sample] : 안드로이드에서 제공하는 대부분의 코드를 확인 가능하다.</li>
+<li>어플리케이션 이름, company domain, project location 설정 <ul>
+<li>company domain : 회사의 도메인. 패키지명 &gt;&gt;&gt; google play 등록 </li>
+</ul>
+</li>
+<li>Target Android Devices : 어플리케이션을 주로 사용하게 될 사용자 층의 안드로이드 디바이스를 설정<ul>
+<li>minimum SDK 등록 : 자바의 경우 1.6+ </li>
+<li>phone and tablet 체크 </li>
+</ul>
+</li>
+<li>엑티비티 설정 : 여기서는 Empty Activity 체크</li>
+<li>Activity name : 기본 소스인 java 파일 이름으로 지정하고 </li>
+<li>layout name : 기본 화면인 xml 파일 이름으로 지정한다. </li>
+</ul>
+</li>
+<li>화면 디자인 및 편집(*.xml) : 내부에서 액티비티가 캐스팅 처리됨<ul>
+<li>project tree 에서 추가된 HelloAndroid 프로젝트 확인!</li>
+<li>text 클릭해서 <code>android.support.constraint.ConstraintLayout</code> 을 <code>RelativeLayout</code> 으로 변경한다. </li>
+<li>왼쪽[Widgets]에서 사용할 수 있는 컴포넌트들을 확인 </li>
+<li>컴포넌트를 추가하면 xml에서 코드생성됨. 삭제하면 같이 삭제! </li>
+<li>Project Tree의 [java]-[com.cookandroid.helloandroid]-[MainActivity] 선택 <ul>
+<li>최초 실행시에 <code>onCreate()</code> 매서드를 실행하게 된다. </li>
+<li>이전에 설정해둔 xml 파일이 실행된다. - 코드 상에서 확인 </li>
+</ul>
+</li>
+<li><code>MainActivity.java</code> : 엑티비티에서 화면을 만든다! <ul>
+<li><code>setContentView(R.layout.activity_main)</code> : activity_main.xml의 요소들을 표현. <ul>
+<li>R : 클래스 </li>
+<li>layout : 참조변수 </li>
+<li>activity_main : int 타입으로 관리된다. </li>
+<li>결국 안드로이드에서는 : res(R)폴더 내부의 폴더들(layout)내부에 파일을 참조하는 방식으로 사용할 수 있다. 안드로이드에서 관리해줌. </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>java/kotlin 코드를 작성 + 수정 (*.java) : 빌드!</li>
+<li>프로젝트 실행 및 결과를 확인한다 (안드로이드 단말기가 있다면 그것으로, or AVD)</li>
+<li>정상작동되면 emulator 에 화면이 표시될 것이고, 오류가 있다면 콘솔창에 에러메시지 출력될 것임! </li>
+<li>안드로이드 어플리케이션 개발 완료! </li>
+</ol>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a href="http://www.yes24.com/Product/Goods/68699712?Acode=101" target="_blank" rel="noopener">Android Studio를 활용한 안드로이드 프로그래밍- 우재남, 박길식</a></li>
+</ul>
+
+                    
+                    <!-- Tags Bottom -->
+                    
+                        <div class="tags-container-bottom">
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/android/">#android</a>
+                        </div>
+                    
+
+                    <!-- Comments -->
+                    
+<div id="disqus_thread" class="mt5">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="https://img1.daumcdn.net/thumb/C500x500/?fname=http://t1.daumcdn.net/brunch/service/user/22GJ/image/yRk2mTiHwL4iKOXVcxuRUGKpOXA.jpg" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="흑염소">
+        </div>
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            어제는 케냐에서 NGO 사업관리를 하다가 오늘은 개발을 배우고 있는 흑염소입니다. 기술이 해결할 사회문제들, 기술을 통해 변화할 사회에 많은 관심을 가지고 있습니다. 
+        </div>
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 2: Categories -->
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2020/03/03/python-crawling-basic02/">Python-crawling / 이미지, 웹페이지 크롤링하여 컴퓨터에 저장하기</a>
+        </p>
+    
+        <p>
+            <a href="/2020/03/03/python-crawling-basic01/">Python-crawling / 파이썬 크롤링 데이터 컴퓨터에 저장시 PermissionE</a>
+        </p>
+    
+        <p>
+            <a href="/2020/03/02/android-proguard/">Android / 안드로이드 proguard 난독화 해제하지 않고 firebase cras</a>
+        </p>
+    
+        <p>
+            <a href="/2019/10/27/node-express-framework-03/">Node / Express framework 이용해서 실시간 SNS 만들기 (3)</a>
+        </p>
+    
+        <p>
+            <a href="/2019/10/27/node-express-framework-02/">Node / Express framework 이용해서 실시간 SNS 만들기 (2)</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="bg-1 ph2 ph5-ns pv5">
+        <div class="mv8">
+            <div class="center tc">
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://github.com/Miniminis" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="mailto:minhee4735@gmail.com" target="_blank">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="/rss2.xml" target="_blank">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://brunch.co.kr/@miniblackgoat" target="_blank">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="f6 f5-ns center tc white pt5 fw3">
+                All right reserved @Blackgoat. | Design & Hexo <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+            </div>
+        </div>
+    </div>
+
+<!-- After Footer -->
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'miniminis-github-io-2';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

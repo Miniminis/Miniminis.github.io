@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="1021문제//1개의 단어를 입력받아 그대로 출력해보자.////입력//한 단어가 입력된다.(단, 단어의 길이는 50자 이하이다.)////문자를 50개 저장하기 위해서는 char data[51] 로 선언하면 된다.////char data[51]=””;//scanf(“%s">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="흑염소">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Algorithm / 코드업 100제 (자바풀이) / 1021번 - 1030번">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="흑염소의 개발블로그">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>Algorithm / 코드업 100제 (자바풀이) / 1021번 - 1030번 - 흑염소의 개발블로그</title>
+
+    <!-- Tachyons Core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-149033629-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+<!-- Main Content -->
+<!-- Banner -->
+<!-- Banner -->
+<div class="w-100 bg-1 ph5-ns ph3 text-light">
+    
+    <nav class="db dt-l w-100 mw8 center border-box pv3">
+        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="흑염소의 개발블로그">
+            <img src="http://www.codeblocq.com/assets/projects/hexo-theme-anodyne/assets/anodyne.svg" class="dib h3" alt="흑염소의 개발블로그">
+        </a>
+        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
+                    Home
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/tags" 
+                    title="Tags">
+                    Tags
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/projects" 
+                    title="Projects">
+                    Projects
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/about.html" 
+                    title="About">
+                    About
+                </a>
+            
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <div class="w-100 mw8 center vh-40 dt">
+        <div class="dtc v-mid white">
+            <h1 class="f1-l f2-m tc tc-m tl-ns">Algorithm / 코드업 100제 (자바풀이) / 1021번 - 1030번</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-10-07</p>
+        </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="relative w-100 mw8 center white dn dn-m db-ns">
+        <i class="header-icon fa fa-file-text-o"></i>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
+    <div class="content">
+        <div class="mw8 center">
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+                        <div class="tags-container-vertical">
+                            <div class="tags-sub-container">
+                                <a class="fw3 ph1 dib" href="/tags/algorithm/">#algorithm</a> <a class="fw3 ph1 dib" href="/tags/codeup/">#codeup</a>
+                            </div>
+                        </div>
+                    
+
+                    <!-- Main Post Content -->
+                    <h2 id="1021"><a href="#1021" class="headerlink" title="1021"></a>1021</h2><p>문제<br>//1개의 단어를 입력받아 그대로 출력해보자.<br>//<br>//입력<br>//한 단어가 입력된다.(단, 단어의 길이는 50자 이하이다.)<br>//<br>//문자를 50개 저장하기 위해서는 char data[51] 로 선언하면 된다.<br>//<br>//char data[51]=””;<br>//scanf(“%s”, data);<br>//<br>//를 실행하면, data[51] 에 한 단어가 저장된다.<br>//<br>//<br>//출력<br>//입력된 단어를 그대로 출력한다.<br>//<br>//<br>//<br>//<br>//입력 예시<br>//Informatics<br>//<br>//출력 예시<br>//Informatics</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">public class p1021 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String word = scan.nextLine();</span><br><span class="line">		System.out.print(word);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1022"><a href="#1022" class="headerlink" title="1022"></a>1022</h2><p>문제<br>//입력<br>//공백이 포함되어 있는 한 문장이 입력된다.<br>//단, 입력되는 문장은 여러 개의 단어로 구성되고, 엔터로 끝나며,<br>//최대 길이는 2000 문자를 넘지 않는다.<br>//출력<br>//입력된 문장을 그대로 출력한다.<br>//<br>//입력 예시<br>//Programming is very fun!!<br>//<br>//출력 예시<br>//Programming is very fun!!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">public class p1022 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String sentence = scan.nextLine();</span><br><span class="line">		System.out.print(sentence);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1023"><a href="#1023" class="headerlink" title="1023"></a>1023</h2><p>문제<br>//실수 1개를 입력받아 정수 부분과 실수 부분으로 나누어 출력한다.<br>//<br>//** 여러 가지 방법들로 해결할 수 있다.<br>//<br>//만약 실수 부분이 0으로 시작하지 않는다면(예를 들어 1.000009)<br>//scanf(“%d.%d”, &amp;a, &amp;b)도 하나의 방법이 될 수 있다.<br>//<br>//<br>//입력<br>//실수 1개가 입력된다.<br>//(단, 입력값은 절댓값이 10000을 넘지 않으며, 소수점 이하 자릿수는 최대 6자리까지이고<br>//0이 아닌 숫자로 시작한다.)<br>//<br>//<br>//출력<br>//첫 번째 줄에 정수 부분을, 두 번째 줄에 실수 부분을 출력한다.<br>//<br>//<br>//입력 예시<br>//1.414213<br>//<br>//출력 예시<br>//1<br>//414213</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">import java.util.StringTokenizer;</span><br><span class="line">public class p1023 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String floatNum = scan.nextLine();</span><br><span class="line">		StringTokenizer tk = new StringTokenizer(floatNum, &quot;.&quot;);</span><br><span class="line">		String[] nums = new String[2];</span><br><span class="line">		int i=0; </span><br><span class="line">		while(tk.hasMoreTokens()) &#123;</span><br><span class="line">			nums[i] = tk.nextToken();</span><br><span class="line">			i+=1;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(nums[0]+&quot;\n&quot;+nums[1]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1024"><a href="#1024" class="headerlink" title="1024"></a>1024</h2><p>문제 </p>
+<p>//단어를 1개 입력받는다.<br>//<br>//입력받은 단어(영어)의 각 문자를<br>//<br>//한줄에 한 문자씩 분리해 출력한다<br>//<br>//단어(영어) 하나를 입력받는다.<br>//(단, 단어의 길이는 20자 이하이다.)<br>//<br>//<br>//출력<br>//단어의 문자(영어)를 하나씩 나누어 한 줄에 한 개씩<br>//‘ ‘로 묶어서 출력한다.<br>//<br>//<br>//입력 예시<br>//Boy<br>//<br>//출력 예시<br>//‘B’<br>//‘o’<br>//‘y’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">public class p1024 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String word = scan.nextLine();</span><br><span class="line">		char[] words = word.toCharArray();</span><br><span class="line">		for(int i=0; i&lt;words.length; i++) &#123;</span><br><span class="line">			System.out.println(&quot;&apos;&quot;+words[i]+&quot;&apos;&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1025"><a href="#1025" class="headerlink" title="1025"></a>1025</h2><p>문제<br>//입력되는 시:분:초에서 분만 출력해보자.<br>//<br>//참고<br>//int h, m, s;<br>//scanf(“%d:%d:%d”, &amp;h, &amp;m, &amp;s);<br>//<br>//를 실행하면 콜론을 사이에 둔 형식으로 입력되어, h, m, s에 각각 정수값만 저장된다.<br>//<br>//<br>//입력<br>//시 분 초가<br>//시:분:초 형식으로 입력된다.<br>//<br>//<br>//출력<br>//분만 출력한다.<br>//<br>//<br>//입력 예시<br>//17:23:57<br>//<br>//출력 예시<br>//23</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">import java.util.StringTokenizer;</span><br><span class="line">public class p1026 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String time = scan.nextLine();</span><br><span class="line">		StringTokenizer tk = new StringTokenizer(time, &quot;:&quot;);</span><br><span class="line">		String[] times = new String[3];</span><br><span class="line">		int i = 0;</span><br><span class="line">		while(tk.hasMoreTokens()) &#123;</span><br><span class="line">			times[i] = tk.nextToken();</span><br><span class="line">			if(times[i].equals(&quot;00&quot;)) &#123;</span><br><span class="line">				times[i] = &quot;0&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">			i+= 1;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(times[1]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1026"><a href="#1026" class="headerlink" title="1026"></a>1026</h2><p>문제<br>//입력되는 시:분:초에서 분만 출력해보자.<br>//<br>//참고<br>//int h, m, s;<br>//scanf(“%d:%d:%d”, &amp;h, &amp;m, &amp;s);<br>//<br>//를 실행하면 콜론을 사이에 둔 형식으로 입력되어, h, m, s에 각각 정수값만 저장된다.<br>//<br>//<br>//입력<br>//시 분 초가<br>//시:분:초 형식으로 입력된다.<br>//<br>//<br>//출력<br>//분만 출력한다.<br>//<br>//<br>//입력 예시<br>//17:23:57<br>//<br>//출력 예시<br>//23</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">import java.util.StringTokenizer;</span><br><span class="line">public class p1026 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String time = scan.nextLine();</span><br><span class="line">		StringTokenizer tk = new StringTokenizer(time, &quot;:&quot;);</span><br><span class="line">		String[] times = new String[3];</span><br><span class="line">		int i = 0;</span><br><span class="line">		while(tk.hasMoreTokens()) &#123;</span><br><span class="line">			times[i] = tk.nextToken();</span><br><span class="line">			if(times[i].equals(&quot;00&quot;)) &#123;</span><br><span class="line">				times[i] = &quot;0&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">			i+= 1;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(times[1]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1027"><a href="#1027" class="headerlink" title="1027"></a>1027</h2><p>문제 </p>
+<p>//년월일을 출력하는 방법은 나라마다, 형식마다 조금씩 다르다.<br>//<br>//년월일(yyyy.mm.dd)를 입력받아,<br>//<br>//일월년(dd-mm-yyyy)로 출력해보자.<br>//<br>//(단, 한 자리 일/월은 0을 붙여 두자리로, 년도도 0을 붙여 네자리로 출력한다.)<br>//<br>//<br>//참고<br>//출력하는 자리수를 지정하기 위해 %4d와 같은 형식을 사용할 수 있는데,<br>//빈칸을 0으로 출력하기 위해서는 %04d와 같은 형식을 사용하면 된다.<br>//<br>//예시<br>//printf(“%02d-%02d-%04d”, d, m, y);<br>//<br>//입력<br>//년월일이 ‘.’(닷)으로 구분되어 입력된다.<br>//<br>//<br>//출력<br>//년월일을<br>//<br>//일월년으로 바꾸어 ‘-‘(대쉬, 마이너스)로 구분해 출력한다.<br>//<br>//<br>//입력 예시<br>//2014.07.15<br>//<br>//출력 예시<br>//15-07-2014 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">import java.util.StringTokenizer;</span><br><span class="line">public class p1027 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String inputTime = scan.nextLine();</span><br><span class="line">		StringTokenizer tk = new StringTokenizer(inputTime, &quot;.&quot;);</span><br><span class="line">		String[] times = new String[3];</span><br><span class="line">		int i=0;</span><br><span class="line">		while(tk.hasMoreTokens()) &#123;</span><br><span class="line">			times[i] = tk.nextToken();</span><br><span class="line">			i+=1;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(times[2]+&quot;-&quot;+times[1]+&quot;-&quot;+times[0]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1028"><a href="#1028" class="headerlink" title="1028"></a>1028</h2><p>문제 </p>
+<p>//정수 1개를 입력받아 그대로 출력해보자.<br>//(단, 입력되는 정수의 범위는 0 ~ 4,294,967,295 이다.)<br>//<br>//참고<br>//-2147483648 ~ +2147483647 범위의 정수를 저장하고 처리하기 위해서는<br>//int 형으로 변수를 선언하면 된다.(int 로 선언하고 %d로 받고 출력)<br>//<br>//하지만 이 범위를 넘어가는 정수를 저장하기 위해서는<br>//보다 큰 범위를 저장할 수 있는 다른 데이터형을 사용해야 정상적으로 저장시킬 수 있다.<br>//<br>//unsigned int 데이터형을 사용하면 0 ~ 4294967295 범위의 정수를 저장할 수 있다.<br>//<br>//<br>//예시<br>//unsigned int n;<br>//scanf(“%u”, &amp;n);<br>//printf(“%u”, n);<br>//<br>//입력<br>//정수 1개가 입력된다.<br>//(단, 입력되는 정수의 범위는 0 ~ 4294967295 이다.)<br>//<br>//<br>//출력<br>//입력된 정수를 그대로 출력한다.<br>//<br>//<br>//입력 예시<br>//2147483648<br>//<br>//출력 예시<br>//2147483648</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import java.util.Scanner;</span><br><span class="line">public class p1028 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		long input = scan.nextLong();</span><br><span class="line">		System.out.print(input);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1029"><a href="#1029" class="headerlink" title="1029"></a>1029</h2><p>문제 </p>
+<p>//실수 1개를 입력받아 그대로 출력해보자.<br>//(단, 입력되는 실수의 범위는 +- 1.7<em>10-308 ~ +- 1.7</em>10308 이다.)<br>//<br>//참고<br>//float 데이터형을 사용하면 +- 3.4<em>10-38 ~ +- 3.4</em>1038 범위의 실수를 저장할 수 있다.<br>//(float 로 선언하고 %f로 입력 받아 출력하면 된다.)<br>//<br>//이 범위를 넘어가는(더 작거나 더 큰) 실수를 저장하기 위해서는<br>//보다 큰 범위를 저장할 수 있는 다른 데이터형을 사용해야 정상적으로 저장시킬 수 있다.<br>//double은 더 정확하게 저장할 수 있지만, float보다 2배의 저장 공간이 필요하다.<br>//<br>//double 데이터형을 사용하면<br>//+- 1.7<em>10-308 ~ +- 1.7</em>10308 범위의 실수를 저장할 수 있다.<br>//<br>//<br>//예시<br>//double d;<br>//scanf(“%lf”, &amp;d); // double(long flo</p>
+<p>//입력<br>//소수점 아래 숫자가 11개 이하인 실수 1개가 입력된다.<br>//(단, 입력되는 실수의 범위는 +- 1.7<em>10-308 ~ +- 1.7</em>10308 이다.)<br>//<br>//<br>//출력<br>//입력된 실수를 소수점 이하 11자리까지 반올림하여 출력한다.<br>//<br>//<br>//참고<br>//%.11lf 를 사용하면 소수점 이하 11자리까지 출력된다.<br>//<br>//<br>//입력 예시<br>//3.14159265359<br>//<br>//출력 예시<br>//3.14159265359</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">public class p1029 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		double num = scan.nextDouble();</span><br><span class="line">		String strNum = String.format(&quot;%.11f&quot;, num);</span><br><span class="line">		System.out.print(strNum);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1030"><a href="#1030" class="headerlink" title="1030"></a>1030</h2><p>문제 </p>
+<p>//정수 1개를 입력받아 그대로 출력해보자.<br>//단, 입력되는 정수의 범위는<br>//-9,223,372,036,854,775,808 ~ +9,223,372,036,854,775,807 이다.<br>//<br>//참고<br>//-2147483648 ~ +2147483647 범위의 정수를 저장하고 처리하기 위해서는<br>//int 데이터형을 사용해 변수를 선언하면 된다.<br>//(int 로 선언하고 %d로 입력받아 저장하고, 출력하면 된다.)<br>//<br>//int 형으로 저장할 수 있는 범위를 넘어가는 정수 값을 저장하기 위해서는<br>//보다 큰 범위를 저장할 수 있는 다른 데이터형을 사용해야 한다.<br>//<br>//long long int 데이터형을 사용하면<br>//-9,223,372,036,854,775,808 ~ +9,223,372,036,854,775,807 범위의 정수값을<br>//저장시킬 수 있다.<br>//<br>//<br>//예시<br>//long long int n;<br>//scanf(“%lld”, &amp;n);<br>//printf(“%lld”, n);<br>//<br>//입력<br>//정수 1개가 입력된다.<br>//단, 입력되는 정수의 범위는 -9223372036854775808 ~ +9223372036854775807 이다.<br>//<br>//출력<br>//입력된 정수를 그대로 출력한다.<br>//<br>//<br>//입력 예시<br>//-2147483649<br>//<br>//출력 예시<br>//-2147483649</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">public class p1030 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		long num = scan.nextLong();</span><br><span class="line">		System.out.print(num);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+                    
+                    <!-- Tags Bottom -->
+                    
+                        <div class="tags-container-bottom">
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/algorithm/">#algorithm</a> <a class="fw3 ph1 dib" href="/tags/codeup/">#codeup</a>
+                        </div>
+                    
+
+                    <!-- Comments -->
+                    
+<div id="disqus_thread" class="mt5">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="https://img1.daumcdn.net/thumb/C500x500/?fname=http://t1.daumcdn.net/brunch/service/user/22GJ/image/yRk2mTiHwL4iKOXVcxuRUGKpOXA.jpg" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="흑염소">
+        </div>
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            어제는 케냐에서 NGO 사업관리를 하다가 오늘은 개발을 배우고 있는 흑염소입니다. 기술이 해결할 사회문제들, 기술을 통해 변화할 사회에 많은 관심을 가지고 있습니다. 
+        </div>
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 2: Categories -->
+                    
+                        <div class="mt5 tc tl-l">
+    <h3>Categories</h3>
+    
+        <p>
+            <a href="/categories/algorithm/">algorithm</a>
+        </p>
+    
+</div>
+
+
+                        <hr class="dn-l mw4 black-50 mt5" />
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2020/03/03/python-crawling-basic02/">Python-crawling / 이미지, 웹페이지 크롤링하여 컴퓨터에 저장하기</a>
+        </p>
+    
+        <p>
+            <a href="/2020/03/03/python-crawling-basic01/">Python-crawling / 파이썬 크롤링 데이터 컴퓨터에 저장시 PermissionE</a>
+        </p>
+    
+        <p>
+            <a href="/2020/03/02/android-proguard/">Android / 안드로이드 proguard 난독화 해제하지 않고 firebase cras</a>
+        </p>
+    
+        <p>
+            <a href="/2019/10/27/node-express-framework-03/">Node / Express framework 이용해서 실시간 SNS 만들기 (3)</a>
+        </p>
+    
+        <p>
+            <a href="/2019/10/27/node-express-framework-02/">Node / Express framework 이용해서 실시간 SNS 만들기 (2)</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="bg-1 ph2 ph5-ns pv5">
+        <div class="mv8">
+            <div class="center tc">
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://github.com/Miniminis" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="mailto:minhee4735@gmail.com" target="_blank">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="/rss2.xml" target="_blank">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://brunch.co.kr/@miniblackgoat" target="_blank">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="f6 f5-ns center tc white pt5 fw3">
+                All right reserved @Blackgoat. | Design & Hexo <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+            </div>
+        </div>
+    </div>
+
+<!-- After Footer -->
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'miniminis-github-io-2';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
