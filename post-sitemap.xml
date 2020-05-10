@@ -152,14 +152,6 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2019/10/15/java-basic-1/</loc>
-        <lastmod>2019-10-22T02:15:09.003Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://miniminis.github.io/2019/10/21/node-socket-ycar-example-1/</loc>
         <lastmod>2019-10-22T02:12:38.442Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -168,32 +160,8 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2019/10/14/node-basic01/</loc>
-        <lastmod>2019-10-20T22:55:48.533Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/14/node-basic02/</loc>
-        <lastmod>2019-10-20T22:21:03.180Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://miniminis.github.io/2019/10/11/node-deploy/</loc>
         <lastmod>2019-10-20T00:42:22.688Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/19/network-01/</loc>
-        <lastmod>2019-10-20T00:24:45.507Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
