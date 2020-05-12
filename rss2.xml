@@ -8,11 +8,11 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Tue, 03 Mar 2020 12:14:44 GMT</pubDate>
+    <pubDate>Tue, 12 May 2020 20:31:25 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>Python-crawling / 이미지, 웹페이지 크롤링하여 컴퓨터에 저장하기</title>
+      <title>이미지, 웹페이지 크롤링하여 컴퓨터에 저장하기</title>
       <link>https://miniminis.github.io/2020/03/03/python-crawling-basic02/</link>
       <guid>https://miniminis.github.io/2020/03/03/python-crawling-basic02/</guid>
       <pubDate>Tue, 03 Mar 2020 00:23:28 GMT</pubDate>
@@ -32,7 +32,7 @@
     </item>
     
     <item>
-      <title>Python-crawling / 파이썬 크롤링 데이터 컴퓨터에 저장시 PermissionError [Errno 13] Permission denied 해결</title>
+      <title>파이썬 크롤링 데이터 컴퓨터에 저장시 PermissionError [Errno 13] Permission denied 해결</title>
       <link>https://miniminis.github.io/2020/03/03/python-crawling-basic01/</link>
       <guid>https://miniminis.github.io/2020/03/03/python-crawling-basic01/</guid>
       <pubDate>Tue, 03 Mar 2020 00:23:23 GMT</pubDate>
@@ -52,7 +52,7 @@
     </item>
     
     <item>
-      <title>Android / 안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러 메시지 확인하기, proguard/R8 이해하기, proguard/R8 예제</title>
+      <title>안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러 메시지 확인하기, proguard/R8 이해하기, proguard/R8 예제</title>
       <link>https://miniminis.github.io/2020/03/02/android-proguard/</link>
       <guid>https://miniminis.github.io/2020/03/02/android-proguard/</guid>
       <pubDate>Mon, 02 Mar 2020 10:55:16 GMT</pubDate>
@@ -72,7 +72,7 @@
     </item>
     
     <item>
-      <title>Node.js / Express framework 이용해서 실시간 SNS 만들기 (3)</title>
+      <title>Express framework 이용해서 실시간 SNS 만들기 (3)</title>
       <link>https://miniminis.github.io/2019/10/27/node-express-framework-03/</link>
       <guid>https://miniminis.github.io/2019/10/27/node-express-framework-03/</guid>
       <pubDate>Sun, 27 Oct 2019 14:20:31 GMT</pubDate>
@@ -92,7 +92,7 @@
     </item>
     
     <item>
-      <title>Node.js / Express framework 이용해서 실시간 SNS 만들기 (2)</title>
+      <title>Express framework 이용해서 실시간 SNS 만들기 (2)</title>
       <link>https://miniminis.github.io/2019/10/27/node-express-framework-02/</link>
       <guid>https://miniminis.github.io/2019/10/27/node-express-framework-02/</guid>
       <pubDate>Sun, 27 Oct 2019 14:20:25 GMT</pubDate>
@@ -112,7 +112,7 @@
     </item>
     
     <item>
-      <title>Node.js / Express framework 이용해서 실시간 SNS 만들기 (1)</title>
+      <title>Express framework 이용해서 실시간 SNS 만들기 (1)</title>
       <link>https://miniminis.github.io/2019/10/27/node-express-framework-01/</link>
       <guid>https://miniminis.github.io/2019/10/27/node-express-framework-01/</guid>
       <pubDate>Sat, 26 Oct 2019 18:21:53 GMT</pubDate>
@@ -132,7 +132,7 @@
     </item>
     
     <item>
-      <title>Android / 안드로이드 스튜디오에 핸드폰 연결하기 - 다 해봤는데 안될 때!</title>
+      <title>안드로이드 스튜디오에 핸드폰 연결하기 - 다 해봤는데 안될 때!</title>
       <link>https://miniminis.github.io/2019/10/24/android-03/</link>
       <guid>https://miniminis.github.io/2019/10/24/android-03/</guid>
       <pubDate>Thu, 24 Oct 2019 08:53:56 GMT</pubDate>
@@ -152,7 +152,7 @@
     </item>
     
     <item>
-      <title>Android / 기본 위젯으로 화면 구성하기, View 클래스구조, 자바코드로 캐스팅</title>
+      <title>기본 위젯으로 화면 구성하기, View 클래스구조, 자바코드로 캐스팅</title>
       <link>https://miniminis.github.io/2019/10/24/android-02/</link>
       <guid>https://miniminis.github.io/2019/10/24/android-02/</guid>
       <pubDate>Thu, 24 Oct 2019 08:53:46 GMT</pubDate>
@@ -173,7 +173,7 @@
     </item>
     
     <item>
-      <title>Database / Mysql / 조인</title>
+      <title>Mysql / 조인</title>
       <link>https://miniminis.github.io/2019/10/23/db-basic-03/</link>
       <guid>https://miniminis.github.io/2019/10/23/db-basic-03/</guid>
       <pubDate>Wed, 23 Oct 2019 09:21:52 GMT</pubDate>
@@ -194,7 +194,7 @@
     </item>
     
     <item>
-      <title>Android / 안드로이드 환경설정, 주요 기능, HelloAndroid 프로그램 만들어보기</title>
+      <title>안드로이드 환경설정, 주요 기능, HelloAndroid 프로그램 만들어보기</title>
       <link>https://miniminis.github.io/2019/10/23/android-01/</link>
       <guid>https://miniminis.github.io/2019/10/23/android-01/</guid>
       <pubDate>Wed, 23 Oct 2019 09:21:42 GMT</pubDate>
@@ -214,7 +214,7 @@
     </item>
     
     <item>
-      <title>Node.js / Socket.io 이용하여 서로 다른 두 사용자간 실시간 데이터 공유</title>
+      <title>Socket.io 이용하여 서로 다른 두 사용자간 실시간 데이터 공유</title>
       <link>https://miniminis.github.io/2019/10/21/node-socket-ycar-example-1/</link>
       <guid>https://miniminis.github.io/2019/10/21/node-socket-ycar-example-1/</guid>
       <pubDate>Mon, 21 Oct 2019 05:50:15 GMT</pubDate>
@@ -234,7 +234,7 @@
     </item>
     
     <item>
-      <title>Architecture / REST에 대한 간단한 정리</title>
+      <title>REST에 대한 간단한 정리</title>
       <link>https://miniminis.github.io/2019/10/19/architecture-01/</link>
       <guid>https://miniminis.github.io/2019/10/19/architecture-01/</guid>
       <pubDate>Sat, 19 Oct 2019 08:59:24 GMT</pubDate>
@@ -254,7 +254,7 @@
     </item>
     
     <item>
-      <title>Database / 기본개념 02 / DBMS, 스키마</title>
+      <title>기본개념 02 / DBMS, 스키마</title>
       <link>https://miniminis.github.io/2019/10/19/db-basic-02/</link>
       <guid>https://miniminis.github.io/2019/10/19/db-basic-02/</guid>
       <pubDate>Fri, 18 Oct 2019 16:20:35 GMT</pubDate>
@@ -275,7 +275,7 @@
     </item>
     
     <item>
-      <title>Database / 기본개념 01 / 용어정리, 키</title>
+      <title>기본개념 02 / 데이터베이스 용어정리, 키</title>
       <link>https://miniminis.github.io/2019/10/19/db-basic-01/</link>
       <guid>https://miniminis.github.io/2019/10/19/db-basic-01/</guid>
       <pubDate>Fri, 18 Oct 2019 16:08:49 GMT</pubDate>
@@ -295,7 +295,7 @@
     </item>
     
     <item>
-      <title>Programmers / 프로그래머스 Level 1 / 모의고사, 체육복</title>
+      <title>프로그래머스 Level 1 / 모의고사, 체육복</title>
       <link>https://miniminis.github.io/2019/10/17/algorithm-5/</link>
       <guid>https://miniminis.github.io/2019/10/17/algorithm-5/</guid>
       <pubDate>Thu, 17 Oct 2019 07:30:10 GMT</pubDate>
@@ -315,7 +315,7 @@
     </item>
     
     <item>
-      <title>Insight / 아프리카 여성, 권한 얻기 위한 긴 여정 시작…코딩교육 중요성 커져</title>
+      <title>아프리카 여성, 권한 얻기 위한 긴 여정 시작…코딩교육 중요성 커져</title>
       <link>https://miniminis.github.io/2019/10/13/insight-africa-coding-edu-for-girl/</link>
       <guid>https://miniminis.github.io/2019/10/13/insight-africa-coding-edu-for-girl/</guid>
       <pubDate>Sun, 13 Oct 2019 10:01:17 GMT</pubDate>
@@ -335,7 +335,7 @@
     </item>
     
     <item>
-      <title>Javascript / 팝업창에서 새창 띄우기</title>
+      <title>팝업창에서 새창 띄우기</title>
       <link>https://miniminis.github.io/2019/10/13/javascript-popup/</link>
       <guid>https://miniminis.github.io/2019/10/13/javascript-popup/</guid>
       <pubDate>Sun, 13 Oct 2019 09:39:31 GMT</pubDate>
@@ -356,7 +356,7 @@
     </item>
     
     <item>
-      <title>Linux / aws ec2 에 배포 전 필요한 Linux 명령어 모음 v1</title>
+      <title>aws ec2 에 배포 전 필요한 Linux 명령어 모음 v1</title>
       <link>https://miniminis.github.io/2019/10/13/awslinuxcommand/</link>
       <guid>https://miniminis.github.io/2019/10/13/awslinuxcommand/</guid>
       <pubDate>Sun, 13 Oct 2019 09:17:31 GMT</pubDate>
@@ -376,7 +376,7 @@
     </item>
     
     <item>
-      <title>Spring Boot / 스프링 부트 프로젝트 Git + Maven + AWS EC2 배포하기</title>
+      <title>스프링 부트 프로젝트 Git + Maven + AWS EC2 배포하기</title>
       <link>https://miniminis.github.io/2019/10/13/springboot-deploy/</link>
       <guid>https://miniminis.github.io/2019/10/13/springboot-deploy/</guid>
       <pubDate>Sun, 13 Oct 2019 08:15:07 GMT</pubDate>
@@ -396,7 +396,7 @@
     </item>
     
     <item>
-      <title>Node.js / firebase와 aws ec2에 node 서버 배포하기</title>
+      <title>firebase와 aws ec2에 node 서버 배포하기</title>
       <link>https://miniminis.github.io/2019/10/11/node-deploy/</link>
       <guid>https://miniminis.github.io/2019/10/11/node-deploy/</guid>
       <pubDate>Fri, 11 Oct 2019 11:16:05 GMT</pubDate>
