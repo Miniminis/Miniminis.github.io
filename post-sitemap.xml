@@ -8,6 +8,126 @@
     </url>
 
     <url>
+        <loc>https://miniminis.github.io/2019/10/13/springboot-deploy/</loc>
+        <lastmod>2020-05-12T20:20:21.584Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/27/node-express-framework-03/</loc>
+        <lastmod>2020-05-12T20:19:23.208Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/27/node-express-framework-02/</loc>
+        <lastmod>2020-05-12T20:19:20.034Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/27/node-express-framework-01/</loc>
+        <lastmod>2020-05-12T20:19:13.831Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/13/javascript-popup/</loc>
+        <lastmod>2020-05-12T20:18:35.704Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/23/db-basic-03/</loc>
+        <lastmod>2020-05-12T20:18:21.173Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/19/architecture-01/</loc>
+        <lastmod>2020-05-12T20:17:38.186Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2020/03/02/android-proguard/</loc>
+        <lastmod>2020-05-12T20:17:18.020Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/17/algorithm-5/</loc>
+        <lastmod>2020-05-12T20:16:52.568Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/07/algorithm-4/</loc>
+        <lastmod>2020-05-12T20:16:42.046Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/07/algorithm-3/</loc>
+        <lastmod>2020-05-12T20:16:35.785Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/07/algorithm-2/</loc>
+        <lastmod>2020-05-12T20:16:33.548Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/07/algorithm-1/</loc>
+        <lastmod>2020-05-12T20:16:28.161Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/09/30/whylearnprogramming/</loc>
+        <lastmod>2020-05-12T20:14:50.060Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/09/16/hexo-blog-making/</loc>
+        <lastmod>2020-05-12T20:14:50.051Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://miniminis.github.io/2019/10/13/awslinuxcommand/</loc>
         <lastmod>2020-05-10T11:55:43.413Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -32,14 +152,6 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2019/10/07/algorithm-4/</loc>
-        <lastmod>2020-05-10T11:13:59.259Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://miniminis.github.io/2019/10/24/android-02/</loc>
         <lastmod>2020-05-10T11:13:56.555Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -56,32 +168,8 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2020/03/02/android-proguard/</loc>
-        <lastmod>2020-05-10T11:13:50.790Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://miniminis.github.io/2019/10/23/android-01/</loc>
         <lastmod>2020-05-10T11:13:47.392Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/17/algorithm-5/</loc>
-        <lastmod>2020-05-10T11:13:42.531Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/07/algorithm-3/</loc>
-        <lastmod>2020-05-10T11:13:39.838Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -98,62 +186,6 @@
     <url>
         <loc>https://miniminis.github.io/2020/03/03/python-crawling-basic01/</loc>
         <lastmod>2020-03-03T12:14:44.744Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/09/30/whylearnprogramming/</loc>
-        <lastmod>2020-02-03T22:52:33.613Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/07/algorithm-2/</loc>
-        <lastmod>2020-02-03T22:49:59.632Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/07/algorithm-1/</loc>
-        <lastmod>2020-02-03T22:49:51.540Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/27/node-express-framework-03/</loc>
-        <lastmod>2019-10-27T14:21:22.036Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/27/node-express-framework-02/</loc>
-        <lastmod>2019-10-27T14:21:13.946Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/27/node-express-framework-01/</loc>
-        <lastmod>2019-10-27T12:55:11.382Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/23/db-basic-03/</loc>
-        <lastmod>2019-10-23T09:21:52.427Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -186,38 +218,6 @@
     <url>
         <loc>https://miniminis.github.io/2019/10/11/node-deploy/</loc>
         <lastmod>2019-10-20T00:42:22.688Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/19/architecture-01/</loc>
-        <lastmod>2019-10-19T09:26:54.472Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/13/javascript-popup/</loc>
-        <lastmod>2019-10-18T12:31:26.530Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/10/13/springboot-deploy/</loc>
-        <lastmod>2019-10-13T09:13:56.132Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2019/09/16/hexo-blog-making/</loc>
-        <lastmod>2019-09-30T14:33:04.661Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
