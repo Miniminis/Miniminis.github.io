@@ -209,7 +209,7 @@
 </ul>
 <br>
 
-<h3 id="ERROR-3-VMware-Player-and-Device-Credential-Guard-are-not-compatible-VMware-Player-can-be-run-after-disabling-Device-Credential-Guard-Please-visit-http-www-vmware-com-go-turnoff-CG-DG-for-more-details"><a href="#ERROR-3-VMware-Player-and-Device-Credential-Guard-are-not-compatible-VMware-Player-can-be-run-after-disabling-Device-Credential-Guard-Please-visit-http-www-vmware-com-go-turnoff-CG-DG-for-more-details" class="headerlink" title="ERROR 3. VMware Player and Device/Credential Guard are not compatible. VMware Player can be run after disabling Device/Credential Guard. Please visit http://www.vmware.com/go/turnoff_CG_DG for more details."></a>ERROR 3. VMware Player and Device/Credential Guard are not compatible. VMware Player can be run after disabling Device/Credential Guard. Please visit <a href="http://www.vmware.com/go/turnoff_CG_DG" target="_blank" rel="noopener">http://www.vmware.com/go/turnoff_CG_DG</a> for more details.</h3><p>위의 에러를 지나고 다시 vmware 로 다시 돌아와서 가상 OS 를 다시 로딩해보면 또 다른 메시지가 나타날 수 있다. </p>
+<h3 id="ERROR-3-VMware-Player-and-Device-Credential-Guard-are-not-compatible-VMware-Player-can-be-run-after-disabling-Device-Credential-Guard-Please-visit-http-www-vmware-com-go-turnoff-CG-DG-for-more-details"><a href="#ERROR-3-VMware-Player-and-Device-Credential-Guard-are-not-compatible-VMware-Player-can-be-run-after-disabling-Device-Credential-Guard-Please-visit-http-www-vmware-com-go-turnoff-CG-DG-for-more-details" class="headerlink" title="ERROR 3. VMware Player and Device/Credential Guard are not compatible. VMware Player can be run after disabling Device/Credential Guard. Please visit http://www.vmware.com/go/turnoff_CG_DG for more details."></a>ERROR 3. VMware Player and Device/Credential Guard are not compatible. VMware Player can be run after disabling Device/Credential Guard. Please visit <a href="http://www.vmware.com/go/turnoff_CG_DG" target="_blank" rel="noopener">http://www.vmware.com/go/turnoff_CG_DG</a> for more details.</h3><p>위의 에러를 지나고 다시 vmware 로 돌아와서 가상 OS 를 로딩해보면 또 다른 메시지가 나타날 수 있다. </p>
 <p>문제는 Device/Credential Guard 때문인데, 다음과 같은 방법으로 해결하였다. </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 명령 프롬프트를 관리자 권한으로 실행</span><br><span class="line">2. bcdedit /set hypervisorlaunchtype off </span><br><span class="line">3. 호스트 컴퓨터 재부팅</span><br></pre></td></tr></table></figure>
 
@@ -267,6 +267,10 @@
     <h3>Recent Posts</h3>
     
         <p>
+            <a href="/2020/05/14/linux-thisislinux02/">이것이 리눅스다(2020) 02 / Vmware 특징, 리눅스 개요</a>
+        </p>
+    
+        <p>
             <a href="/2020/05/13/linux-thisislinux00/">이것이 리눅스다(2020) 00 / 목차</a>
         </p>
     
@@ -280,10 +284,6 @@
     
         <p>
             <a href="/2020/03/03/python-crawling-basic01/">파이썬 크롤링 데이터 컴퓨터에 저장시 PermissionError [Errno 13] Pe</a>
-        </p>
-    
-        <p>
-            <a href="/2020/03/02/android-proguard/">안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러</a>
         </p>
     
 </div>

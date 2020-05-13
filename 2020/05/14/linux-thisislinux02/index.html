@@ -10,11 +10,7 @@
 
     <!--Description-->
     
-        <meta name="description" content="자바 재 설치 : 1.7 –&amp;gt; 1.8root 로 이동 : sudo su -아래의 명령어들은 sudo su 로 이동하여 root 계정에서 실행하는 것이 좋음
-현재 Java version 확인 : java -version
-
-Java 1.8 설치하는 방법
-먼저, yum">
+        <meta name="description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페">
     
 
     <!--Author-->
@@ -24,7 +20,7 @@ Java 1.8 설치하는 방법
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="aws ec2 에 배포 전 필요한 Linux 명령어 모음 v1">
+        <meta property="og:title" content="이것이 리눅스다(2020) 02 / Vmware 특징, 리눅스 개요">
     
 
     <!--Open Graph Description-->
@@ -46,7 +42,7 @@ Java 1.8 설치하는 방법
 
     <!-- Title -->
     
-    <title>aws ec2 에 배포 전 필요한 Linux 명령어 모음 v1 - 흑염소의 개발블로그</title>
+    <title>이것이 리눅스다(2020) 02 / Vmware 특징, 리눅스 개요 - 흑염소의 개발블로그</title>
 
     <!-- Tachyons Core CSS -->
     <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
@@ -125,8 +121,8 @@ Java 1.8 설치하는 방법
     <!-- Title -->
     <div class="w-100 mw8 center vh-40 dt">
         <div class="dtc v-mid white">
-            <h1 class="f1-l f2-m tc tc-m tl-ns">aws ec2 에 배포 전 필요한 Linux 명령어 모음 v1</h1>
-            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-10-13</p>
+            <h1 class="f1-l f2-m tc tc-m tl-ns">이것이 리눅스다(2020) 02 / Vmware 특징, 리눅스 개요</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2020-05-14</p>
         </div>
     </div>
 
@@ -146,47 +142,115 @@ Java 1.8 설치하는 방법
                     
                         <div class="tags-container-vertical">
                             <div class="tags-sub-container">
-                                <a class="fw3 ph1 dib" href="/tags/linux/">#linux</a> <a class="fw3 ph1 dib" href="/tags/aws/">#aws</a>
+                                <a class="fw3 ph1 dib" href="/tags/linux/">#linux</a>
                             </div>
                         </div>
                     
 
                     <!-- Main Post Content -->
-                    <h2 id="자바-재-설치-1-7-–-gt-1-8"><a href="#자바-재-설치-1-7-–-gt-1-8" class="headerlink" title="자바 재 설치 : 1.7 –&gt; 1.8"></a>자바 재 설치 : 1.7 –&gt; 1.8</h2><h3 id="root-로-이동-sudo-su"><a href="#root-로-이동-sudo-su" class="headerlink" title="root 로 이동 : sudo su -"></a>root 로 이동 : <code>sudo su -</code></h3><p><em>아래의 명령어들은 sudo su 로 이동하여 root 계정에서 실행하는 것이 좋음</em><br><br></p>
-<h3 id="현재-Java-version-확인-java-version"><a href="#현재-Java-version-확인-java-version" class="headerlink" title="현재 Java version 확인 : java -version"></a>현재 Java version 확인 : <code>java -version</code></h3><br>
-
-<h3 id="Java-1-8-설치하는-방법"><a href="#Java-1-8-설치하는-방법" class="headerlink" title="Java 1.8 설치하는 방법"></a>Java 1.8 설치하는 방법</h3><ol>
-<li>먼저, <code>yum list java*</code> 명령어를 활용하여, 설치 가능한 java 버전을 확인.</li>
-<li>이미 설치된 java 버전을 삭제 : <code>yum remove java-1.7.0-openjdk</code></li>
-<li>설치하고자 하는 java 버전 설치 : <code>yum install -y java-1.8.0-openjdk-devel.x86_64</code><br><br><br></li>
+                    <p>‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B8529915277" target="_blank" rel="noopener">[링크]</a>를 통해 구입할 수 있고, 강의는 <a href="https://www.youtube.com/playlist?list=PLVsNizTWUw7EJ9z-LW3lv3VC-6HI9I3hN" target="_blank" rel="noopener">[링크]</a>에서 확인할 수 있다. 한빛에서 네이버 카페<a href="https://cafe.naver.com/thisislinux" target="_blank" rel="noopener">[링크]</a>도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…! 감사합니다…!)<br><br></p>
+<h2 id="Vmware"><a href="#Vmware" class="headerlink" title="Vmware"></a>Vmware</h2><ul>
+<li>Vmware는 가상환경을 구축할 수 있도록 도와주는 소프트웨어이다. 이를 이용하면 지금 내가 쓰고 있는 컴퓨터 안에 가상의 작은 컴퓨터를 만들 수 있다.</li>
+<li>1대의 컴퓨터 만으로도 실무환경과 거의 유사하게 가상의 작은 전산실을 만들 수 있다.</li>
+<li>특징적인 기능들에는 suspend 기능, 특정 시점을 기억하는 스냅숏 기능 등이 있다.</li>
+<li>focus : ctrl + alt 이용해서 호스트 os 와 가상os 간 마우스, 키보드 등의 포커스 이동을 할 수 있다.</li>
+<li>suspend: 노트북 커버 닫는 정도로 가상 컴퓨터를 완전히 끄지 않고 일시정지하는 것. 절전모드</li>
+<li>poweroff : 가상 컴퓨터의 전원을 완전히 끈다.</li>
+<li>여러개의 가상머신 동시 부팅 가능<br><br><br></li>
+</ul>
+<h2 id="실습을-위한-네트워크-환경-설정"><a href="#실습을-위한-네트워크-환경-설정" class="headerlink" title="실습을 위한 네트워크 환경 설정"></a>실습을 위한 네트워크 환경 설정</h2><h3 id="전체-네트워크-환경"><a href="#전체-네트워크-환경" class="headerlink" title="전체 네트워크 환경"></a>전체 네트워크 환경</h3><p>앞선 글에서 호스트 os, 가상 os 간의 관계와 전체적인 구성을 정리한 바 있다. 각 os 들은 다음과 같은 네트워크 환경을 구축하게 될 것이다. </p>
+<ol>
+<li>진짜 컴퓨터(호스트 컴퓨터)<ol>
+<li>네트워크 카드 </li>
+<li>호스트 OS (192.168.111.1) </li>
 </ol>
-<h2 id="웹-서버-설정"><a href="#웹-서버-설정" class="headerlink" title="웹 서버 설정"></a>웹 서버 설정</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># sudo </span><br><span class="line"># sudo yum install -y httpd24 php56 php56-mysqlnd</span><br><span class="line"># sudo service httpd start</span><br><span class="line"># iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080</span><br><span class="line"># service iptables save</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="Tomcat-설정"><a href="#Tomcat-설정" class="headerlink" title="Tomcat 설정"></a>Tomcat 설정</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># sudo yum list tomcat8*</span><br><span class="line"># sudo yum install –y tomcat8</span><br><span class="line"># sudo yum install tomcat8-admin-webapps</span><br><span class="line"># sudo yum install tomcat8-webapps</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="Root-계정에-Tomcat-배포-권한-설정"><a href="#Root-계정에-Tomcat-배포-권한-설정" class="headerlink" title="Root 계정에 Tomcat 배포 권한 설정"></a>Root 계정에 Tomcat 배포 권한 설정</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># cd /usr/share/tomcat8</span><br><span class="line"># chgrp -R tomcat /usr/share/tomcat8</span><br><span class="line"># chown -R tomcat webapps/ work/ temp/ logs/</span><br><span class="line"># find conf webapps -type d -exec chmod 755 &#123;&#125; +</span><br><span class="line"># find conf webapps -type f -exec chmod 644 &#123;&#125; +</span><br><span class="line"># find logs temp work -type d -exec chmod 750 &#123;&#125; +</span><br><span class="line"># find logs temp work -type f -exec chmod 640 &#123;&#125; +</span><br><span class="line"># service tomcat8 restart</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="MySQL-설정"><a href="#MySQL-설정" class="headerlink" title="MySQL 설정"></a>MySQL 설정</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># sudo yum install mysql57-server       //설치</span><br><span class="line"># mysql –V                              //버전확인 </span><br><span class="line"># sudo service mysqld start             //서비스 시작 </span><br><span class="line"># mysqladmin -u root password           //root 계정 설정 </span><br><span class="line"># mysql -u root -p                      //root 계정으로 로그인</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="재배포-확실하게-하기-위해-폴더-및-파일-삭제할때"><a href="#재배포-확실하게-하기-위해-폴더-및-파일-삭제할때" class="headerlink" title="재배포 확실하게 하기 위해 폴더 및 파일 삭제할때"></a>재배포 확실하게 하기 위해 폴더 및 파일 삭제할때</h2><ul>
-<li>폴더 삭제 : 하위 디렉토리까지 한번에 삭제 : <code>rm -rf ./[폴더이름]</code></li>
-<li>파일 삭제 : <code>rm [파일이름]</code><br>
 </li>
+<li>VMware 프로그램 <ol>
+<li>게이트웨이 겸 DNS 서버 (192.168.111.2)</li>
+<li>DHCP 서버 (192.168.111.254)</li>
+<li>Server A <ul>
+<li>linux with X-Window</li>
+<li>192.168.111.100</li>
+</ul>
+</li>
+<li>Server B<ul>
+<li>linux </li>
+<li>192.168.111.200</li>
+</ul>
+</li>
+<li>linClient<ul>
+<li>linux</li>
+<li>자동 IP</li>
+</ul>
+</li>
+<li>winClient<ul>
+<li>window</li>
+<li>자동 IP </li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><em>참고</em> : <ul>
+<li><em>DHCP server : 다른 컴퓨터에게 자동으로 IP 를 할당해주는 서버</em> </li>
+<li><em>위의 5번의 리눅스 클라이언트와 6번의 윈도우 클라이언트는 이 DHCP 서버에 의해 자동으로 IP 를 할당받게 될 것임</em></li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="VMware-Workstation-Pro-에서-네트워크-정보-변경"><a href="#VMware-Workstation-Pro-에서-네트워크-정보-변경" class="headerlink" title="VMware Workstation Pro 에서 네트워크 정보 변경"></a>VMware Workstation Pro 에서 네트워크 정보 변경</h3><p>이에 따라서 현재 내가 쓰고 있는 컴퓨터인 호스트 OS 에서 IP 정보를 확인한 뒤, 위에 정의한 스펙에 맞게 변경하는 작업이 필요하다. </p>
+<ol>
+<li>cmd &gt;&gt; ipconfig /all 로 현재 호스트 os 에 연결되어있는 모든 네트워크 정보 파악</li>
+<li>VMware Network Adapter VMnet8 을 찾아서 IPv4 주소 확인 : 나의 경우는 192.168.191.1(기본 설정) 이었음 </li>
+<li>Workstation Pro에서 IPv4 주소를 위의 스펙에 맞게 192.168.111.1으로 변경<br><br><br></li>
+</ol>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h3 id="간단한-정보"><a href="#간단한-정보" class="headerlink" title="간단한 정보"></a>간단한 정보</h3><ul>
+<li>무료 유닉스 </li>
+<li>1991년 리누스 토르발스가 버전 0.01을 최초로 작성함 </li>
+<li>1992년에 0.02 버전을 공개하며 시작됨 </li>
+<li>리누스 토르발스는 사실 리눅스 전체가 아니라 커널만 개발함 <ul>
+<li>배포판 구성<ul>
+<li>하드웨어 : CPU, RAM HDD </li>
+<li>커널 : 엄격한 의미의 리눅스 <ul>
+<li>CentOS8의 경우는 4.18 버전</li>
+<li>사용자가 직접 최신 버전의 커널로 업그레이드 할 수 있음  </li>
+</ul>
+</li>
+<li>셀 : 명령어 해석기. bash, csh 등</li>
+<li>응용프로그램 : 에디터, 통신 프로그램, X 윈도, 웹서버, DB서버 등 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>GNU project <ul>
+<li>1984년도 리차드 스톨만이 시작 </li>
+<li>모두가 공유할 수 있는 소프트웨어를 만드는 것을 목표로 함 </li>
+<li>GPL license <ul>
+<li>자유 소프트웨어의 수정과 공유의 자유를 보장함 </li>
+<li>프리웨어(무료 소프트웨어) 개념을 넘어서 진정한 자유</li>
+<li>상용 판매는 가능, 하지만 소스를 오픈해야한다는 규약이 존재</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="Redhat-Linux-와-CentOS-리눅스"><a href="#Redhat-Linux-와-CentOS-리눅스" class="headerlink" title="Redhat Linux 와 CentOS 리눅스"></a>Redhat Linux 와 CentOS 리눅스</h3><ul>
+<li>레드햇 : 전 세계적으로 가장 유명한 배포판 중 하나 </li>
+<li>상용판매(RHEL) - 로고만 변경한 후에 다시 컴파일 해서 만든 것이 CentOS</li>
+<li>CentOS : 안정적이고 널리 쓰임 </li>
+<li>RHEL 은 유료로만 판매되고 있음 </li>
+<li>보통 발전 순서를 보면 페도라가 업데이트되면, 레드햇이 업데이트 되고 이를 바탕으로 센토스가 업데이트 됨. Fedora28 - RHEL8  - CentOS8</li>
 </ul>
 
                     
                     <!-- Tags Bottom -->
                     
                         <div class="tags-container-bottom">
-                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/linux/">#linux</a> <a class="fw3 ph1 dib" href="/tags/aws/">#aws</a>
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/linux/">#linux</a>
                         </div>
                     
 

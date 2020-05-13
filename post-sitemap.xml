@@ -8,8 +8,8 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2020/05/13/linux-thisislinux00/</loc>
-        <lastmod>2020-05-12T22:09:33.607Z</lastmod>
+        <loc>https://miniminis.github.io/2020/05/14/linux-thisislinux02/</loc>
+        <lastmod>2020-05-13T21:27:11.876Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,7 +17,15 @@
 
     <url>
         <loc>https://miniminis.github.io/2020/05/13/linux-thisislinux01/</loc>
-        <lastmod>2020-05-12T21:56:39.581Z</lastmod>
+        <lastmod>2020-05-13T20:40:47.622Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2020/05/13/linux-thisislinux00/</loc>
+        <lastmod>2020-05-13T20:40:19.992Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
