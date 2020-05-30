@@ -10,7 +10,7 @@
 
     <!--Description-->
     
-        <meta name="description" content="107812345678910111213import java.util.Scanner;public class p1078 &amp;#123;	public static void main(String[] args) &amp;#123;		Scanner scan = new Scanner(Syst">
+        <meta name="description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페">
     
 
     <!--Author-->
@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="코드업 100제 (자바풀이) / 1078번, 1079번">
+        <meta property="og:title" content="이것이 리눅스다(2020) 04 / CentOS8 Linux 설치 - ServerB">
     
 
     <!--Open Graph Description-->
@@ -42,7 +42,7 @@
 
     <!-- Title -->
     
-    <title>코드업 100제 (자바풀이) / 1078번, 1079번 - Kabarnet&#39;s Devlog</title>
+    <title>이것이 리눅스다(2020) 04 / CentOS8 Linux 설치 - ServerB - Kabarnet&#39;s Devlog</title>
 
     <!-- Tachyons Core CSS -->
     <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
@@ -121,8 +121,8 @@
     <!-- Title -->
     <div class="w-100 mw8 center vh-40 dt">
         <div class="dtc v-mid white">
-            <h1 class="f1-l f2-m tc tc-m tl-ns">코드업 100제 (자바풀이) / 1078번, 1079번</h1>
-            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-10-07</p>
+            <h1 class="f1-l f2-m tc tc-m tl-ns">이것이 리눅스다(2020) 04 / CentOS8 Linux 설치 - ServerB</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2020-05-30</p>
         </div>
     </div>
 
@@ -142,20 +142,139 @@
                     
                         <div class="tags-container-vertical">
                             <div class="tags-sub-container">
-                                <a class="fw3 ph1 dib" href="/tags/codeup/">#codeup</a>
+                                <a class="fw3 ph1 dib" href="/tags/linux/">#linux</a>
                             </div>
                         </div>
                     
 
                     <!-- Main Post Content -->
-                    <h2 id="1078"><a href="#1078" class="headerlink" title="1078"></a>1078</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">public class p1078 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		int input = scan.nextInt();</span><br><span class="line">		int evenNum = input/2;</span><br><span class="line">		int result = 0;</span><br><span class="line">		for(int i=0; i&lt;=evenNum; i++) &#123;</span><br><span class="line">			result += 2*i;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(result);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                    <p>‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B8529915277" target="_blank" rel="noopener">[링크]</a>를 통해 구입할 수 있고, 강의는 <a href="https://www.youtube.com/playlist?list=PLVsNizTWUw7EJ9z-LW3lv3VC-6HI9I3hN" target="_blank" rel="noopener">[링크]</a>에서 확인할 수 있다. 한빛에서 네이버 카페<a href="https://cafe.naver.com/thisislinux" target="_blank" rel="noopener">[링크]</a>도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…! 감사합니다…!)<br><br><br></p>
+<h2 id="기본-설정"><a href="#기본-설정" class="headerlink" title="기본 설정"></a>기본 설정</h2><h3 id="OS-스펙"><a href="#OS-스펙" class="headerlink" title="OS 스펙"></a>OS 스펙</h3><ol>
+<li>Memory : 2GB</li>
+<li>Hard disk : 40GB</li>
+<li>CD/DVD (SATA) : 다운 받은 ISO file 넣어주기 (ServerA 와 똑같음)</li>
+<li>NetworkAdapter : NAT<br><br><br></li>
+</ol>
+<h3 id="서버-B는-텍스트-모드이다"><a href="#서버-B는-텍스트-모드이다" class="headerlink" title="서버 B는 텍스트 모드이다!"></a>서버 B는 텍스트 모드이다!</h3><ul>
+<li>한글로 설정할 경우, 인코딩 등 문제가 있을 수 있으므로, 텍스트 모드에서는 그냥 영문으로 설치하도록 한다.<br><br><br></li>
+</ul>
+<h3 id="각종-설정"><a href="#각종-설정" class="headerlink" title="각종 설정"></a>각종 설정</h3><ol>
+<li>언어 : English </li>
+<li>시간 : 서울 </li>
+<li>네트워크 : Ethernet (ens160) On 시켜서 IP 주소 할당받기 </li>
+<li>소프트웨어 셀렉션 : Minimal install 로 설치 (server A 는 server with GUI 였음)</li>
+<li>설치 위치 : 하드디스크(40GB) 클릭 &gt; Custom &gt; Standard Partition  <ol>
+<li>swap : 4GB</li>
+<li>/ (root) : 36GB </li>
+</ol>
+</li>
+<li>root, centos 사용자 계정설정 (아이디, 비밀번호 등) </li>
+<li>설치 완료되면 부팅하여 로그인 </li>
+</ol>
+<br>
 
-<h2 id="1079"><a href="#1079" class="headerlink" title="1079"></a>1079</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">import java.util.StringTokenizer;</span><br><span class="line">public class p1079 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String strs = scan.nextLine();</span><br><span class="line">		StringTokenizer tk = new StringTokenizer(strs, &quot; &quot;);</span><br><span class="line">		while(tk.hasMoreTokens()) &#123;</span><br><span class="line">			String result = tk.nextToken();</span><br><span class="line">			if(result.equals(&quot;q&quot;)) &#123;</span><br><span class="line">				System.out.println(result);</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(result);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>텍스트 모드에서는 마우스가 먹지 않으므로 일반 콘솔창에서처럼 텍스트로만 아이디, 비밀번호 입력 후 로그인 진행</p>
+<p><em>*텍스트 모드의 장점 : 컴퓨터 사양이 낮아도 서버를 운영하는데 큰 무리가 없으며 GUI 화면이 없으므로 서버 운영에만 집중할 수 있다.</em><br><br><br></p>
+<h3 id="로그인-후-커스텀-설정"><a href="#로그인-후-커스텀-설정" class="headerlink" title="로그인 후, 커스텀 설정"></a>로그인 후, 커스텀 설정</h3><ol>
+<li>폰트 크기<ul>
+<li>setfont sun12x22</li>
+</ul>
+</li>
+<li>필요한 패키지들 다운로드<ul>
+<li>dnf -y install bind-utils net-tools unzip bzip2 wget</li>
+<li>최초에 설정시 minimal install 로 설치를 진행했기에 해당 패키지들이 포함되지 않은 상태임. 따로 다운받는 과정이다.  </li>
+</ul>
+</li>
+<li>dnf 명령어로 설치시, centos1905 버전만 다운로드 될 수 있도록 설정<ul>
+<li>cd /etc/yum.repos.d/</li>
+<li>ls : 디렉토리 내부의 파일들 확인 </li>
+<li>rm -f *.repo : repo 확장자명을 가진 모든 파일들을 삭제 </li>
+<li>ls : 로 다시 확인 </li>
+<li>원래대로라면 This.repo 파일을 생성하여 그 내부에 해당 내용들을 적어서 저장시켜줘야한다. 하지만 텍스트 모드의 리눅스에서는 이를 복사, 붙여넣기를 할 수가 없으므로, 미리 강사님이 한빛 서버에 저장해둔 This.repo 파일을 다운로드 하도록 한다. <ul>
+<li>wget <a href="https://download.hanbit.co.kr/centos/8/This.repo" target="_blank" rel="noopener">https://download.hanbit.co.kr/centos/8/This.repo</a></li>
+</ul>
+</li>
+<li>ls : 파일이 다운로드 되었는지 확인 </li>
+<li>cat This.repo : 파일의 내용이 화면상에 표현됨!</li>
+</ul>
+</li>
+<li>네트워크 설정<ul>
+<li>디렉토리 이동 : cd /etc/sysconfig/network-scripts/</li>
+<li>ls : ifcfg-ens160 확인. 이 파일을 vi 를 이용해서 편집<ul>
+<li>gedit : x-window 에서만 사용 가능. </li>
+<li>vi : x-window, text 둘 다에서 사용 가능!<ul>
+<li>vi ifcfg-ens160 : 파일이 열림! </li>
+</ul>
+</li>
+<li>a : 파일 수정 가능상태 </li>
+<li>4번째줄의 BOOTPROTO=”dhcp” 를 “none” 으로 변경 </li>
+<li>엔터 후, IPADDR=192.168.111.2 추가 (고정아이피로 설정)</li>
+<li>서브넷 마스크 입력 : NETMASK=255.255.255.0</li>
+<li>게이트 웨이 입력 : GATEWAY=192.168.111.2</li>
+<li>DNS 서버 입력 : DNS1=168.192.111.2</li>
+<li>esc + shift + : + wq 으로 저장 후 닫기(write quit) <ul>
+<li>네트워크 적용 </li>
+</ul>
+</li>
+<li>nmcli connection down ens160 </li>
+<li>nmcli connection up ens160 </li>
+<li>reboot </li>
+<li>재부팅 후 ip addr : ens160 에 적용한 내용이 모두 반영되어있다면 성공한 것! </li>
+<li>ping -c 3 <a href="https://www.google.com" target="_blank" rel="noopener">https://www.google.com</a> <ul>
+<li>구글에서 정상적으로 응답을 받았다면 네트워크 문제 없는 것! </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>보안 강화된 부분 끄기 (편의성 용도임)<ul>
+<li>vi /etc/sysconfig/selinux</li>
+<li>a : 수정모드 </li>
+<li>SELINUX=enforcing  –&gt; disabled으로 바꿔주기</li>
+<li>esc + shift + : + wq 으로 저장 후 닫기(write quit)</li>
+</ul>
+</li>
+<li>해상도 설정<ul>
+<li>vi /etc/grub.d/10_linux </li>
+<li>169행으로 이동 <ul>
+<li>행번호 안보일때 : shift + : + nu 입력</li>
+</ul>
+</li>
+<li>169행 : {args} 뒤에 “vga=773” 추가 &gt;&gt; 800x600 정도로 보이도록 설정한 것. </li>
+<li>esc + shift + : + wq &gt;&gt; 저장 후 닫기</li>
+<li>grub2-mkconfig -o /boot/grub2/grub.cfg 명령어로 바뀐 내용 적용</li>
+<li>done 이 나오면 완료된 것임</li>
+<li>reboot 이용해서 재부팅 </li>
+</ul>
+</li>
+<li>메모리 할당<ul>
+<li>halt -p : 재부팅된 컴퓨터 끄기 </li>
+<li>vmware player 다시 켜기 <ul>
+<li>server B </li>
+<li>edit virtual machine 목록 들어가서 세팅 <ul>
+<li>memory : 2gb &gt;&gt; 512mb </li>
+<li>CD/DVD : connect at power on 체크 해제, “Use ISO Image file” &gt;&gt; “Use physical drive” 변경</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>스냅숏 기능 설정 <ul>
+<li>ServerA 에서 했던 것과 동일하게 진행 <a href="https://miniminis.github.io/2020/05/15/linux-thisislinux03/">[링크]</a></li>
+</ul>
+</li>
+</ol>
+<p><br><br></p>
+<p>linux client 와 window client 는 설치 과정이 간단하여 따로 글로 적어두지 않았다. 혹시 필요한 분들이 있다면 <a href="https://www.youtube.com/watch?v=yDd1-Ew88w0&list=PLVsNizTWUw7EJ9z-LW3lv3VC-6HI9I3hN&index=8" target="_blank" rel="noopener">[이곳]</a>을 참고.</p>
+<p><br><br></p>
+
                     
                     <!-- Tags Bottom -->
                     
                         <div class="tags-container-bottom">
-                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/codeup/">#codeup</a>
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/linux/">#linux</a>
                         </div>
                     
 
