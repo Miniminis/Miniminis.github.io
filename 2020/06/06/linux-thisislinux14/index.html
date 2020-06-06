@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Kabarnet">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="이것이 리눅스다(2020) 14 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - 응급 복구, GRUB 부트로더">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Kabarnet&#39;s Devlog">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>이것이 리눅스다(2020) 14 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - 응급 복구, GRUB 부트로더 - Kabarnet&#39;s Devlog</title>
+
+    <!-- Tachyons Core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-149033629-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+<!-- Main Content -->
+<!-- Banner -->
+<!-- Banner -->
+<div class="w-100 bg-1 ph5-ns ph3 text-light">
+    
+    <nav class="db dt-l w-100 mw8 center border-box pv3">
+        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="Kabarnet's Devlog">
+            <img src="http://www.codeblocq.com/assets/projects/hexo-theme-anodyne/assets/anodyne.svg" class="dib h3" alt="Kabarnet's Devlog">
+        </a>
+        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
+                    Home
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/tags" 
+                    title="Tags">
+                    Tags
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/projects" 
+                    title="Projects">
+                    Projects
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/about.html" 
+                    title="About">
+                    About
+                </a>
+            
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <div class="w-100 mw8 center vh-40 dt">
+        <div class="dtc v-mid white">
+            <h1 class="f1-l f2-m tc tc-m tl-ns">이것이 리눅스다(2020) 14 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - 응급 복구, GRUB 부트로더</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2020-06-06</p>
+        </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="relative w-100 mw8 center white dn dn-m db-ns">
+        <i class="header-icon fa fa-file-text-o"></i>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
+    <div class="content">
+        <div class="mw8 center">
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+                        <div class="tags-container-vertical">
+                            <div class="tags-sub-container">
+                                <a class="fw3 ph1 dib" href="/tags/linux/">#linux</a>
+                            </div>
+                        </div>
+                    
+
+                    <!-- Main Post Content -->
+                    <p>‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B8529915277" target="_blank" rel="noopener">[링크]</a>를 통해 구입할 수 있고, 강의는 <a href="https://www.youtube.com/playlist?list=PLVsNizTWUw7EJ9z-LW3lv3VC-6HI9I3hN" target="_blank" rel="noopener">[링크]</a>에서 확인할 수 있다. 한빛에서 네이버 카페<a href="https://cafe.naver.com/thisislinux" target="_blank" rel="noopener">[링크]</a>도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…! 감사합니다…!)<br><br><br></p>
+<h2 id="응급-복구"><a href="#응급-복구" class="headerlink" title="응급 복구"></a>응급 복구</h2><ul>
+<li>시스템이 부팅되지 않을 경우에 수행 </li>
+<li>실습 16: root 비밀번호 분실시  모르는 상태에서 비밀번호 변경하기 <ul>
+<li>delete rhgb queit</li>
+<li>add init=/bin/sh </li>
+<li>passwd : 비번 재설정<ul>
+<li>그냥 하면 권한 오류가 날 것임</li>
+</ul>
+</li>
+<li>mount <ul>
+<li>현재 mount 된 상태가 ro (readOnly) 임을 확인</li>
+</ul>
+</li>
+<li>mount -o remount,rw / : ro 상태를 rw 상태로 다시 마운트함 </li>
+<li>mount 명령어로 현재 상태를 다시 확인함  </li>
+</ul>
+</li>
+</ul>
+<p><br><br></p>
+<h2 id="GRUB-부트로더"><a href="#GRUB-부트로더" class="headerlink" title="GRUB 부트로더"></a>GRUB 부트로더</h2><h3 id="특징"><a href="#특징" class="headerlink" title="특징"></a>특징</h3><ul>
+<li>부트 정보를 사용자가 임의로 변경해 부팅할 수 있다. 즉, 부트 정보가 올바르지 않더라도 수정하여 부팅할 수 있다.</li>
+<li>다른 여러가지 운영체제와 멀티 부팅을 할 수 있다.</li>
+<li>대화형 설정을 제공하므로 커널 경로와 팡리 이름만 알면 부팅이 가능.</li>
+</ul>
+<br>
+
+<h3 id="GRUB2의-장점"><a href="#GRUB2의-장점" class="headerlink" title="GRUB2의 장점"></a>GRUB2의 장점</h3><ul>
+<li>셀 스크립트를 지원함으로써 조건식과 함수를 사용할 수 있다. </li>
+<li>동적 모듈을 로드할 수 있다.</li>
+<li>그래픽 부트 메뉴를 지원하며 부트 스플래시 성능이 개선되었다. </li>
+<li>ISO 이미지를 이용해서 바로 부팅할 수 있다. </li>
+<li>설정 파일의 형식이 변경되었지만, 더 향상된 내용을 포함할 수 있다. </li>
+</ul>
+<h3 id="GRUB2-부트로더-설정방법"><a href="#GRUB2-부트로더-설정방법" class="headerlink" title="GRUB2 부트로더 설정방법"></a>GRUB2 부트로더 설정방법</h3><ul>
+<li>/boot/grub2/grub.cfg 설정파일 : 직접 변경하면 안됨</li>
+<li>/etc/default/grub 파일과 /etc/grub.d/ 디렉터리의 파일을 수정한 후에 <code>grub2-mkconfig</code> 명령어를 실행해 설정함</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/default/grub</span><br><span class="line">GRUB_TIMEOUT=20</span><br><span class="line">GRUB_DISTRIBUTOR=&quot;$(sed &apos;s, release .*$,,g&apos; /etc/system-release)&quot;</span><br><span class="line">GRUB_DEFAULT=saved</span><br><span class="line">GRUB_DISABLE_SUBMENU=true</span><br><span class="line">GRUB_TERMINAL_OUTPUT=&quot;console&quot;</span><br><span class="line">GRUB_CMDLINE_LINUX=&quot;crashkernel=auto resume=UUID=ea4c4774-b9a7-4fce-88c0-aeb65da13d89 rhgb quiet&quot;</span><br><span class="line">GRUB_DISABLE_RECOVERY=&quot;true&quot;</span><br><span class="line">GRUB_ENABLE_BLSCFG=true</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h3 id="실습17-GRUB-에-비밀번호를-지정하는-방법"><a href="#실습17-GRUB-에-비밀번호를-지정하는-방법" class="headerlink" title="실습17 : GRUB 에 비밀번호를 지정하는 방법"></a>실습17 : GRUB 에 비밀번호를 지정하는 방법</h3><ul>
+<li>터미널 열기</li>
+<li>vi /etc/default/grub<ul>
+<li>GRUB_TIMEOUT=20 으로 설정 </li>
+</ul>
+</li>
+<li>grub2-mkconfig -o /boot/grub2/grub.cfg : 변경내용 적용</li>
+<li>cd /etc/grub.d/</li>
+<li>ls</li>
+<li>vi 00_header<ul>
+<li>맨 밑에</li>
+<li>cat &lt;&lt; EOF</li>
+<li>set superusers=”thisislinux”</li>
+<li>password thisislinux 4321</li>
+<li>EOF</li>
+</ul>
+</li>
+<li>grub2-mkconfig -o /boot/grub2/grub.cfg : 변경내용 적용</li>
+<li>reboot : 확인<ul>
+<li>시간설정</li>
+<li>편집화면 비번 확인</li>
+</ul>
+</li>
+</ul>
+
+                    
+                    <!-- Tags Bottom -->
+                    
+                        <div class="tags-container-bottom">
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/linux/">#linux</a>
+                        </div>
+                    
+
+                    <!-- Comments -->
+                    
+<div id="disqus_thread" class="mt5">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="https://img1.daumcdn.net/thumb/C500x500/?fname=http://t1.daumcdn.net/brunch/service/user/22GJ/image/yRk2mTiHwL4iKOXVcxuRUGKpOXA.jpg" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="Kabarnet">
+        </div>
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            어제는 케냐에서 NGO 사업관리를 하다가 오늘은 개발을 배우고 있는 카바넷입니다. 기술을 통해 변화할 사회에 많은 관심을 가지고 있습니다. 
+        </div>
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 2: Categories -->
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2020/06/06/linux-thisislinux15/">이것이 리눅스다(2020) 08 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - 커</a>
+        </p>
+    
+        <p>
+            <a href="/2020/06/06/linux-thisislinux14/">이것이 리눅스다(2020) 14 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - 응</a>
+        </p>
+    
+        <p>
+            <a href="/2020/06/06/linux-thisislinux13/">이것이 리눅스다(2020) 13 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - 파</a>
+        </p>
+    
+        <p>
+            <a href="/2020/06/06/linux-thisislinux12/">이것이 리눅스다(2020) 12 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - 네</a>
+        </p>
+    
+        <p>
+            <a href="/2020/06/06/linux-thisislinux11/">이것이 리눅스다(2020) 11 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - 시</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="bg-1 ph2 ph5-ns pv5">
+        <div class="mv8">
+            <div class="center tc">
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://github.com/Miniminis" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="mailto:minhee4735@gmail.com" target="_blank">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="/rss2.xml" target="_blank">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://brunch.co.kr/@miniblackgoat" target="_blank">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="f6 f5-ns center tc white pt5 fw3">
+                All right reserved @Kabarnet. | Design & Hexo <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+            </div>
+        </div>
+    </div>
+
+<!-- After Footer -->
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'miniminis-github-io-2';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
