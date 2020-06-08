@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Kabarnet">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="이것이 리눅스다(2020) 22 / 원격지 시스템 관리 - 텔넷 서버">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Kabarnet&#39;s Devlog">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>이것이 리눅스다(2020) 22 / 원격지 시스템 관리 - 텔넷 서버 - Kabarnet&#39;s Devlog</title>
+
+    <!-- Tachyons Core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-149033629-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+<!-- Main Content -->
+<!-- Banner -->
+<!-- Banner -->
+<div class="w-100 bg-1 ph5-ns ph3 text-light">
+    
+    <nav class="db dt-l w-100 mw8 center border-box pv3">
+        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="Kabarnet's Devlog">
+            <img src="http://www.codeblocq.com/assets/projects/hexo-theme-anodyne/assets/anodyne.svg" class="dib h3" alt="Kabarnet's Devlog">
+        </a>
+        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
+                    Home
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/tags" 
+                    title="Tags">
+                    Tags
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/projects" 
+                    title="Projects">
+                    Projects
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/about.html" 
+                    title="About">
+                    About
+                </a>
+            
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <div class="w-100 mw8 center vh-40 dt">
+        <div class="dtc v-mid white">
+            <h1 class="f1-l f2-m tc tc-m tl-ns">이것이 리눅스다(2020) 22 / 원격지 시스템 관리 - 텔넷 서버</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2020-06-07</p>
+        </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="relative w-100 mw8 center white dn dn-m db-ns">
+        <i class="header-icon fa fa-file-text-o"></i>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
+    <div class="content">
+        <div class="mw8 center">
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+                        <div class="tags-container-vertical">
+                            <div class="tags-sub-container">
+                                <a class="fw3 ph1 dib" href="/tags/linux/">#linux</a>
+                            </div>
+                        </div>
+                    
+
+                    <!-- Main Post Content -->
+                    <p>‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B8529915277" target="_blank" rel="noopener">[링크]</a>를 통해 구입할 수 있고, 강의는 <a href="https://www.youtube.com/playlist?list=PLVsNizTWUw7EJ9z-LW3lv3VC-6HI9I3hN" target="_blank" rel="noopener">[링크]</a>에서 확인할 수 있다. 한빛에서 네이버 카페<a href="https://cafe.naver.com/thisislinux" target="_blank" rel="noopener">[링크]</a>도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…! 감사합니다…!)<br><br><br></p>
+<h2 id="텔넷-서버"><a href="#텔넷-서버" class="headerlink" title="텔넷 서버"></a>텔넷 서버</h2><h3 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h3><ul>
+<li>구조 <ul>
+<li>텔넷 서버 — 인터넷 — 텔넷 클라이언트</li>
+</ul>
+</li>
+<li>오랫동안 전통적으로 사용되어 온 원격 접속 방법</li>
+<li>보안에 취약하다.</li>
+<li>리눅스 서버에 텔넷 서버를 설치하고 나면, 원격지에서 접솔할 PC 에는 텔넷 클라이언트 프로그램이 필요</li>
+<li>원격지의 PC(텔넷 클라이언트)에서 접속하게 되면 서버 앞에 앉아서 직접 텍스트 모드로 작업하는 것과 완전히 동일한 효과를 누릴 수 있게 됨! </li>
+</ul>
+<p><br><br></p>
+<h3 id="구축"><a href="#구축" class="headerlink" title="구축"></a>구축</h3><ul>
+<li><p>원격지에서 서버 접속할 경우 필요</p>
+</li>
+<li><p>텔넷 서버 설치 과정 요약</p>
+<ol>
+<li>텔넷 서버 명령어로 설치</li>
+<li>텔넷 서비스 시작 (<em>서비스 : 외부에서 요청이 올 때, 응답해주는 역할</em>)</li>
+<li>텔넷 전용 사용자 생성</li>
+<li>방화벽 설정 (포트 열기)</li>
+<li>텔넷 서비스 상시 가동</li>
+<li>클라리언트에서 접속</li>
+</ol>
+</li>
+<li><p>서버에 접속하기 위해서는 꼭 클라이언트 프로그램이 필요함</p>
+</li>
+<li><p>서버가 리눅스라고 클라이언트도 리눅스일 필요는 없음!</p>
+</li>
+<li><p>각각의 서버 프로그램은 자신에 맞는 별도의 클라이언트 프로그램이 필요함! </p>
+</li>
+</ul>
+<p><br><br></p>
+<h2 id="텔넷-서버-구축-터미널에서-보기"><a href="#텔넷-서버-구축-터미널에서-보기" class="headerlink" title="텔넷 서버 구축 터미널에서 보기"></a>텔넷 서버 구축 터미널에서 보기</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"># 1. 텔넷 서버 명령어로 설치</span><br><span class="line">[root@localhost ~]# dnf install telnet-server</span><br><span class="line">CentOS-8 - AppStream                            757  B/s | 4.3 kB     00:05    </span><br><span class="line">CentOS-8 - Base                                 693  B/s | 3.9 kB     00:05    </span><br><span class="line">CentOS-8 - PowerTools                           602  B/s | 4.3 kB     00:07    </span><br><span class="line">CentOS-8 - Plus                                 541  B/s | 3.0 kB     00:05    </span><br><span class="line">CentOS-8 - Extras                               275  B/s | 1.5 kB     00:05    </span><br><span class="line">종속성이 해결되었습니다.</span><br><span class="line">================================================================================</span><br><span class="line"> 꾸러미               아키텍처      버전                 리포지토리        크기</span><br><span class="line">================================================================================</span><br><span class="line">Installing:</span><br><span class="line"> telnet-server        x86_64        1:0.17-73.el8        AppStream         48 k</span><br><span class="line"></span><br><span class="line">거래 요약</span><br><span class="line">================================================================================</span><br><span class="line">설치  1 꾸러미</span><br><span class="line"></span><br><span class="line">총 다운로드 크기 : 48 k</span><br><span class="line">설치 크기 : 60 k</span><br><span class="line">이게 괜찮습니까 [y / N] : y</span><br><span class="line">패키지 다운로드중:</span><br><span class="line">telnet-server-0.17-73.el8.x86_64.rpm            7.7 kB/s |  48 kB     00:06    </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">합계                                            7.7 kB/s |  48 kB     00:06     </span><br><span class="line">트랜잭션 점검 실행 중</span><br><span class="line">트랜잭션 검사가 성공했습니다.</span><br><span class="line">트랜잭션 테스트 실행 중</span><br><span class="line">트랜잭션 테스트가 완료되었습니다.</span><br><span class="line">거래 실행 중</span><br><span class="line">  준비 중입니다  :                                                          1/1 </span><br><span class="line">  Installing     : telnet-server-1:0.17-73.el8.x86_64                       1/1 </span><br><span class="line">  스크립틀릿 실행: telnet-server-1:0.17-73.el8.x86_64                       1/1 </span><br><span class="line">  확인 중        : telnet-server-1:0.17-73.el8.x86_64                       1/1 </span><br><span class="line"></span><br><span class="line">설치됨:</span><br><span class="line">  telnet-server-1:0.17-73.el8.x86_64                                            </span><br><span class="line"></span><br><span class="line">완료되었습니다!</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 2. 텔넷 서비스 시작 (*서비스 : 외부에서 요청이 올 때, 응답해주는 역할*)</span><br><span class="line">[root@localhost ~]# systemctl restart telnet.socket</span><br><span class="line">[root@localhost ~]# 아무것도 안나오면 성공한 것임!</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 3. 텔넷 전용 사용자 생성</span><br><span class="line">[root@localhost ~]# adduser telnetuser</span><br><span class="line">[root@localhost ~]# passwd telnetuser</span><br><span class="line">telnetuser 사용자의 비밀 번호 변경 중</span><br><span class="line">새  암호:</span><br><span class="line">잘못된 암호: 암호에 어떤 형식으로 사용자 이름이 포함되어 있습니다 </span><br><span class="line">새  암호 재입력:</span><br><span class="line">passwd: 모든 인증 토큰이 성공적으로 업데이트 되었습니다.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 윈도우 클라이언트에서 접속하기 전에 먼저 서버 자체에서 클라 이언트 입장으로 접속 테스트</span><br><span class="line">[root@localhost ~]# telnet 192.168.111.100</span><br><span class="line">Trying 192.168.111.100...</span><br><span class="line">Connected to 192.168.111.100.</span><br><span class="line">Escape character is &apos;^]&apos;.</span><br><span class="line"></span><br><span class="line">Kernel 4.18.0-80.el8.x86_64 on an x86_64</span><br><span class="line">localhost login: telnetuser</span><br><span class="line">Password: </span><br><span class="line">[telnetuser@localhost ~]$ 접속성공!</span><br><span class="line">[telnetuser@localhost ~]$ exit</span><br><span class="line">logout</span><br><span class="line">Connection closed by foreign host.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 3-2. 윈도우 클라이언트에서 접속을 위해 텔넷 클라이언트 설치</span><br><span class="line">1) 윈도우 클라이언트 부팅</span><br><span class="line">2) 앱 및 기능 &gt; 프로그램 및 기능</span><br><span class="line">3) Windows 기능 크기/끄기</span><br><span class="line">4) telnet client 체크 </span><br><span class="line">5) 재부팅 </span><br><span class="line">6) cmd 명령 프롬프트 이동 </span><br><span class="line">7) ping 으로 네트워크 정상임을 먼저 확인 </span><br><span class="line">C:\Users\thisislinux&gt;ping www.google.com</span><br><span class="line"></span><br><span class="line">Ping www.google.com [172.217.161.68] 32바이트 데이터 사용:</span><br><span class="line">172.217.161.68의 응답: 바이트=32 시간=94ms TTL=128</span><br><span class="line">172.217.161.68의 응답: 바이트=32 시간=113ms TTL=128</span><br><span class="line">172.217.161.68의 응답: 바이트=32 시간=109ms TTL=128</span><br><span class="line">172.217.161.68의 응답: 바이트=32 시간=125ms TTL=128</span><br><span class="line"></span><br><span class="line">172.217.161.68에 대한 Ping 통계:</span><br><span class="line">    패킷: 보냄 = 4, 받음 = 4, 손실 = 0 (0% 손실),</span><br><span class="line">왕복 시간(밀리초):</span><br><span class="line">    최소 = 94ms, 최대 = 125ms, 평균 = 110ms</span><br><span class="line"></span><br><span class="line">8) telnet 192.168.111.100 으로 telnet 서버 접속 시도 &gt;&gt; 실패!</span><br><span class="line"></span><br><span class="line">C:\Users\thisislinux&gt;telnet 192.168.111.100</span><br><span class="line">연결 대상 192.168.111.100...호스트에 연결할 수 없습니다. 포트 23: 연결하지 못했습니다.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 4. 방화벽 설정 (포트 열기)</span><br><span class="line">[root@localhost ~]# firewall-config</span><br><span class="line"></span><br><span class="line"># 4-1. 윈도우에서 접속 다시 시도</span><br><span class="line"></span><br><span class="line">C:\Users\thisislinux&gt;telnet 192.168.111.100</span><br><span class="line">Kernel 4.18.0-80.el8.x86_64 on an x86_64                                                        </span><br><span class="line">localhost login: telnetuser</span><br><span class="line">Password</span><br><span class="line">Last login: Sun Jun  7 16:04:43 from ::ffff:192.168.111.100</span><br><span class="line">[telnetuser@localhost ~]$</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 5. 텔넷 서비스 상시 가동</span><br><span class="line">[root@localhost ~]# systemctl enable telnet.socket</span><br><span class="line">Created symlink /etc/systemd/system/sockets.target.wants/telnet.socket → /usr/lib/systemd/system/telnet.socket.</span><br><span class="line"></span><br><span class="line"># 6. 클라리언트에서 접속</span><br><span class="line">C:\Users\thisislinux&gt;telnet 192.168.111.100</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+
+                    
+                    <!-- Tags Bottom -->
+                    
+                        <div class="tags-container-bottom">
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/linux/">#linux</a>
+                        </div>
+                    
+
+                    <!-- Comments -->
+                    
+<div id="disqus_thread" class="mt5">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="https://img1.daumcdn.net/thumb/C500x500/?fname=http://t1.daumcdn.net/brunch/service/user/22GJ/image/yRk2mTiHwL4iKOXVcxuRUGKpOXA.jpg" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="Kabarnet">
+        </div>
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            어제는 케냐에서 NGO 사업관리를 하다가 오늘은 개발을 배우고 있는 카바넷입니다. 기술을 통해 변화할 사회에 많은 관심을 가지고 있습니다. 
+        </div>
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 2: Categories -->
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2020/06/07/linux-thisislinux26/">이것이 리눅스다(2020) 26 / 네임 서버 - IP획득과정, DNS개념, 캐싱전용네임서</a>
+        </p>
+    
+        <p>
+            <a href="/2020/06/07/linux-thisislinux25/">이것이 리눅스다(2020) 25 / 네임 서버 - 네임서버 개념과 hosts 파일 역할</a>
+        </p>
+    
+        <p>
+            <a href="/2020/06/07/linux-thisislinux24/">이것이 리눅스다(2020) 24 / 원격지 시스템 관리 - XRDP 서버</a>
+        </p>
+    
+        <p>
+            <a href="/2020/06/07/linux-thisislinux23/">이것이 리눅스다(2020) 23 / 원격지 시스템 관리 - SSH 서버</a>
+        </p>
+    
+        <p>
+            <a href="/2020/06/07/linux-thisislinux22/">이것이 리눅스다(2020) 22 / 원격지 시스템 관리 - 텔넷 서버</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="bg-1 ph2 ph5-ns pv5">
+        <div class="mv8">
+            <div class="center tc">
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://github.com/Miniminis" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="mailto:minhee4735@gmail.com" target="_blank">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="/rss2.xml" target="_blank">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://brunch.co.kr/@miniblackgoat" target="_blank">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="f6 f5-ns center tc white pt5 fw3">
+                All right reserved @Kabarnet. | Design & Hexo <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+            </div>
+        </div>
+    </div>
+
+<!-- After Footer -->
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'miniminis-github-io-2';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

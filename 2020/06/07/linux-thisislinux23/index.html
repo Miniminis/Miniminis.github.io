@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Kabarnet">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="이것이 리눅스다(2020) 23 / 원격지 시스템 관리 - SSH 서버">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Kabarnet&#39;s Devlog">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>이것이 리눅스다(2020) 23 / 원격지 시스템 관리 - SSH 서버 - Kabarnet&#39;s Devlog</title>
+
+    <!-- Tachyons Core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-149033629-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+<!-- Main Content -->
+<!-- Banner -->
+<!-- Banner -->
+<div class="w-100 bg-1 ph5-ns ph3 text-light">
+    
+    <nav class="db dt-l w-100 mw8 center border-box pv3">
+        <a class="db dtc-l v-mid link dim w-100 w-25-l tc tl-l mb2 mb0-l white" href="/" title="Kabarnet's Devlog">
+            <img src="http://www.codeblocq.com/assets/projects/hexo-theme-anodyne/assets/anodyne.svg" class="dib h3" alt="Kabarnet's Devlog">
+        </a>
+        <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
+                    Home
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/tags" 
+                    title="Tags">
+                    Tags
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/projects" 
+                    title="Projects">
+                    Projects
+                </a>
+            
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/about.html" 
+                    title="About">
+                    About
+                </a>
+            
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <div class="w-100 mw8 center vh-40 dt">
+        <div class="dtc v-mid white">
+            <h1 class="f1-l f2-m tc tc-m tl-ns">이것이 리눅스다(2020) 23 / 원격지 시스템 관리 - SSH 서버</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2020-06-07</p>
+        </div>
+    </div>
+
+    <!-- Icon -->
+    <div class="relative w-100 mw8 center white dn dn-m db-ns">
+        <i class="header-icon fa fa-file-text-o"></i>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="w-100 ph2 ph4-m ph5-l mv5 mv6-l">
+    <div class="content">
+        <div class="mw8 center">
+            <div class="cf">
+                <div class="fl w-100 w-70-l mw7 left fw3 lh-copy pr4-ns pr0-m post-content">
+                    <!-- Tags Vertical -->
+                    
+                        <div class="tags-container-vertical">
+                            <div class="tags-sub-container">
+                                <a class="fw3 ph1 dib" href="/tags/linux/">#linux</a>
+                            </div>
+                        </div>
+                    
+
+                    <!-- Main Post Content -->
+                    <p>‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B8529915277" target="_blank" rel="noopener">[링크]</a>를 통해 구입할 수 있고, 강의는 <a href="https://www.youtube.com/playlist?list=PLVsNizTWUw7EJ9z-LW3lv3VC-6HI9I3hN" target="_blank" rel="noopener">[링크]</a>에서 확인할 수 있다. 한빛에서 네이버 카페<a href="https://cafe.naver.com/thisislinux" target="_blank" rel="noopener">[링크]</a>도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…! 감사합니다…!)<br><br><br></p>
+<h2 id="OpenSSH-서버"><a href="#OpenSSH-서버" class="headerlink" title="OpenSSH 서버"></a>OpenSSH 서버</h2><ul>
+<li>telnet 과 기능은 거의 동일하지만 보안 측면에서 더 강화됨</li>
+<li>데이터를 전송할 때 패킷이 암호화되어 더 안전함</li>
+<li>원격지에서 보안이 강화된 서버에 접속할 경우 필요</li>
+<li>설치 과정<br>1) openssh 는 기본으로 리눅스에 깔려있지만, 깔려있는 상태인지 다시 한 번 확인<br>2) 방화벽 설정 : firewall-config<br>3) 리눅스에서 접속 테스트<br>4) 윈도우 클라이언트에서 접속<br>5) 한글 PuTTY 설치<br>6) 클라이언트에서 접속 : ssh 클라이언트 사용</li>
+</ul>
+<p><em>하나의 컴퓨터에 여러 서버를 까는 것은 문제가 되지 않는다. (해당 컴퓨터가 성능이 엄청나게 좋아야 된다는 조건이 있지만ㅎ)</em></p>
+<p><em>서버마다 사용하는 포트가 다르기 때문에 전혀 문제가 되지 않음</em></p>
+<p><em>telnet: 23</em><br><em>ssh: 22</em><br><em>ftp: 21</em></p>
+<p><br><br></p>
+<h2 id="OpenSSH-서버-구축하기"><a href="#OpenSSH-서버-구축하기" class="headerlink" title="OpenSSH 서버 구축하기"></a>OpenSSH 서버 구축하기</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"># 1 openssh 는 기본으로 리눅스에 깔려있지만, 깔려있는 상태인지 다시 한 번 확인</span><br><span class="line">[root@localhost ~]# rpm -qa openssh-server</span><br><span class="line">openssh-server-7.8p1-4.el8.x86_64</span><br><span class="line">[root@localhost ~]# systemctl status sshd</span><br><span class="line">● sshd.service - OpenSSH server daemon</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset&gt;</span><br><span class="line">   Active: active (running) since Sun 2020-06-07 15:45:00 KST; 54min ago</span><br><span class="line">     Docs: man:sshd(8)</span><br><span class="line">           man:sshd_config(5)</span><br><span class="line"> Main PID: 920 (sshd)</span><br><span class="line">    Tasks: 1 (limit: 11376)</span><br><span class="line">   Memory: 1.7M</span><br><span class="line">   CGroup: /system.slice/sshd.service</span><br><span class="line">           └─920 /usr/sbin/sshd -D -oCiphers=aes256-gcm@openssh.com,chacha20-po&gt;</span><br><span class="line"></span><br><span class="line"> 6월 07 15:45:00 localhost.localdomain systemd[1]: Starting OpenSSH server daem&gt;</span><br><span class="line"> 6월 07 15:45:00 localhost.localdomain sshd[920]: Server listening on 0.0.0.0 p&gt;</span><br><span class="line"> 6월 07 15:45:00 localhost.localdomain sshd[920]: Server listening on :: port 2&gt;</span><br><span class="line"> 6월 07 15:45:00 localhost.localdomain systemd[1]: Started OpenSSH server daemo&gt;</span><br><span class="line">[root@localhost ~]# </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 2 방화벽 설정 : firewall-config</span><br><span class="line">&gt;&gt; ssh는 이미 default 로 체크되어있는 것을 확인함</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 3 리눅스에서 접속 테스트</span><br><span class="line">[centos@192 ~]$ ssh telnetuser@192.168.111.100</span><br><span class="line">The authenticity of host &apos;192.168.111.100 (192.168.111.100)&apos; can&apos;t be established.</span><br><span class="line">ECDSA key fingerprint is SHA256:LNsweAi/AVmJqqa+d5xlRBDibeuXe1rDigqjp3mJvtc.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)? yes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Warning: Permanently added &apos;192.168.111.100&apos; (ECDSA) to the list of known hosts.</span><br><span class="line">telnetuser@192.168.111.100&apos;s password: </span><br><span class="line">Activate the web console with: systemctl enable --now cockpit.socket</span><br><span class="line"></span><br><span class="line">Last login: Sun Jun  7 16:20:38 2020 from ::ffff:192.168.111.131</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[telnetuser@localhost ~]$ ifconfig</span><br><span class="line">ens160: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.111.100  netmask 255.255.255.0  broadcast 192.168.111.255</span><br><span class="line">        inet6 fe80::d6cd:9207:b68a:9ce1  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 00:0c:29:68:77:6b  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 4167  bytes 3824010 (3.6 MiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 1345  bytes 91087 (88.9 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536</span><br><span class="line">        inet 127.0.0.1  netmask 255.0.0.0</span><br><span class="line">        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br><span class="line">        loop  txqueuelen 1000  (Local Loopback)</span><br><span class="line">        RX packets 163  bytes 12139 (11.8 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 163  bytes 12139 (11.8 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">virbr0: flags=4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255</span><br><span class="line">        ether 52:54:00:6b:15:64  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 0  bytes 0 (0.0 B)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 0  bytes 0 (0.0 B)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">[telnetuser@localhost ~]$ su -</span><br><span class="line">암호:</span><br><span class="line">[root@localhost ~]#</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 4 윈도우 클라이언트에서 접속 : 따로 클라이언트가 존재하지 않기 때문에, PuTTY 설치 필요</span><br><span class="line"># 5 한글 PuTTY 설치</span><br><span class="line">1) https://github.com/iPuTTY/iPuTTY/releases 에서 자신의 운영체제에 맞는 puTTY 다운로드, 압축풀기 및 실행</span><br><span class="line">2) 호스트이름 입력 후 실행 클릭</span><br><span class="line">3) 로그인 아이디(telnetuser), 비밀번호 입력하면 접속 성공!</span><br><span class="line"></span><br><span class="line"># 6 클라이언트에서 접속 : ssh 클라이언트 사용</span><br><span class="line">[centos@192 ~]$ ssh telnetuser@192.168.111.100</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+
+                    
+                    <!-- Tags Bottom -->
+                    
+                        <div class="tags-container-bottom">
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/linux/">#linux</a>
+                        </div>
+                    
+
+                    <!-- Comments -->
+                    
+<div id="disqus_thread" class="mt5">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+
+                </div>
+                <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
+                    
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 1: About -->
+                    <div class="mt5 mt0-l">
+    <article class="dt db-l mw8 mw8-m mw5-ns center ml0-l bg-white mv3">
+        <div class="dn dtc-m db-l v-mid tc pr4 pr0-l" style="min-width: 6rem;">
+            <img src="https://img1.daumcdn.net/thumb/C500x500/?fname=http://t1.daumcdn.net/brunch/service/user/22GJ/image/yRk2mTiHwL4iKOXVcxuRUGKpOXA.jpg" class="mb4-l br-100 h3 w3 h4-l w4-l dib" title="Kabarnet">
+        </div>
+        <div class="dtc db-l v-mid lh-copy measure center f6 black-50 tj">
+            어제는 케냐에서 NGO 사업관리를 하다가 오늘은 개발을 배우고 있는 카바넷입니다. 기술을 통해 변화할 사회에 많은 관심을 가지고 있습니다. 
+        </div>
+    </article>
+</div>
+
+                    <hr class="dn-l mw4 black-50 mt5" />
+                    
+                    <!-- Widget 2: Categories -->
+                    
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="mt5 tc tl-l">
+    <h3>Recent Posts</h3>
+    
+        <p>
+            <a href="/2020/06/07/linux-thisislinux26/">이것이 리눅스다(2020) 26 / 네임 서버 - IP획득과정, DNS개념, 캐싱전용네임서</a>
+        </p>
+    
+        <p>
+            <a href="/2020/06/07/linux-thisislinux25/">이것이 리눅스다(2020) 25 / 네임 서버 - 네임서버 개념과 hosts 파일 역할</a>
+        </p>
+    
+        <p>
+            <a href="/2020/06/07/linux-thisislinux24/">이것이 리눅스다(2020) 24 / 원격지 시스템 관리 - XRDP 서버</a>
+        </p>
+    
+        <p>
+            <a href="/2020/06/07/linux-thisislinux23/">이것이 리눅스다(2020) 23 / 원격지 시스템 관리 - SSH 서버</a>
+        </p>
+    
+        <p>
+            <a href="/2020/06/07/linux-thisislinux22/">이것이 리눅스다(2020) 22 / 원격지 시스템 관리 - 텔넷 서버</a>
+        </p>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="bg-1 ph2 ph5-ns pv5">
+        <div class="mv8">
+            <div class="center tc">
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://github.com/Miniminis" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="mailto:minhee4735@gmail.com" target="_blank">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="/rss2.xml" target="_blank">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </div>
+                
+                    <div class="dib mh3">
+                        <a class="f3 f2-ns white dim" href="https://brunch.co.kr/@miniblackgoat" target="_blank">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                
+            </div>
+            <div class="f6 f5-ns center tc white pt5 fw3">
+                All right reserved @Kabarnet. | Design & Hexo <a class="link dim white" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+            </div>
+        </div>
+    </div>
+
+<!-- After Footer -->
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'miniminis-github-io-2';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
