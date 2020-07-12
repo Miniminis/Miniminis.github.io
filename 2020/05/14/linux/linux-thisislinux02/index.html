@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>이것이 리눅스다(2020) 02 / Vmware 특징, 리눅스 개요 | Hexo</title>
+  <meta name="description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="이것이 리눅스다(2020) 02 &#x2F; Vmware 특징, 리눅스 개요">
+<meta property="og:url" content="https://miniminis.github.io/2020/05/14/linux/linux-thisislinux02/index.html">
+<meta property="og:site_name" content="플래시블로그FlashBlog">
+<meta property="og:description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-12T07:25:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="이것이 리눅스다(2020) 02 &#x2F; Vmware 특징, 리눅스 개요">
+<meta name="twitter:description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://miniminis.github.io/2020/05/14/linux/linux-thisislinux02/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="플래시블로그FlashBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/miniminis" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flash</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">FullStack Android Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Seoul, Korea</small>
+      </div>
+      
+      <!-- <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div> -->
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <!-- <span class="menu-title">Home</span> -->
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <!-- <span class="menu-title">Archives</span> -->
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">Categories</span> -->
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">menu.Projects</span> -->
+            <span class="menu-title">Projects</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <!-- <span class="menu-title">About</span> -->
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-linux/linux-thisislinux02" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      이것이 리눅스다(2020) 02 / Vmware 특징, 리눅스 개요
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/05/14/linux/linux-thisislinux02/" class="article-date">
+	  <time datetime="2020-05-13T21:27:11.000Z" itemprop="datePublished">2020-05-14</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/linux/">linux</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/14/linux/linux-thisislinux02/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B8529915277" target="_blank" rel="noopener">[링크]</a>를 통해 구입할 수 있고, 강의는 <a href="https://www.youtube.com/playlist?list=PLVsNizTWUw7EJ9z-LW3lv3VC-6HI9I3hN" target="_blank" rel="noopener">[링크]</a>에서 확인할 수 있다. 한빛에서 네이버 카페<a href="https://cafe.naver.com/thisislinux" target="_blank" rel="noopener">[링크]</a>도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…! 감사합니다…!)<br><br></p>
+<h2 id="Vmware"><a href="#Vmware" class="headerlink" title="Vmware"></a>Vmware</h2><ul>
+<li>Vmware는 가상환경을 구축할 수 있도록 도와주는 소프트웨어이다. 이를 이용하면 지금 내가 쓰고 있는 컴퓨터 안에 가상의 작은 컴퓨터를 만들 수 있다.</li>
+<li>1대의 컴퓨터 만으로도 실무환경과 거의 유사하게 가상의 작은 전산실을 만들 수 있다.</li>
+<li>특징적인 기능들에는 suspend 기능, 특정 시점을 기억하는 스냅숏 기능 등이 있다.</li>
+<li>focus : ctrl + alt 이용해서 호스트 os 와 가상os 간 마우스, 키보드 등의 포커스 이동을 할 수 있다.</li>
+<li>suspend: 노트북 커버 닫는 정도로 가상 컴퓨터를 완전히 끄지 않고 일시정지하는 것. 절전모드</li>
+<li>poweroff : 가상 컴퓨터의 전원을 완전히 끈다.</li>
+<li>여러개의 가상머신 동시 부팅 가능<br><br><br></li>
+</ul>
+<h2 id="실습을-위한-네트워크-환경-설정"><a href="#실습을-위한-네트워크-환경-설정" class="headerlink" title="실습을 위한 네트워크 환경 설정"></a>실습을 위한 네트워크 환경 설정</h2><h3 id="전체-네트워크-환경"><a href="#전체-네트워크-환경" class="headerlink" title="전체 네트워크 환경"></a>전체 네트워크 환경</h3><p>앞선 글에서 호스트 os, 가상 os 간의 관계와 전체적인 구성을 정리한 바 있다. 각 os 들은 다음과 같은 네트워크 환경을 구축하게 될 것이다. </p>
+<ol>
+<li>진짜 컴퓨터(호스트 컴퓨터)<ol>
+<li>네트워크 카드 </li>
+<li>호스트 OS (192.168.111.1) </li>
+</ol>
+</li>
+<li>VMware 프로그램 <ol>
+<li>게이트웨이 겸 DNS 서버 (192.168.111.2)</li>
+<li>DHCP 서버 (192.168.111.254)</li>
+<li>Server A <ul>
+<li>linux with X-Window</li>
+<li>192.168.111.100</li>
+</ul>
+</li>
+<li>Server B<ul>
+<li>linux </li>
+<li>192.168.111.200</li>
+</ul>
+</li>
+<li>linClient<ul>
+<li>linux</li>
+<li>자동 IP</li>
+</ul>
+</li>
+<li>winClient<ul>
+<li>window</li>
+<li>자동 IP </li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><em>참고</em> : <ul>
+<li><em>DHCP server : 다른 컴퓨터에게 자동으로 IP 를 할당해주는 서버</em> </li>
+<li><em>위의 5번의 리눅스 클라이언트와 6번의 윈도우 클라이언트는 이 DHCP 서버에 의해 자동으로 IP 를 할당받게 될 것임</em></li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="VMware-Workstation-Pro-에서-네트워크-정보-변경"><a href="#VMware-Workstation-Pro-에서-네트워크-정보-변경" class="headerlink" title="VMware Workstation Pro 에서 네트워크 정보 변경"></a>VMware Workstation Pro 에서 네트워크 정보 변경</h3><p>이에 따라서 현재 내가 쓰고 있는 컴퓨터인 호스트 OS 에서 IP 정보를 확인한 뒤, 위에 정의한 스펙에 맞게 변경하는 작업이 필요하다. </p>
+<ol>
+<li>cmd &gt;&gt; ipconfig /all 로 현재 호스트 os 에 연결되어있는 모든 네트워크 정보 파악</li>
+<li>VMware Network Adapter VMnet8 을 찾아서 IPv4 주소 확인 : 나의 경우는 192.168.191.1(기본 설정) 이었음 </li>
+<li>Workstation Pro에서 IPv4 주소를 위의 스펙에 맞게 192.168.111.1으로 변경<br><br><br></li>
+</ol>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h3 id="간단한-정보"><a href="#간단한-정보" class="headerlink" title="간단한 정보"></a>간단한 정보</h3><ul>
+<li>무료 유닉스 </li>
+<li>1991년 리누스 토르발스가 버전 0.01을 최초로 작성함 </li>
+<li>1992년에 0.02 버전을 공개하며 시작됨 </li>
+<li>리누스 토르발스는 사실 리눅스 전체가 아니라 커널만 개발함 <ul>
+<li>배포판 구성<ul>
+<li>하드웨어 : CPU, RAM HDD </li>
+<li>커널 : 엄격한 의미의 리눅스 <ul>
+<li>CentOS8의 경우는 4.18 버전</li>
+<li>사용자가 직접 최신 버전의 커널로 업그레이드 할 수 있음  </li>
+</ul>
+</li>
+<li>셀 : 명령어 해석기. bash, csh 등</li>
+<li>응용프로그램 : 에디터, 통신 프로그램, X 윈도, 웹서버, DB서버 등 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>GNU project <ul>
+<li>1984년도 리차드 스톨만이 시작 </li>
+<li>모두가 공유할 수 있는 소프트웨어를 만드는 것을 목표로 함 </li>
+<li>GPL license <ul>
+<li>자유 소프트웨어의 수정과 공유의 자유를 보장함 </li>
+<li>프리웨어(무료 소프트웨어) 개념을 넘어서 진정한 자유</li>
+<li>상용 판매는 가능, 하지만 소스를 오픈해야한다는 규약이 존재</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h3 id="Redhat-Linux-와-CentOS-리눅스"><a href="#Redhat-Linux-와-CentOS-리눅스" class="headerlink" title="Redhat Linux 와 CentOS 리눅스"></a>Redhat Linux 와 CentOS 리눅스</h3><ul>
+<li>레드햇 : 전 세계적으로 가장 유명한 배포판 중 하나 </li>
+<li>상용판매(RHEL) - 로고만 변경한 후에 다시 컴파일 해서 만든 것이 CentOS</li>
+<li>CentOS : 안정적이고 널리 쓰임 </li>
+<li>RHEL 은 유료로만 판매되고 있음 </li>
+<li>보통 발전 순서를 보면 페도라가 업데이트되면, 레드햇이 업데이트 되고 이를 바탕으로 센토스가 업데이트 됨. Fedora28 - RHEL8  - CentOS8</li>
+</ul>
+
+      
+    </div>
+    <!-- <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://miniminis.github.io/2020/05/14/linux/linux-thisislinux02/" title="이것이 리눅스다(2020) 02 / Vmware 특징, 리눅스 개요" target="_blank" rel="external">https://miniminis.github.io/2020/05/14/linux/linux-thisislinux02/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/miniminis" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/miniminis" target="_blank"><span class="text-dark">Flash</span><small class="ml-1x">FullStack Android Developer</small></a></h3>
+        <div></div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div> -->
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/05/15/linux/linux-thisislinux03/" title="이것이 리눅스다(2020) 03 / CentOS8 Linux 설치 - ServerA"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/05/13/linux/linux-thisislinux00/" title="이것이 리눅스다(2020) 00 / 목차"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+    <script defer>
+    var disqus_config = function () {
+        
+            this.page.url = 'https://miniminis.github.io/2020/05/14/linux/linux-thisislinux02/';
+        
+        this.page.identifier = 'linux/linux-thisislinux02';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'miniminis-github-io-2' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+
+
+    <script defer type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-149033629-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+</body>
+</html>

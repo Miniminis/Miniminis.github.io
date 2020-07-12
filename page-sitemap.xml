@@ -9,14 +9,28 @@
     
     <url>
         <loc>https://miniminis.github.io/about.html</loc>
-        <lastmod>2020-05-24T10:15:38.000Z</lastmod>
+        <lastmod>2020-07-12T12:59:48.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
         <loc>https://miniminis.github.io/projects/</loc>
-        <lastmod>2019-10-29T00:30:38.000Z</lastmod>
+        <lastmod>2020-07-12T11:36:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://miniminis.github.io/tags/</loc>
+        <lastmod>2020-07-12T11:29:02.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://miniminis.github.io/categories/</loc>
+        <lastmod>2020-07-12T11:27:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -24,13 +38,6 @@
     <url>
         <loc>https://miniminis.github.io/naverc473d7e256f1fb3abc37364e4dc12dad.html</loc>
         <lastmod>2019-10-07T06:27:18.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://miniminis.github.io/tags/</loc>
-        <lastmod>2019-09-16T03:25:34.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

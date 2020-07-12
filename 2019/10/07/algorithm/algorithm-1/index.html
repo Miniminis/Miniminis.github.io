@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>코드업 100제 (자바풀이) / 1008번 ~ 1020번 | Hexo</title>
+  <meta name="description" content="1008문제//┌┬┐//├┼┤//└┴┘//를 유니코드를 이용하여 출력한다. 12345public static void main(String[] args) &amp;#123;    System.out.printf(&amp;quot;\u250C\u252C\u2510\n&amp;quot;);    System.out.printf(&amp;quot;\u251C\u253C\u2524\n&amp;quo">
+<meta name="keywords" content="codeup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="코드업 100제 (자바풀이) &#x2F; 1008번 ~ 1020번">
+<meta property="og:url" content="https://miniminis.github.io/2019/10/07/algorithm/algorithm-1/index.html">
+<meta property="og:site_name" content="플래시블로그FlashBlog">
+<meta property="og:description" content="1008문제//┌┬┐//├┼┤//└┴┘//를 유니코드를 이용하여 출력한다. 12345public static void main(String[] args) &amp;#123;    System.out.printf(&amp;quot;\u250C\u252C\u2510\n&amp;quot;);    System.out.printf(&amp;quot;\u251C\u253C\u2524\n&amp;quo">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-12T07:18:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="코드업 100제 (자바풀이) &#x2F; 1008번 ~ 1020번">
+<meta name="twitter:description" content="1008문제//┌┬┐//├┼┤//└┴┘//를 유니코드를 이용하여 출력한다. 12345public static void main(String[] args) &amp;#123;    System.out.printf(&amp;quot;\u250C\u252C\u2510\n&amp;quot;);    System.out.printf(&amp;quot;\u251C\u253C\u2524\n&amp;quo">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://miniminis.github.io/2019/10/07/algorithm/algorithm-1/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="플래시블로그FlashBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/miniminis" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flash</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">FullStack Android Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Seoul, Korea</small>
+      </div>
+      
+      <!-- <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div> -->
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <!-- <span class="menu-title">Home</span> -->
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <!-- <span class="menu-title">Archives</span> -->
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">Categories</span> -->
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">menu.Projects</span> -->
+            <span class="menu-title">Projects</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <!-- <span class="menu-title">About</span> -->
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-algorithm/algorithm-1" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      코드업 100제 (자바풀이) / 1008번 ~ 1020번
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/10/07/algorithm/algorithm-1/" class="article-date">
+	  <time datetime="2019-10-07T14:04:04.000Z" itemprop="datePublished">2019-10-07</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/codeup/">codeup</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/10/07/algorithm/algorithm-1/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="1008"><a href="#1008" class="headerlink" title="1008"></a>1008</h2><p>문제<br>//┌┬┐<br>//├┼┤<br>//└┴┘<br>//를 유니코드를 이용하여 출력한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    System.out.printf(&quot;\u250C\u252C\u2510\n&quot;);</span><br><span class="line">    System.out.printf(&quot;\u251C\u253C\u2524\n&quot;);</span><br><span class="line">    System.out.printf(&quot;\u2514\u2534\u2518&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1012"><a href="#1012" class="headerlink" title="1012"></a>1012</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class p1012 &#123;</span><br><span class="line">	public static void main (String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		float x = scan.nextFloat();</span><br><span class="line">		</span><br><span class="line">		String x6 = String.format(&quot;%.6f&quot;, x);</span><br><span class="line">		</span><br><span class="line">		System.out.print(x6);</span><br><span class="line">		scan.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1013"><a href="#1013" class="headerlink" title="1013"></a>1013</h2><p>문제<br>//정수(int) 2개를 입력받아 그대로 출력해보자.<br>//<br>//참고<br>//<br>//int a, b;<br>//scanf(“%d%d”, &amp;a, &amp;b);  //엔터/공백으로 입력 데이터가 구분되어 입력<br>//printf(“%d %d”, a, b);<br>//<br>//와 같은 방법으로 가능하다.<br>//<br>//입력<br>//2개의 정수가 공백으로 구분되어 입력된다.<br>//<br>//<br>//출력<br>//입력된 두 정수를 공백으로 구분하여 출력한다.<br>//<br>//입력 예시<br>//1 2<br>//<br>//출력 예시<br>//1 2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class p1013 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String twoint = scan.nextLine();</span><br><span class="line">		String[] strs = twoint.split(&quot; &quot;);</span><br><span class="line">		int a = Integer.parseInt(strs[0]);</span><br><span class="line">		int b = Integer.parseInt(strs[1]);</span><br><span class="line">		System.out.println(a+&quot; &quot;+b);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1014"><a href="#1014" class="headerlink" title="1014"></a>1014</h2><p>문제 </p>
+<p>//2개의 문자(ASCII CODE)를 입력받아서 순서를 바꿔 출력해보자.<br>//<br>//참고<br>//char x, y;<br>//scanf(“%c %c”, &amp;x, &amp;y);<br>//printf(“%c %c”, y, x); //출력되는 순서를 작성<br>//와 같은 방법으로 해결할 수 있다.<br>//<br>//입력<br>//2개의 문자가 공백으로 구분되어 입력된다.<br>//<br>//<br>//출력<br>//두 문자의 순서를 바꿔 출력한다.<br>//<br>//<br>//입력 예시<br>//A b<br>//<br>//출력 예시<br>//b A</p>
+<p>//방법 1) char[] for 반복문으로 하나씩 꺼내기+임의의변수에 하나씩 +=<br>//방법 2) char[] String 으로 변환 : String.valueOf(char[]);<br>//방법 3) String str = new String(char[], 시작index, 끝index);<br>//방법 4) 한글자 : char.toString();  or Character.toString(char);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class p1014 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String twochars = scan.nextLine();</span><br><span class="line">		char[] charArray = twochars.toCharArray();</span><br><span class="line">		System.out.println(charArray[2] + &quot; &quot;+charArray[0]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1015"><a href="#1015" class="headerlink" title="1015"></a>1015</h2><p>문제 </p>
+<p>실수(float) 1개를 입력받아 저장한 후,<br>저장되어 있는 값을 소수점 셋 째 자리에서 반올림하여<br>소수점 이하 둘 째 자리까지 출력하시오.</p>
+<p>참고<br>%.3f 와 같은 형식으로 지정하면,<br>소수점 이하 넷 째 자리에서 반올림하여 소수점 이하 셋 째 자리까지 출력하라는 의미이다.</p>
+<p>입력<br>실수 1개가 입력된다.</p>
+<p>출력<br>결과를 소수점 셋 째 자리에서 반올림 해, 소숫점 이하 둘째 자리까지 출력한다.<br>(%.2f를 이용하면 된다.)</p>
+<p>입력 예시<br>1.59254</p>
+<p>출력 예시<br>1.59</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">public class p1015 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		float a = scan.nextFloat();</span><br><span class="line">		String aStr = String.format(&quot;%.2f&quot;, a);</span><br><span class="line">		System.out.print(aStr);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1017"><a href="#1017" class="headerlink" title="1017"></a>1017</h2><p>문제<br>//int형 정수 1개를 입력받아 공백을 사이에 두고 3번 출력해보자.<br>//<br>//참고<br>//printf(“%d %d %d”, a, a, a);<br>//와 같은 방법으로 출력할 수 있다.<br>//<br>//입력<br>//정수 1개가 입력된다.<br>//<br>//<br>//출력<br>//입력받은 정수를 공백으로 구분해 3번 출력한다.<br>//<br>//<br>//입력 예시<br>//125<br>//<br>//출력 예시<br>//125 125 125</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class p1017 &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		int num = scan.nextInt();</span><br><span class="line">		System.out.println(num+&quot; &quot;+num+&quot; &quot;+num);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1018"><a href="#1018" class="headerlink" title="1018"></a>1018</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">public class p1018 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String time = scan.nextLine();</span><br><span class="line">		System.out.print(time);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1019"><a href="#1019" class="headerlink" title="1019"></a>1019</h2><p>문제<br>//년, 월, 일을 입력받아 지정된 형식으로 출력하는 연습을 해보자.<br>//<br>//입력<br>//연, 월, 일이 “.(닷)”으로 구분되어 입력된다.<br>//<br>//<br>//출력<br>//입력받은 연, 월, 일을 yyyy.mm.dd 형식으로 출력한다.<br>//(%02d를 사용하면 2칸을 사용해 출력하는데, 한 자리 수인 경우 앞에 0을 붙여 출력한다.)<br>//<br>//<br>//입력 예시<br>//2013.8.5<br>//<br>//출력 예시<br>//2013.08.05</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">import java.util.StringTokenizer;</span><br><span class="line"></span><br><span class="line">public class p1019 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String date = scan.nextLine();</span><br><span class="line">		StringTokenizer tokenizer = new StringTokenizer(date, &quot;.&quot;);</span><br><span class="line">		</span><br><span class="line">		int[] dates = new int[3];</span><br><span class="line">		int i=0;</span><br><span class="line">		while (tokenizer.hasMoreTokens()) &#123;</span><br><span class="line">			dates[i] = Integer.parseInt(tokenizer.nextToken());</span><br><span class="line">			i+=1;</span><br><span class="line">		&#125;</span><br><span class="line">		//System.out.print(dates.toString());</span><br><span class="line">		String year = String.format(&quot;%04d&quot;, dates[0]);</span><br><span class="line">		String month = String.format(&quot;%02d&quot;, dates[1]);</span><br><span class="line">		String day = String.format(&quot;%02d&quot;, dates[2]);</span><br><span class="line">		</span><br><span class="line">		System.out.print(year+&quot;.&quot;+month+&quot;.&quot;+day);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1020"><a href="#1020" class="headerlink" title="1020"></a>1020</h2><p>문제 </p>
+<p>//주민번호는 다음과 같이 구성된다.<br>//<br>//XXXXXX-XXXXXXX<br>//<br>//앞의 6자리는 생년월일(yymmdd)이고 뒤 7자리는 성별, 지역, 오류검출코드이다.<br>//주민번호를 입력받아 형태를 바꿔 출력해보자.<br>//<br>//입력<br>//주민번호 앞 6자리와 뒷 7자리가 ‘-‘로 구분되어 입력된다.<br>//(입력값은 가상의 주민번호이다.)<br>//ex)110011-0000000<br>//<br>//<br>//출력<br>//‘-‘를 제외한 주민번호 13자리를 모두 붙여 출력한다.<br>//<br>//입력 예시<br>//000907-1121112<br>//<br>//출력 예시<br>//0009071121112</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">import java.util.StringTokenizer;</span><br><span class="line">public class p1020 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scan = new Scanner(System.in);</span><br><span class="line">		String pernum = scan.nextLine();</span><br><span class="line">		StringTokenizer tokenizer = new StringTokenizer(pernum, &quot;-&quot;);</span><br><span class="line">		String result =&quot;&quot;;</span><br><span class="line">		while(tokenizer.hasMoreTokens()) &#123;</span><br><span class="line">			result += tokenizer.nextToken();</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(result);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <!-- <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://miniminis.github.io/2019/10/07/algorithm/algorithm-1/" title="코드업 100제 (자바풀이) / 1008번 ~ 1020번" target="_blank" rel="external">https://miniminis.github.io/2019/10/07/algorithm/algorithm-1/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/miniminis" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/miniminis" target="_blank"><span class="text-dark">Flash</span><small class="ml-1x">FullStack Android Developer</small></a></h3>
+        <div></div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div> -->
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/10/07/algorithm/algorithm-2/" title="코드업 100제 (자바풀이) / 1021번 - 1030번"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/09/30/personal/whylearnprogramming/" title="당신은 왜 프로그래밍을 공부하는가?"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+    <script defer>
+    var disqus_config = function () {
+        
+            this.page.url = 'https://miniminis.github.io/2019/10/07/algorithm/algorithm-1/';
+        
+        this.page.identifier = 'algorithm/algorithm-1';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'miniminis-github-io-2' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+
+
+    <script defer type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-149033629-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+</body>
+</html>

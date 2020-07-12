@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러 메시지 확인하기, proguard/R8 이해하기, proguard/R8 예제 | Hexo</title>
+  <meta name="description" content="안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러 메시지 확인하기안드로이드의 세계에 발을 들인지, 어느새 3개월이 되었다. 아직 지식이 많이 부족하고 할 일도 태산이지만, 짧은 기간동안 엄청나게 많은 경험을 하고 있어서 아직은 신난다. (아직은…).  우리 회사에서는 firebase crashlytics 를 이용하여">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러 메시지 확인하기, proguard&#x2F;R8 이해하기, proguard&#x2F;R8 예제">
+<meta property="og:url" content="https://miniminis.github.io/2020/03/02/android/android-proguard/index.html">
+<meta property="og:site_name" content="플래시블로그FlashBlog">
+<meta property="og:description" content="안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러 메시지 확인하기안드로이드의 세계에 발을 들인지, 어느새 3개월이 되었다. 아직 지식이 많이 부족하고 할 일도 태산이지만, 짧은 기간동안 엄청나게 많은 경험을 하고 있어서 아직은 신난다. (아직은…).  우리 회사에서는 firebase crashlytics 를 이용하여">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-12T07:23:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러 메시지 확인하기, proguard&#x2F;R8 이해하기, proguard&#x2F;R8 예제">
+<meta name="twitter:description" content="안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러 메시지 확인하기안드로이드의 세계에 발을 들인지, 어느새 3개월이 되었다. 아직 지식이 많이 부족하고 할 일도 태산이지만, 짧은 기간동안 엄청나게 많은 경험을 하고 있어서 아직은 신난다. (아직은…).  우리 회사에서는 firebase crashlytics 를 이용하여">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://miniminis.github.io/2020/03/02/android/android-proguard/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="플래시블로그FlashBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/miniminis" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flash</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">FullStack Android Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Seoul, Korea</small>
+      </div>
+      
+      <!-- <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div> -->
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <!-- <span class="menu-title">Home</span> -->
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <!-- <span class="menu-title">Archives</span> -->
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">Categories</span> -->
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">menu.Projects</span> -->
+            <span class="menu-title">Projects</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <!-- <span class="menu-title">About</span> -->
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-android/android-proguard" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러 메시지 확인하기, proguard/R8 이해하기, proguard/R8 예제
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/03/02/android/android-proguard/" class="article-date">
+	  <time datetime="2020-03-02T10:55:16.000Z" itemprop="datePublished">2020-03-02</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/android/">android</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/android/">android</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/03/02/android/android-proguard/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="안드로이드-proguard-난독화-해제하지-않고-firebase-crashlytics-에러-메시지-확인하기"><a href="#안드로이드-proguard-난독화-해제하지-않고-firebase-crashlytics-에러-메시지-확인하기" class="headerlink" title="안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러 메시지 확인하기"></a>안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러 메시지 확인하기</h2><p>안드로이드의 세계에 발을 들인지, 어느새 3개월이 되었다. 아직 지식이 많이 부족하고 할 일도 태산이지만, 짧은 기간동안 엄청나게 많은 경험을 하고 있어서 아직은 신난다. (아직은…). </p>
+<p>우리 회사에서는 <strong>firebase crashlytics</strong> 를 이용하여 어플리케이션을 모니터링하고 있다. 사용자가 접근하는 모든 화면마다 일종의 발자국을 남겨서 crash 가 발생하게 되면 해당 화면의 위치는 물론, 사용자의 device 정보, 기기 내 메모리, 안드로이드 OS 버전까지 알 수 있다. 심지어는 에러 메시지까지 자세하게 보여주기 때문에 어플리케이션의 유지/보수에 꽤나 유용하다. </p>
+<p>앱에 crash 가 발생하면 자동으로 회사 메일로 crash report 가 날라오는데, 오늘 보는 이녀석은 에러 메시지가 참으로 심플한게 뭔가 이상했다. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Fatal Exception: java.lang.RuntimeException: Unable to pause activity: h.d</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">...</span><br><span class="line">Caused by h.d</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>?????????????????????????</p>
+<p>보통은 에러로그와 메시지가 아주 장황하게 늘어져있어서, 메시지를 보기만해도 ‘아 어떤 화면에서 어떤게 잘못됐겠구나’하고 짐작을 할 수가 있는데, 이건 뭐… 액티비티를 왜 멈출 수 없니 ㅠㅠㅠ<br><br></p>
+<h3 id="에러는-일단-구글링"><a href="#에러는-일단-구글링" class="headerlink" title="에러는 일단 구글링"></a>에러는 일단 구글링</h3><p>한눈에 짐작할 수 없는 에러면 일단 구글님께 보여드려야지. 구글에 에러메시지를 갖다가 붙였는데, 이럴수가, 단 한건도 일치하는 결과가 없다. 검색어를 요리조리 바꿔가며 검색해보았지만, 만족할만한 결과가 나오지 않았다. 그렇게 오전 근무시간 내내 그 에러와 사투를 벌였는데, 점심시간에 이사님이 엄청난 힌트를 주셨다. </p>
+<p>요약하자면, </p>
+<ol>
+<li>안드로이드 어플리케이션은 proguard 난독화 과정을 거치지 않고 올리면 다른 사람들이 apk 를 풀어서 내부 소스 코드를 확인할 수 있음 </li>
+<li>따라서 제대로 만든 어플리케이션은 proguard 를 통해 난독화 되어있음</li>
+<li>문제는 난독화 되어있는 어플의 경우, crash report 도 암호화된 코드로 전달되기에 한눈에 확인할 수 없음 </li>
+</ol>
+<br>
+오케이. 단서를 알아냈으니 proguard가 무엇인지, 어떻게 난독해제를 하여 에러 메시지에 접근할 것인지를 확인하면 될터이다. 
+<br><br><br>
+
+<h2 id="proguard-R8-이해하기-사용하기-예제"><a href="#proguard-R8-이해하기-사용하기-예제" class="headerlink" title="proguard/R8 이해하기, 사용하기, 예제"></a>proguard/R8 이해하기, 사용하기, 예제</h2><h3 id="일단-proguard는-무엇인가"><a href="#일단-proguard는-무엇인가" class="headerlink" title="일단, proguard는 무엇인가?"></a>일단, proguard는 무엇인가?</h3><p>proguard는 코드 축소, 리소스 축소, 난독화, 최적화 등을 통해 안드로이드 어플리케이션의 크기를 최대한 작게 만들어주는 도구이다. 안드로이드 공식문서에 따르면 다음과 같이 정리할 수 있다. </p>
+<ol>
+<li>코드 축소 : 사용하지 않는 클래스, 필드, 매서드, 속성을 감지하여 안전하게 삭제</li>
+<li>리소스 축소 : 앱의 라이브러리 종속성에서 사용하지 않는 리소스를 포함하여 패키징된 앱에서 사용하지 않는 리소스를 삭제함 </li>
+<li>난독화 : 클래스와 멤버 이름을 줄여서 dex file 의 크기를 줄임</li>
+<li>최적화 : 코드를 검사하고 다시 작성해서 앱의 dex file의 크기를 더 줄임</li>
+</ol>
+<p>이때, 우리가 오늘 주목할 것은 바로 <strong>‘난독화’</strong>인데, 이 난독화의 과정을 거치면 단순히 앱의 크기가 줄어드는 것뿐만 아니라, 앱 내의 클래스와 멤버 이름들이 모두 의미없는 이름으로 변형되어 다른 사람들이 apk 를 decompile 해보아도 소스 코드를 분석할 수 없게 만든다. 이것을 풀려면 난독해제 파일이 있어야만 가능하다.<br><br></p>
+<h3 id="proguard-와-R8-컴파일러"><a href="#proguard-와-R8-컴파일러" class="headerlink" title="proguard 와 R8 컴파일러"></a>proguard 와 R8 컴파일러</h3><p>역시 안드로이드는 계륵같은 존재. proguard 를 막 파보고 있는데, 안드로이드 공식문서의 “앱축소” 파트에서 Android plugin 3.4 이상부터는 더이상 proguard 를 사용하지 않고 R8 컴파일러를 사용한다고 한다.하하^^. 그래도 하는 역할과 규칙들은 proguard와 호환되므로 android gradle plugin 버전을 업데이트 해도 큰 문제는 없을 것 같다. proguard 와 R8 컴파일러의 규칙이 거의 동일하므로, 좀 더 최신 버전인 R8 컴파일러를 이용한 예제를 살펴보도록 하자.<br><br></p>
+<h3 id="proguard-R8-난독화하기"><a href="#proguard-R8-난독화하기" class="headerlink" title="proguard/R8 난독화하기"></a>proguard/R8 난독화하기</h3><h4 id="1-난독화-전-proguard-rules-pro-txt-파일-minifyEnabled-false-상태"><a href="#1-난독화-전-proguard-rules-pro-txt-파일-minifyEnabled-false-상태" class="headerlink" title="1. 난독화 전, proguard-rules.pro.txt 파일 (minifyEnabled false 상태)"></a>1. 난독화 전, proguard-rules.pro.txt 파일 (minifyEnabled false 상태)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># Add project specific ProGuard rules here.</span><br><span class="line"># You can control the set of applied configuration files using the</span><br><span class="line"># proguardFiles setting in build.gradle.</span><br><span class="line">#</span><br><span class="line"># For more details, see</span><br><span class="line">#   http://developer.android.com/guide/developing/tools/proguard.html</span><br><span class="line"></span><br><span class="line"># If your project uses WebView with JS, uncomment the following</span><br><span class="line"># and specify the fully qualified class name to the JavaScript interface</span><br><span class="line"># class:</span><br><span class="line">#-keepclassmembers class fqcn.of.javascript.interface.for.webview &#123;</span><br><span class="line">#   public *;</span><br><span class="line">#&#125;</span><br><span class="line"></span><br><span class="line"># Uncomment this to preserve the line number information for</span><br><span class="line"># debugging stack traces.</span><br><span class="line">#-keepattributes SourceFile,LineNumberTable</span><br><span class="line"></span><br><span class="line"># If you keep the line number information, uncomment this to</span><br><span class="line"># hide the original source file name.</span><br><span class="line">#-renamesourcefileattribute SourceFile</span><br></pre></td></tr></table></figure>
+
+<p>보이는 것과 같이 모든 항목이 주석 상태이다. 이 곳에 R8 컴파일러 규칙에 맞게 문서를 작성한다. 이제, proguard/R8를 활성화 시켜주어 코드 난독화를 적용해보자.<br><br></p>
+<h4 id="2-난독화-하기"><a href="#2-난독화-하기" class="headerlink" title="2. 난독화 하기"></a>2. 난독화 하기</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// app 단위의 build.gradle 파일 </span><br><span class="line"></span><br><span class="line">buildTypes &#123;</span><br><span class="line">        debug &#123;</span><br><span class="line">            minifyEnabled true</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android-optimize.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled true</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android-optimize.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>코드는 이게 전부이다. 이제 apk 로 컴파일한 뒤 난독화 된 결과를 확인해보자.<br><br></p>
+<h4 id="3-apk-decompile-하여-난독화-확인하기"><a href="#3-apk-decompile-하여-난독화-확인하기" class="headerlink" title="3. apk decompile 하여 난독화 확인하기"></a>3. apk decompile 하여 난독화 확인하기</h4><p>아래의 링크를 참고하여 아까 만들어 둔 apk를 decompile 해보았다.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">//난독화 전</span><br><span class="line">package com.example.udacity_diceroller;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.Button;</span><br><span class="line">import android.widget.ImageView;</span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import kotlin.Metadata;</span><br><span class="line">import kotlin.jvm.internal.Intrinsics;</span><br><span class="line">import kotlin.random.Random;</span><br><span class="line"></span><br><span class="line">@Metadata(bv = &#123;1, 0, 3&#125;, d1 = &#123;&quot;\u0000 \n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\u0018\u00002\u00020\u0001B\u0005¢\u0006\u0002\u0010\u0002J\u0012\u0010\u0005\u001a\u00020\u00062\b\u0010\u0007\u001a\u0004\u0018\u00010\bH\u0014J\b\u0010\t\u001a\u00020\u0006H\u0002R\u000e\u0010\u0003\u001a\u00020\u0004X.¢\u0006\u0002\n\u0000¨\u0006\n&quot;&#125;, d2 = &#123;&quot;Lcom/example/udacity_diceroller/MainActivity;&quot;, &quot;Landroidx/appcompat/app/AppCompatActivity;&quot;, &quot;()V&quot;, &quot;diceImg&quot;, &quot;Landroid/widget/ImageView;&quot;, &quot;onCreate&quot;, &quot;&quot;, &quot;savedInstanceState&quot;, &quot;Landroid/os/Bundle;&quot;, &quot;rollDice&quot;, &quot;app_debug&quot;&#125;, k = 1, mv = &#123;1, 1, 16&#125;)</span><br><span class="line">/* compiled from: MainActivity.kt */</span><br><span class="line">public final class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">    private HashMap _$_findViewCache;</span><br><span class="line">    private ImageView diceImg;</span><br><span class="line"></span><br><span class="line">    public void _$_clearFindViewByIdCache() &#123;</span><br><span class="line">        HashMap hashMap = this._$_findViewCache;</span><br><span class="line">        if (hashMap != null) &#123;</span><br><span class="line">            hashMap.clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public View _$_findCachedViewById(int i) &#123;</span><br><span class="line">        if (this._$_findViewCache == null) &#123;</span><br><span class="line">            this._$_findViewCache = new HashMap();</span><br><span class="line">        &#125;</span><br><span class="line">        View view = (View) this._$_findViewCache.get(Integer.valueOf(i));</span><br><span class="line">        if (view != null) &#123;</span><br><span class="line">            return view;</span><br><span class="line">        &#125;</span><br><span class="line">        view = findViewById(i);</span><br><span class="line">        this._$_findViewCache.put(Integer.valueOf(i), view);</span><br><span class="line">        return view;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView((int) R.layout.activity_main);</span><br><span class="line">        Button btn = findViewById(R.id.button);</span><br><span class="line">        Intrinsics.checkExpressionValueIsNotNull(btn, &quot;findViewById(R.id.button)&quot;);</span><br><span class="line">        btn.setOnClickListener(new MainActivity$onCreate$1(this));</span><br><span class="line">        View findViewById = findViewById(R.id.textView);</span><br><span class="line">        Intrinsics.checkExpressionValueIsNotNull(findViewById, &quot;findViewById(R.id.textView)&quot;);</span><br><span class="line">        this.diceImg = (ImageView) findViewById;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private final void rollDice() &#123;</span><br><span class="line">        int drawableResources;</span><br><span class="line">        switch (Random.Default.nextInt(6) + 1) &#123;</span><br><span class="line">            case 1:</span><br><span class="line">                drawableResources = R.drawable.dice_1;</span><br><span class="line">                break;</span><br><span class="line">            case 2:</span><br><span class="line">                drawableResources = R.drawable.dice_2;</span><br><span class="line">                break;</span><br><span class="line">            case 3:</span><br><span class="line">                drawableResources = R.drawable.dice_3;</span><br><span class="line">                break;</span><br><span class="line">            case 4:</span><br><span class="line">                drawableResources = R.drawable.dice_4;</span><br><span class="line">                break;</span><br><span class="line">            case 5:</span><br><span class="line">                drawableResources = R.drawable.dice_5;</span><br><span class="line">                break;</span><br><span class="line">            case 6:</span><br><span class="line">                drawableResources = R.drawable.dice_6;</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                drawableResources = R.drawable.empty_dice;</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        ImageView imageView = this.diceImg;</span><br><span class="line">        if (imageView == null) &#123;</span><br><span class="line">            Intrinsics.throwUninitializedPropertyAccessException(&quot;diceImg&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        imageView.setImageResource(drawableResources);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">//난독화 후</span><br><span class="line">package com.example.udacity_diceroller;</span><br><span class="line"></span><br><span class="line">import a.a.k.d;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.View.OnClickListener;</span><br><span class="line">import android.widget.Button;</span><br><span class="line">import android.widget.ImageView;</span><br><span class="line">import b.d.a.b;</span><br><span class="line">import b.e.c;</span><br><span class="line"></span><br><span class="line">public final class MainActivity extends d &#123;</span><br><span class="line">    public ImageView p;</span><br><span class="line"></span><br><span class="line">    public static final class a implements OnClickListener &#123;</span><br><span class="line">        public final /* synthetic */ MainActivity b;</span><br><span class="line"></span><br><span class="line">        public a(MainActivity mainActivity) &#123;</span><br><span class="line">            this.b = mainActivity;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public final void onClick(View it) &#123;</span><br><span class="line">            this.b.a();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView((int) R.layout.activity_main);</span><br><span class="line">        Object btn = findViewById(R.id.button);</span><br><span class="line">        b.a(btn, &quot;findViewById(R.id.button)&quot;);</span><br><span class="line">        ((Button) btn).setOnClickListener(new a(this));</span><br><span class="line">        Object findViewById = findViewById(R.id.textView);</span><br><span class="line">        b.a(findViewById, &quot;findViewById(R.id.textView)&quot;);</span><br><span class="line">        this.p = (ImageView) findViewById;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /* renamed from: o */</span><br><span class="line">    public final void a() &#123;</span><br><span class="line">        int drawableResources;</span><br><span class="line">        switch (c.b.b(6) + 1) &#123;</span><br><span class="line">            case 1:</span><br><span class="line">                drawableResources = R.drawable.dice_1;</span><br><span class="line">                break;</span><br><span class="line">            case 2:</span><br><span class="line">                drawableResources = R.drawable.dice_2;</span><br><span class="line">                break;</span><br><span class="line">            case 3:</span><br><span class="line">                drawableResources = R.drawable.dice_3;</span><br><span class="line">                break;</span><br><span class="line">            case 4:</span><br><span class="line">                drawableResources = R.drawable.dice_4;</span><br><span class="line">                break;</span><br><span class="line">            case 5:</span><br><span class="line">                drawableResources = R.drawable.dice_5;</span><br><span class="line">                break;</span><br><span class="line">            case 6:</span><br><span class="line">                drawableResources = R.drawable.dice_6;</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                drawableResources = R.drawable.empty_dice;</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        ImageView imageView = this.p;</span><br><span class="line">        if (imageView != null) &#123;</span><br><span class="line">            imageView.setImageResource(drawableResources);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            b.c(&quot;diceImg&quot;);</span><br><span class="line">            throw null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>비록 간단한 구조이지만 분명 쉽게 알아보기 힘든 a, p 등의 알파벳이 눈에 보인다. 만약 viewbinding 을 사용하고 string 으로 하드코딩하지 않고 상수로 처리한다면 난독화의 정도는 더욱 심해져서 읽기 어려울 것이다!!!<br><br></p>
+<h4 id="decompile-도구-참고"><a href="#decompile-도구-참고" class="headerlink" title="decompile 도구 참고!"></a>decompile 도구 참고!</h4><ul>
+<li><a href="https://codechacha.com/ko/how-to-decompile-android-apk/" target="_blank" rel="noopener">참고 링크 클릭!</a></li>
+<li>불편하지만 단계별 변환 가능한 방법  <ul>
+<li>Apktool : apk의 리소스를 변환 </li>
+<li>dex2jar : dex를 jar 로 변환</li>
+<li>jd-cmd : jar를 java 코드로 변환하는데 사용함 </li>
+</ul>
+</li>
+<li>편한 방법<ul>
+<li>jadx : apk 를 decompile 함<br><br><br></li>
+</ul>
+</li>
+</ul>
+<h2 id="mapping-txt-에서-내-프로젝트의-class-method가-난독화-된-새로운-이름을-확인하기"><a href="#mapping-txt-에서-내-프로젝트의-class-method가-난독화-된-새로운-이름을-확인하기" class="headerlink" title="mapping.txt 에서 내 프로젝트의 class, method가 난독화 된 새로운 이름을 확인하기"></a>mapping.txt 에서 내 프로젝트의 class, method가 난독화 된 새로운 이름을 확인하기</h2><p>간단하게 R8을 통해 코드 난독화를 해보았다. 그렇다면 이 난독화된 class, method 들은 어떻게 확인할 수 있을까? 그것은 decompile 할 필요도 없이 파일 하나만 간단히 확인해보면 된다. 안드로이드 공식문서에 따르면, 안드로이드 apk가 만들어질 때에 R8 컴파일러는 매번 새로운 mapping.txt 파일을 생성한다. 이 텍스트 파일 내에 난독화된 클래스, 매서드 및 필드가 어떤 약자, 알파벳으로 매핑되어있는지 그 목록이 자세하게 적혀있다. </p>
+<p>예를들면 다음과 같이. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line"># compiler: R8</span><br><span class="line">androidx.appcompat.app.ActionBar -&gt; a.a.k.a:</span><br><span class="line">    92:1368:void &lt;init&gt;() -&gt; &lt;init&gt;</span><br><span class="line">    void dispatchMenuVisibilityChanged(boolean) -&gt; a</span><br><span class="line">    void onConfigurationChanged(android.content.res.Configuration) -&gt; a</span><br><span class="line">    boolean onKeyShortcut(int,android.view.KeyEvent) -&gt; a</span><br><span class="line">    void setWindowTitle(java.lang.CharSequence) -&gt; a</span><br><span class="line">    androidx.appcompat.view.ActionMode startActionMode(androidx.appcompat.view.ActionMode$Callback) -&gt; a</span><br><span class="line">    1074:1074:boolean closeOptionsMenu() -&gt; a</span><br><span class="line">    boolean collapseActionView() -&gt; b</span><br><span class="line">    void setDefaultDisplayHomeAsUpEnabled(boolean) -&gt; b</span><br><span class="line">    int getDisplayOptions() -&gt; c</span><br><span class="line">    void setShowHideAnimationEnabled(boolean) -&gt; c</span><br><span class="line">    android.content.Context getThemedContext() -&gt; d</span><br><span class="line">    1080:1080:boolean invalidateOptionsMenu() -&gt; e</span><br><span class="line">    1121:1121:void onDestroy() -&gt; f</span><br><span class="line">    1086:1086:boolean onMenuKeyEvent(android.view.KeyEvent) -&gt; g</span><br><span class="line">    1068:1068:boolean openOptionsMenu() -&gt; h</span><br></pre></td></tr></table></figure>
+
+<p>해당 파일은 ‘app/build/outputs/mapping/<build-type>/‘ 에 저장되므로 직접 확인해보면 된다. </build-type></p>
+<p>오늘도 큰 공부 하고 갑니다, 에러님…!<br><br><br><br></p>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a href="https://developer.android.com/studio/build/shrink-code" target="_blank" rel="noopener">Android Developers - 앱 축소, 난독 화 및 최적화</a></li>
+<li><a href="https://eunplay.tistory.com/144" target="_blank" rel="noopener">proguard 사용시 파일 목록과 내용에 대한 설명이 있는 블로그</a></li>
+<li><a href="https://medium.com/mo-mu/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%95%B1-apk-%EB%94%94%EC%BB%B4%ED%8C%8C%EC%9D%BC%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95-ca1e543aa944#.s6zxf2qdu" target="_blank" rel="noopener">안드로이드 앱(apk) 디컴파일하는 방법!</a></li>
+<li><a href="https://www.guardsquare.com/en/products/proguard/manual/usage" target="_blank" rel="noopener">proguard 규칙 공식문서</a></li>
+<li><a href="https://dwfox.tistory.com/18" target="_blank" rel="noopener">[Android] ProGuard 코드 난독화 / 최적화 설정 - Android Stuido</a></li>
+<li>개발자 신현식님의 <a href="https://medium.com/mo-mu/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%95%B1-apk-%EB%94%94%EC%BB%B4%ED%8C%8C%EC%9D%BC%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95-ca1e543aa944#.s6zxf2qdu" target="_blank" rel="noopener">안드로이드 앱(apk) 디컴파일하는 방법!</a></li>
+</ul>
+
+      
+    </div>
+    <!-- <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://miniminis.github.io/2020/03/02/android/android-proguard/" title="안드로이드 proguard 난독화 해제하지 않고 firebase crashlytics 에러 메시지 확인하기, proguard/R8 이해하기, proguard/R8 예제" target="_blank" rel="external">https://miniminis.github.io/2020/03/02/android/android-proguard/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/miniminis" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/miniminis" target="_blank"><span class="text-dark">Flash</span><small class="ml-1x">FullStack Android Developer</small></a></h3>
+        <div></div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div> -->
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/03/03/python/python-crawling-basic01/" title="파이썬 크롤링 데이터 컴퓨터에 저장시 PermissionError [Errno 13] Permission denied 해결"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/10/27/node/node-express-framework-03/" title="Express framework 이용해서 실시간 SNS 만들기 (3)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+    <script defer>
+    var disqus_config = function () {
+        
+            this.page.url = 'https://miniminis.github.io/2020/03/02/android/android-proguard/';
+        
+        this.page.identifier = 'android/android-proguard';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'miniminis-github-io-2' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+
+
+    <script defer type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-149033629-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+</body>
+</html>

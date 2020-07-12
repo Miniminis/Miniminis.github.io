@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>이것이 리눅스다(2020) 03 / CentOS8 Linux 설치 - ServerA | Hexo</title>
+  <meta name="description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="이것이 리눅스다(2020) 03 &#x2F; CentOS8 Linux 설치 - ServerA">
+<meta property="og:url" content="https://miniminis.github.io/2020/05/15/linux/linux-thisislinux03/index.html">
+<meta property="og:site_name" content="플래시블로그FlashBlog">
+<meta property="og:description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-12T07:25:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="이것이 리눅스다(2020) 03 &#x2F; CentOS8 Linux 설치 - ServerA">
+<meta name="twitter:description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://miniminis.github.io/2020/05/15/linux/linux-thisislinux03/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="플래시블로그FlashBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/miniminis" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flash</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">FullStack Android Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Seoul, Korea</small>
+      </div>
+      
+      <!-- <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div> -->
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <!-- <span class="menu-title">Home</span> -->
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <!-- <span class="menu-title">Archives</span> -->
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">Categories</span> -->
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">menu.Projects</span> -->
+            <span class="menu-title">Projects</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <!-- <span class="menu-title">About</span> -->
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-linux/linux-thisislinux03" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      이것이 리눅스다(2020) 03 / CentOS8 Linux 설치 - ServerA
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/05/15/linux/linux-thisislinux03/" class="article-date">
+	  <time datetime="2020-05-14T22:06:59.000Z" itemprop="datePublished">2020-05-15</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/linux/">linux</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/15/linux/linux-thisislinux03/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B8529915277" target="_blank" rel="noopener">[링크]</a>를 통해 구입할 수 있고, 강의는 <a href="https://www.youtube.com/playlist?list=PLVsNizTWUw7EJ9z-LW3lv3VC-6HI9I3hN" target="_blank" rel="noopener">[링크]</a>에서 확인할 수 있다. 한빛에서 네이버 카페<a href="https://cafe.naver.com/thisislinux" target="_blank" rel="noopener">[링크]</a>도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…! 감사합니다…!)<br><br></p>
+<p>이번 포스팅에서는 ServerA의 설치과정을 다룰 것인데, 강의를 들으면서 급하게 필기한 내용들이라 자세한 내용은 위의 링크를 통해 강의를 직접 참고하는 것을 추천한다. 이 글은 놓친 텍스트나 나중에 흐름을 정리하고자 할때 간단히 참고해주시면 될 듯.<br><br><br></p>
+<h2 id="1-설치-및-설치파일-체크"><a href="#1-설치-및-설치파일-체크" class="headerlink" title="1. 설치 및 설치파일 체크"></a>1. 설치 및 설치파일 체크</h2><h3 id="1-DVD-ISO-다운로드"><a href="#1-DVD-ISO-다운로드" class="headerlink" title="1) DVD ISO 다운로드"></a>1) DVD ISO 다운로드</h3><ol>
+<li>CentOS8 1905 버전의 DVD ISO 파일을 다운로드</li>
+<li>체크섬 프로그램을 다운받아서 해당 ISO 파일이 문제가 없는지 확인하도록 한다.</li>
+<li>나는 위의 과정을 생략하고 그냥 서버 설치에 들어가긴 했다. 하지만 설치과정에서 문제없이 한번에 깔끔하게 끝낼 수 있도록 파일 이상여부를 체크하는 것이 좋겠다.<br><br><br></li>
+</ol>
+<h3 id="2-간단한-환경설정-및-계정등록"><a href="#2-간단한-환경설정-및-계정등록" class="headerlink" title="2) 간단한 환경설정 및 계정등록"></a>2) 간단한 환경설정 및 계정등록</h3><ol>
+<li>설치 후 &gt; vmware player 실행 &gt; serverA 에 다운로드 받은 ISO 파일 업로드 후 &gt; player start</li>
+<li>enter : 삽입한 dvd 검사 &gt; 문제 없다면 설치 진행 시작 &gt; 다운로드 완료 </li>
+<li>언어 선택 : 한국어 </li>
+<li>시간대 선택 : 서울 </li>
+<li>네트워크 &amp; 호스트 이름 선택 : 이더넷 ens160 &gt;  켬</li>
+<li>소프트웨어 선택 :<ol>
+<li>서버-GUI : 기능이 많지 않고 사용에 불편</li>
+<li>워크스테이션 선택 </li>
+</ol>
+</li>
+<li>설치 목적지 : <ol>
+<li>로컬 표준 디스크 선택 &gt; 저장소 구성 : custom<ol>
+<li>swap : 4G </li>
+<li>/ (root) : 나머지 (76G) </li>
+</ol>
+</li>
+</ol>
+</li>
+<li>설치 시작 클릭</li>
+<li>설치 되는 중 다음을 진행한다.<ol>
+<li>root 암호 :  thisisadmin</li>
+<li>user creation :<ol>
+<li>name : centos</li>
+<li>pw : thisiscentos</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>재부팅<br><br><br></li>
+</ol>
+<h2 id="2-로그인"><a href="#2-로그인" class="headerlink" title="2. 로그인"></a>2. 로그인</h2><ol>
+<li>기본적인 세팅을 위해 root 로 로그인 (서버의 경우는 항상 root 로 로그인 하도록 함)</li>
+<li>로그인 후 필요한 세팅 작업 <ol>
+<li>화면사이즈</li>
+<li>자동 화면잠금(끔) </li>
+<li>계정 설정<br><br><br></li>
+</ol>
+</li>
+</ol>
+<h2 id="3-서버-설정"><a href="#3-서버-설정" class="headerlink" title="3. 서버 설정"></a>3. 서버 설정</h2><h3 id="1-자동업데이트-차단"><a href="#1-자동업데이트-차단" class="headerlink" title="1) 자동업데이트 차단"></a>1) 자동업데이트 차단</h3><ol>
+<li><p>상단 현재활동 &gt; 터미널: </p>
+<ol>
+<li><p>자동 업데이트 차단 command (강의를 듣는 동안 centos 1905 버전이 유지될 수 있도록) </p>
+<ol>
+<li>gsettings set org.gnome.sofeware download-updates false </li>
+<li>systemctl disable dnf-makecache.service</li>
+<li>systemctl disable dnf-makecache.timer </li>
+</ol>
+</li>
+<li><p>소프트웨어 업데이트 차단 </p>
+<ol>
+<li><p>cd /etc/yum.repos.d/</p>
+</li>
+<li><p>mkdir backup </p>
+</li>
+<li><p>ls </p>
+</li>
+<li><p>mv *.repo backup/ : backup folder 로 전부 이동 </p>
+</li>
+<li><p>gedit This.repo : 메모장 </p>
+</li>
+<li><p>아래의 내용을 붙여넣기</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[BaseOS] </span><br><span class="line">name=CentOS-$releasever - Base </span><br><span class="line">baseurl=http://mirror.centos.org/centos-8/8.0.1905/BaseOS/x86_64/os/ </span><br><span class="line">        http://vault.centos.org/8.0.1905/BaseOS/x86_64/os/ </span><br><span class="line">gpgcheck=0 </span><br><span class="line">[AppStream] </span><br><span class="line">name=CentOS-$releasever - AppStream </span><br><span class="line">baseurl=http://mirror.centos.org/centos-8/8.0.1905/AppStream/x86_64/os/ </span><br><span class="line">        http://vault.centos.org/8.0.1905/AppStream/x86_64/os/ </span><br><span class="line">gpgcheck=0 </span><br><span class="line">[extras] </span><br><span class="line">name=CentOS-$releasever - Extras </span><br><span class="line">baseurl=http://mirror.centos.org/centos-8/8.0.1905/extras/x86_64/os/ </span><br><span class="line">        http://vault.centos.org/8.0.1905/extras/x86_64/os/ </span><br><span class="line">gpgcheck=0 </span><br><span class="line">[centosplus] </span><br><span class="line">name=CentOS-$releasever - Plus </span><br><span class="line">baseurl=http://mirror.centos.org/centos-8/8.0.1905/centosplus/x86_64/os/ </span><br><span class="line">        http://vault.centos.org/8.0.1905/BaseOS/centosplus/os/ </span><br><span class="line">gpgcheck=0 </span><br><span class="line">[PowerTools] </span><br><span class="line">name=CentOS-$releasever - PowerTools </span><br><span class="line">baseurl=http://mirror.centos.org/centos-8/8.0.1905/PowerTools/x86_64/os/ </span><br><span class="line">        http://vault.centos.org/8.0.1905/PowerTools/x86_64/os/ </span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>dnf clean all 로 변경된 repo file 적용 </p>
+</li>
+<li><p>exit<br><br><br></p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="2-네트워크-세팅"><a href="#2-네트워크-세팅" class="headerlink" title="2) 네트워크 세팅"></a>2) 네트워크 세팅</h3><h4 id="서버의-IP를-고정-IP로-바꾸는-작업"><a href="#서버의-IP를-고정-IP로-바꾸는-작업" class="headerlink" title="서버의 IP를 고정 IP로 바꾸는 작업"></a>서버의 IP를 고정 IP로 바꾸는 작업</h4><ol>
+<li><p>cd /etc/sysconfig/network-scripts/</p>
+</li>
+<li><p>ls :<br>return ifcfg-ens160 </p>
+</li>
+<li><p>gedit ifcfg-ens160</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> TYPE=&quot;Ethernet&quot;PROXY_METHOD=&quot;none&quot;BROWSER_ONLY=&quot;no&quot;</span><br><span class="line">BOOTPROTO=&quot;none&quot;</span><br><span class="line">IPADDR=&quot;192.168.111.100&quot;</span><br><span class="line">NETMASK=&quot;255.255.255.0&quot;</span><br><span class="line">GATEWAY=&quot;192.168.111.2&quot;</span><br><span class="line">DNS1=&quot;192.168.111.2&quot;</span><br><span class="line">DEFROUTE=&quot;yes&quot;</span><br><span class="line">IPV4_FAILURE_FATAL=&quot;no&quot;</span><br><span class="line">IPV6INIT=&quot;yes&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>바뀐 네트워크 설정 적용된 것을 확인하기 위해 재부팅</p>
+<ol>
+<li>nmcli connection down ens160 : 네트워크 내림</li>
+<li>nmcli connection up ens160 : 네트워크 다시 올림</li>
+<li>reboot : 재부팅 </li>
+<li>ifconfig ens160 으로 바뀐 ip 주소 확인 (고정되었는지)<br><br><br></li>
+</ol>
+</li>
+</ol>
+<h3 id="3-편의성을-위해-보안-강화된-부분-끄기"><a href="#3-편의성을-위해-보안-강화된-부분-끄기" class="headerlink" title="3) 편의성을 위해 보안 강화된 부분 끄기"></a>3) 편의성을 위해 보안 강화된 부분 끄기</h3><ol>
+<li><p>gedit /etc/sysconfig/selinux</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELINUX=enforcing  --&gt; disabled으로 바꿔주기</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>저장 후 닫기<br><br><br></p>
+</li>
+</ol>
+<h3 id="4-한글설정"><a href="#4-한글설정" class="headerlink" title="4) 한글설정"></a>4) 한글설정</h3><ol>
+<li>오른쪽 상단 전원 </li>
+<li>지역 및 언어 <ol>
+<li>한국어 하나만 남기고 나머지 지우기 </li>
+</ol>
+</li>
+<li>터미널 : <ol>
+<li>shift + space : 한영 전환<br><br><br></li>
+</ol>
+</li>
+</ol>
+<h3 id="5-해상도-설정"><a href="#5-해상도-설정" class="headerlink" title="5) 해상도 설정"></a>5) 해상도 설정</h3><ol>
+<li>터미널 : gedit /etc/grub.d/10_linux<ol>
+<li>169행 : “{args} vga=773”</li>
+<li>저장 후 닫기 </li>
+</ol>
+</li>
+<li>grub2-mkconfig -o /boot/grub2/grub.cfg : 수정내용 적용</li>
+<li>done 나오면 완료 </li>
+<li>재부팅 후 확인<br><br><br></li>
+</ol>
+<h3 id="6-방화벽-기능"><a href="#6-방화벽-기능" class="headerlink" title="6) 방화벽 기능"></a>6) 방화벽 기능</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf(설치 명령어) -y install firewall-config : firewall 소프트웨어 설치</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h3 id="7-gnome-소프트웨어-업데이트-차단"><a href="#7-gnome-소프트웨어-업데이트-차단" class="headerlink" title="7) gnome 소프트웨어 업데이트 차단"></a>7) gnome 소프트웨어 업데이트 차단</h3><ol>
+<li>메뉴 &gt; 프로그램표시 &gt; 모두 : gnome software &gt; 소프트웨어 </li>
+<li>상단 소프트웨어 &gt; 업데이트 기본설정 &gt; 자동업데이트 알림 끄기 </li>
+<li>닫기<br><br><br></li>
+</ol>
+<h3 id="8-메모리-설정"><a href="#8-메모리-설정" class="headerlink" title="8) 메모리 설정"></a>8) 메모리 설정</h3><p>책에 정의된 대로 진행한다.</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">SERVER A</th>
+<th align="left">SERVER B</th>
+<th align="left">linClient</th>
+<th align="left">winClient</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">주 용도</td>
+<td align="left">서버 전용</td>
+<td align="left">서버 전용 (텍스트 모드)</td>
+<td align="left">클라이언트 전용</td>
+<td align="left">윈도우 클라이언트 전용</td>
+</tr>
+<tr>
+<td align="left">OS</td>
+<td align="left">CENTOS8</td>
+<td align="left">CENTOS8</td>
+<td align="left">CENTOS8</td>
+<td align="left">CENTOS8</td>
+</tr>
+<tr>
+<td align="left">하드용량</td>
+<td align="left">80GB</td>
+<td align="left">40GB</td>
+<td align="left">40GB</td>
+<td align="left">60GB</td>
+</tr>
+<tr>
+<td align="left">하드타입</td>
+<td align="left">SCSI</td>
+<td align="left">SCSI</td>
+<td align="left">SCSI or NVMe</td>
+<td align="left">SCSI or NVMe</td>
+</tr>
+<tr>
+<td align="left">메모리 할당</td>
+<td align="left">2GB</td>
+<td align="left">2GB</td>
+<td align="left">2GB</td>
+<td align="left">1GB</td>
+</tr>
+<tr>
+<td align="left">네트워크타입</td>
+<td align="left">NAT</td>
+<td align="left">NAT</td>
+<td align="left">NAT</td>
+<td align="left">NAT</td>
+</tr>
+<tr>
+<td align="left">CD/DVD</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+<tr>
+<td align="left">Floppy</td>
+<td align="left">X</td>
+<td align="left">X</td>
+<td align="left">O</td>
+<td align="left">X</td>
+</tr>
+<tr>
+<td align="left">Audio</td>
+<td align="left">X</td>
+<td align="left">X</td>
+<td align="left">O</td>
+<td align="left">X</td>
+</tr>
+<tr>
+<td align="left">USB</td>
+<td align="left">X</td>
+<td align="left">X</td>
+<td align="left">O</td>
+<td align="left">X</td>
+</tr>
+<tr>
+<td align="left">Printer</td>
+<td align="left">X</td>
+<td align="left">X</td>
+<td align="left">O</td>
+<td align="left">X</td>
+</tr>
+</tbody></table>
+<ul>
+<li><em>NAT : NetworkAddressTranslation</em><br><br><br></li>
+</ul>
+<h3 id="9-스냅숏-기능-설정"><a href="#9-스냅숏-기능-설정" class="headerlink" title="9) 스냅숏 기능 설정"></a>9) 스냅숏 기능 설정</h3><p>Workstation pro만 제공해주는 기능으로 player에서는 사용불가 ㅠㅠ<br>서버 설정의 과정이 만만치 않기에 일단 서버를 성공적으로 설치하고 설정을 완료한 뒤에는 스냅숏 기능으로 이 상태를 저장해놓는 것이 좋다.</p>
+<ol>
+<li>ServerA 열기</li>
+<li>VM &gt; snapshot &gt; snapshot manager </li>
+<li>take snapshot 클릭 : <ol>
+<li>이름은 마음대로. 강의에서는 설정완료로 하길래 따라서 함.</li>
+<li>현재 세팅된 상태까지 저장된다.  </li>
+</ol>
+</li>
+<li>close </li>
+<li>스냅숏이 제대로 적용 되었는지 테스트 : <ol>
+<li>player 실행 &gt; serverA booting </li>
+<li>root 계정으로 login </li>
+<li>터미널<ol>
+<li>rm -rf /boot : booting 과 관련된 디렉토리를 삭제함 </li>
+<li>reboot 재부팅 명령어 먹지 않음  </li>
+</ol>
+</li>
+<li>workstation pro  열기 <ol>
+<li>snapshot &gt; snapshot manager </li>
+<li>설정완료 : goto click </li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<br>
+
+<p>이 과정에서 거짓말처럼 당황스러운 상황을 만났는데, grub rescue 모드에서 ls 명령어 말고는 아무것도 먹히지 않았었다. 결국 호스트 컴퓨터를 강제 종료하고 workstation pro 로 돌아가서 snapshot 으로 원복했다. 휴우…<br><br><br></p>
+
+      
+    </div>
+    <!-- <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://miniminis.github.io/2020/05/15/linux/linux-thisislinux03/" title="이것이 리눅스다(2020) 03 / CentOS8 Linux 설치 - ServerA" target="_blank" rel="external">https://miniminis.github.io/2020/05/15/linux/linux-thisislinux03/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/miniminis" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/miniminis" target="_blank"><span class="text-dark">Flash</span><small class="ml-1x">FullStack Android Developer</small></a></h3>
+        <div></div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div> -->
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/05/30/linux/linux-thisislinux04/" title="이것이 리눅스다(2020) 04 / CentOS8 Linux 설치 - ServerB"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/05/14/linux/linux-thisislinux02/" title="이것이 리눅스다(2020) 02 / Vmware 특징, 리눅스 개요"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+    <script defer>
+    var disqus_config = function () {
+        
+            this.page.url = 'https://miniminis.github.io/2020/05/15/linux/linux-thisislinux03/';
+        
+        this.page.identifier = 'linux/linux-thisislinux03';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'miniminis-github-io-2' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+
+
+    <script defer type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-149033629-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+</body>
+</html>

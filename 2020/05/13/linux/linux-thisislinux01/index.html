@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>이것이 리눅스다(2020) 01 / 가상머신 설치 + Window10 가상OS 설치에러 | Hexo</title>
+  <meta name="description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="이것이 리눅스다(2020) 01 &#x2F; 가상머신 설치 + Window10 가상OS 설치에러">
+<meta property="og:url" content="https://miniminis.github.io/2020/05/13/linux/linux-thisislinux01/index.html">
+<meta property="og:site_name" content="플래시블로그FlashBlog">
+<meta property="og:description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-12T07:25:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="이것이 리눅스다(2020) 01 &#x2F; 가상머신 설치 + Window10 가상OS 설치에러">
+<meta name="twitter:description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://miniminis.github.io/2020/05/13/linux/linux-thisislinux01/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="플래시블로그FlashBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/miniminis" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flash</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">FullStack Android Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Seoul, Korea</small>
+      </div>
+      
+      <!-- <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div> -->
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <!-- <span class="menu-title">Home</span> -->
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <!-- <span class="menu-title">Archives</span> -->
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">Categories</span> -->
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">menu.Projects</span> -->
+            <span class="menu-title">Projects</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <!-- <span class="menu-title">About</span> -->
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-linux/linux-thisislinux01" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      이것이 리눅스다(2020) 01 / 가상머신 설치 + Window10 가상OS 설치에러
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/05/13/linux/linux-thisislinux01/" class="article-date">
+	  <time datetime="2020-05-12T21:42:05.000Z" itemprop="datePublished">2020-05-13</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/linux/">linux</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/13/linux/linux-thisislinux01/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B8529915277" target="_blank" rel="noopener">[링크]</a>를 통해 구입할 수 있고, 강의는 <a href="https://www.youtube.com/playlist?list=PLVsNizTWUw7EJ9z-LW3lv3VC-6HI9I3hN" target="_blank" rel="noopener">[링크]</a>에서 확인할 수 있다. 한빛에서 네이버 카페<a href="https://cafe.naver.com/thisislinux" target="_blank" rel="noopener">[링크]</a>도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…! 감사합니다…!)<br><br></p>
+<h2 id="OS-구성"><a href="#OS-구성" class="headerlink" title="OS 구성"></a>OS 구성</h2><ol>
+<li>호스트 OS : Window 10 </li>
+<li>리눅스 서버A with X-window : CentOS8</li>
+<li>리눅스 서버B : CentOS8</li>
+<li>리눅스 클라이언트 with X-window : CentOS8</li>
+<li>윈도우 클라이언트 : Window 10</li>
+</ol>
+<p>1번은 현재 내 PC 의 OS 이고 2-5번은 VMWare를 통해 구성할 것이다.<br><br></p>
+<h2 id="가상머신-종류와-VMWare-설치"><a href="#가상머신-종류와-VMWare-설치" class="headerlink" title="가상머신 종류와 VMWare 설치"></a>가상머신 종류와 VMWare 설치</h2><table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">VMWare WorkStation Pro</th>
+<th align="left">WMWare Workstation Player</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">라이선스</td>
+<td align="left">유료</td>
+<td align="left">무료</td>
+</tr>
+<tr>
+<td align="left">가상머신 생성기능</td>
+<td align="left">있음</td>
+<td align="left">없음</td>
+</tr>
+<tr>
+<td align="left">스냅숏 기능</td>
+<td align="left">있음</td>
+<td align="left">없음</td>
+</tr>
+<tr>
+<td align="left">가상 네트워크 사용자 설정 기능</td>
+<td align="left">있음</td>
+<td align="left">없음</td>
+</tr>
+</tbody></table>
+<p>VMWare 는 유료인 프로 버전과 무료인 플레이어 버전이 있다. 현재 설정을 사진처럼 찍어서 그대로 기억할 수 있는 스냅숏 기능은 프로버전에서만 쓸 수 있다. 30일 무료로 프로 버전을 이용할 수 있으므로 나는 프로와 플레이어 두 개를 다 설치하고 스냅숏 기능만 프로 버전에서 사용하였다. (책 및 강의 참조)</p>
+<p><a href="https://www.vmware.com/content/vmware/vmware-published-sites/us/products/workstation-pro/workstation-pro-evaluation.html.html" target="_blank" rel="noopener">[링크]</a>에서 다운로드한 뒤 프로와 플레이어 모두 설치하면 완료.</p>
+<p>VMWare 설치 후에, 테스트 용으로 가상 OS 하나를 설치한 뒤 로딩해본다.</p>
+<br>
+
+
+<h2 id="가상-OS-실행-중-에러-발생"><a href="#가상-OS-실행-중-에러-발생" class="headerlink" title="가상 OS 실행 중 에러 발생"></a>가상 OS 실행 중 에러 발생</h2><p>역시나 세상에는 쉬운게 없다. VMware 설치 후에 테스트 os 를 성공적으로 로딩하는 과정에서 3가지의 에러를 겪었다.<br><br></p>
+<h3 id="ERROR-1-microsoft-VC-재배포-가능-패키지-설치를-마친-후에-다시-설치해야합니다"><a href="#ERROR-1-microsoft-VC-재배포-가능-패키지-설치를-마친-후에-다시-설치해야합니다" class="headerlink" title="ERROR 1. microsoft VC 재배포 가능 패키지 설치를 마친 후에 다시 설치해야합니다."></a>ERROR 1. microsoft VC 재배포 가능 패키지 설치를 마친 후에 다시 설치해야합니다.</h3><p>해결은 다음의 글들을 참고하였다. </p>
+<ul>
+<li><a href="https://4ccd.net/590" target="_blank" rel="noopener">https://4ccd.net/590</a></li>
+<li><a href="https://support.microsoft.com/ko-kr/help/2977003/the-latest-supported-visual-c-downloads" target="_blank" rel="noopener">https://support.microsoft.com/ko-kr/help/2977003/the-latest-supported-visual-c-downloads</a></li>
+</ul>
+<br>
+
+<h3 id="ERROR-2-Error-while-powering-on-This-host-supports-Intel-VT-x-but-Intel-VT-x-is-disabled"><a href="#ERROR-2-Error-while-powering-on-This-host-supports-Intel-VT-x-but-Intel-VT-x-is-disabled" class="headerlink" title="ERROR 2. Error while powering on: This host supports Intel VT-x, but Intel VT-x is disabled."></a>ERROR 2. Error while powering on: This host supports Intel VT-x, but Intel VT-x is disabled.</h3><p>Window 10의 경우, 다음과 같은 에러메시지가 나타날 수 있다. 실제로 나도 같은 에러를 겪었다. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error while powering on: This host supports Intel VT-x, but Intel VT-x is disabled.</span><br></pre></td></tr></table></figure>
+
+<p>구글링을 해보니, 인텔은 VT-x라는 가상화 기술을 지원하는데, 가상머신들의 우선순위로 인해 발생되는 병목현상을 막는 기술이라고 한다. 지금의 에러 메시지에서는 이 기능이 disabled 되었다고 하니, 컴퓨터의 BIOS 설정에서 Virtual Machine 을 enabled 로 설정해주면 해당 메시지는 사라지게 된다. </p>
+<ul>
+<li>참고로 BIOS 설정은 컴퓨터 최초 로딩 시에 F2 혹은 delete 키를 눌러서 접근할 수 있다. 구글링해보면 많은 결과가 있으니 참고하시길.</li>
+</ul>
+<br>
+
+<h3 id="ERROR-3-VMware-Player-and-Device-Credential-Guard-are-not-compatible-VMware-Player-can-be-run-after-disabling-Device-Credential-Guard-Please-visit-http-www-vmware-com-go-turnoff-CG-DG-for-more-details"><a href="#ERROR-3-VMware-Player-and-Device-Credential-Guard-are-not-compatible-VMware-Player-can-be-run-after-disabling-Device-Credential-Guard-Please-visit-http-www-vmware-com-go-turnoff-CG-DG-for-more-details" class="headerlink" title="ERROR 3. VMware Player and Device/Credential Guard are not compatible. VMware Player can be run after disabling Device/Credential Guard. Please visit http://www.vmware.com/go/turnoff_CG_DG for more details."></a>ERROR 3. VMware Player and Device/Credential Guard are not compatible. VMware Player can be run after disabling Device/Credential Guard. Please visit <a href="http://www.vmware.com/go/turnoff_CG_DG" target="_blank" rel="noopener">http://www.vmware.com/go/turnoff_CG_DG</a> for more details.</h3><p>위의 에러를 지나고 다시 vmware 로 돌아와서 가상 OS 를 로딩해보면 또 다른 메시지가 나타날 수 있다. </p>
+<p>문제는 Device/Credential Guard 때문인데, 다음과 같은 방법으로 해결하였다. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 명령 프롬프트를 관리자 권한으로 실행</span><br><span class="line">2. bcdedit /set hypervisorlaunchtype off </span><br><span class="line">3. 호스트 컴퓨터 재부팅</span><br></pre></td></tr></table></figure>
+
+<p>아래의 글들을 참고하였다. </p>
+<ul>
+<li><a href="https://kb.vmware.com/s/article/2146361" target="_blank" rel="noopener">https://kb.vmware.com/s/article/2146361</a></li>
+<li><a href="https://jinyiyu.tistory.com/11" target="_blank" rel="noopener">https://jinyiyu.tistory.com/11</a></li>
+</ul>
+<br>
+<br>
+
+<p>무사히 VMware 설치 및 테스트 os 로딩을 완료했다면 이제 본격적으로 서버 하나하나 구성을 시작해보자!</p>
+
+      
+    </div>
+    <!-- <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://miniminis.github.io/2020/05/13/linux/linux-thisislinux01/" title="이것이 리눅스다(2020) 01 / 가상머신 설치 + Window10 가상OS 설치에러" target="_blank" rel="external">https://miniminis.github.io/2020/05/13/linux/linux-thisislinux01/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/miniminis" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/miniminis" target="_blank"><span class="text-dark">Flash</span><small class="ml-1x">FullStack Android Developer</small></a></h3>
+        <div></div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div> -->
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/05/13/linux/linux-thisislinux00/" title="이것이 리눅스다(2020) 00 / 목차"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/03/03/python/python-crawling-basic02/" title="이미지, 웹페이지 크롤링하여 컴퓨터에 저장하기"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+    <script defer>
+    var disqus_config = function () {
+        
+            this.page.url = 'https://miniminis.github.io/2020/05/13/linux/linux-thisislinux01/';
+        
+        this.page.identifier = 'linux/linux-thisislinux01';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'miniminis-github-io-2' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+
+
+    <script defer type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-149033629-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+</body>
+</html>

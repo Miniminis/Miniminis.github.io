@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>firebase와 aws ec2에 node 서버 배포하기 | Hexo</title>
+  <meta name="description" content="Node서버 배포하기 - firebase와 aws ec2팀 프로젝트의 시기가 왔다. 모빌리티 산업에 대한 관심과 각자 공부하고 싶은 기술들을 고려하여 우리 팀은 카풀 서비스를 우리의 주제로 가져가게 되었다. 9월 한달 내내 연차프로젝트 에 매진했고, 결국 우리 팀은  서버와 클라이언트를 완전히 분리한 REST API 구조를 유지하되  가장 메인이 되는 제">
+<meta name="keywords" content="aws,nodejs,firebase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="firebase와 aws ec2에 node 서버 배포하기">
+<meta property="og:url" content="https://miniminis.github.io/2019/10/11/node/node-deploy/index.html">
+<meta property="og:site_name" content="플래시블로그FlashBlog">
+<meta property="og:description" content="Node서버 배포하기 - firebase와 aws ec2팀 프로젝트의 시기가 왔다. 모빌리티 산업에 대한 관심과 각자 공부하고 싶은 기술들을 고려하여 우리 팀은 카풀 서비스를 우리의 주제로 가져가게 되었다. 9월 한달 내내 연차프로젝트 에 매진했고, 결국 우리 팀은  서버와 클라이언트를 완전히 분리한 REST API 구조를 유지하되  가장 메인이 되는 제">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-12T07:25:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="firebase와 aws ec2에 node 서버 배포하기">
+<meta name="twitter:description" content="Node서버 배포하기 - firebase와 aws ec2팀 프로젝트의 시기가 왔다. 모빌리티 산업에 대한 관심과 각자 공부하고 싶은 기술들을 고려하여 우리 팀은 카풀 서비스를 우리의 주제로 가져가게 되었다. 9월 한달 내내 연차프로젝트 에 매진했고, 결국 우리 팀은  서버와 클라이언트를 완전히 분리한 REST API 구조를 유지하되  가장 메인이 되는 제">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://miniminis.github.io/2019/10/11/node/node-deploy/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="플래시블로그FlashBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/miniminis" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flash</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">FullStack Android Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Seoul, Korea</small>
+      </div>
+      
+      <!-- <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div> -->
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <!-- <span class="menu-title">Home</span> -->
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <!-- <span class="menu-title">Archives</span> -->
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">Categories</span> -->
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">menu.Projects</span> -->
+            <span class="menu-title">Projects</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <!-- <span class="menu-title">About</span> -->
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-node/node-deploy" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      firebase와 aws ec2에 node 서버 배포하기
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/10/11/node/node-deploy/" class="article-date">
+	  <time datetime="2019-10-11T11:16:05.000Z" itemprop="datePublished">2019-10-11</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/node/">node</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/aws/">aws</a>, <a class="article-tag-link" href="/tags/firebase/">firebase</a>, <a class="article-tag-link" href="/tags/nodejs/">nodejs</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/10/11/node/node-deploy/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="Node서버-배포하기-firebase와-aws-ec2"><a href="#Node서버-배포하기-firebase와-aws-ec2" class="headerlink" title="Node서버 배포하기 - firebase와 aws ec2"></a>Node서버 배포하기 - firebase와 aws ec2</h1><p>팀 프로젝트의 시기가 왔다. 모빌리티 산업에 대한 관심과 각자 공부하고 싶은 기술들을 고려하여 우리 팀은 카풀 서비스를 우리의 주제로 가져가게 되었다. 9월 한달 내내 <u><a href="https://miniminis.github.io/projects/">연차프로젝트</a></u> 에 매진했고, 결국 우리 팀은</p>
+<ul>
+<li>서버와 클라이언트를 완전히 분리한 <strong>REST API</strong> 구조를 유지하되 </li>
+<li>가장 메인이 되는 제 1의 <strong>Spring 서버</strong>,</li>
+<li>후에 배운 Spring-Boot와 JPA를 접목한 제 2의 서버 (<strong>a.k.a. 부트서버</strong>)</li>
+<li>클라이언트 간 실시간 정보공유를 위해 구성한 <strong>node 서버</strong>까지<br>총 3개의 서버와 2개의 클라이언트(각각 탑승자, 운전자)를 갖는 덩치가 제법 큰 프로젝트를 일차적으로 마무리할 수 있게 되었다. </li>
+</ul>
+<p>물론 1차 발표는 아직 완전한 발표는 아니었지만, 그래도 한 달간 밤낮없이 우리조원들이 너무 고생한 것을 알기에, 적어도 배포 정도는 모두 마무리된 상태에서 발표를 하고 싶었다. 그러나 Spring 프로젝트는 war 파일로 AWS EC2 를 이용해서 익숙하게 배포를 마친데에 반해, jar 파일로 배포해야하는 spring-boot 프로젝트와, 초기 요구조건으로 제시되었던 node 서버의 firebase 배포는 처음 시도해보는지라, 시간이 꽤나 소요되었고, 결국은 메인 서버만 배포한 상태로 시연을 진행해야했다.     </p>
+<p>오늘은 node 서버 배포를 성공한 기념으로 그간의 삽질들을 추억하며 간단한 기록을 남기고자 한다.    </p>
+<br>
+
+<h2 id="Firebase-에-배포-결론-실패"><a href="#Firebase-에-배포-결론-실패" class="headerlink" title="Firebase 에 배포 - 결론: 실패"></a>Firebase 에 배포 - 결론: 실패</h2><p>어째서인지는 모르겠지만, 초기에 프로젝트에 대한 요구조건으로 <code>node 서버의 firebase 배포</code>가 있었다. 그래서 1차 발표가 끝난 뒤부터, 열심히 node 프로젝트의 firebase 배포를 찾아보았다. 물론 현재의 node 서버는 정식 node 서버가 아니라, 단순히 탑승자와 운전자, 즉 두 클라이언트 간의 실시간 정보공유를 위한 socket.io 통신에 대한 코드만 담겨있는 서버이다. 사실 firebase 배포를 처음부터 염두해두고 있었다면 socket을 굳이 쓰지 않고 firebase realtime database를 이용하면 되었을 것이지만, 아직 나는 꼬꼬마 개발자로서 무수히 많은 삽질과 경험이 필요하므로 socket을 이용해 코드 구현을 한 뒤, 나중에 realtime database 를 이용하여 코드를 개선시키는 방향으로 노력해보기로 했다.    </p>
+<br>
+
+<h3 id="fireabse-hosting"><a href="#fireabse-hosting" class="headerlink" title="fireabse hosting"></a>fireabse hosting</h3><p>사실 호스팅은 정말정말정말 쉽다. 이 부분은 내가 따로 언급하지 않아도 될 정도로 구글링 한 방이면 무수히 많은 선배 개발자분들이 다양한 포스팅을 해 놓았다. 내가 참고한 사이트는 아래와 같다.    </p>
+<ul>
+<li><a href="https://forest71.tistory.com/169" target="_blank" rel="noopener">https://forest71.tistory.com/169</a></li>
+<li><a href="https://blog.usefulparadigm.com/firebase%EC%97%90-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-website-%ED%98%B8%EC%8A%A4%ED%8C%85%ED%95%98%EA%B8%B0-3ed5d4fb5853" target="_blank" rel="noopener">https://blog.usefulparadigm.com/firebase%EC%97%90-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-website-%ED%98%B8%EC%8A%A4%ED%8C%85%ED%95%98%EA%B8%B0-3ed5d4fb5853</a></li>
+</ul>
+<br>
+
+<h3 id="firebase-function"><a href="#firebase-function" class="headerlink" title="firebase function"></a>firebase function</h3><p>내가 제대로 이해를 했다면, 위의 hosting 의 결과로 public 폴더가 생기며, (프로젝트 내에 뒤의 두 파일들이 없다면) 그 안에 index.html 과 404.html 과 같은 기본적인 클라이언트 페이지들이 생긴다. 그러나 이것은 단순히 클라이언트 단의 파일들을 배포한 것이다. 구글링 + firebase 공식문서들을 참고해보니 node로 만든 서버를 배포한다면 function 서비스를 이용하여야 한다.<br>function 서비스에 대해서는 위의 링크들을 보면 초기 firebase hostging 과정에서 설정하도록 하거나 그때를 놓쳤다면, <code>firebase init function</code> 명령어로 쉽게 시작할 수 있다. 정상적으로 function 서비스가 시작되었다면 <code>functions</code> 폴더 안에 <code>index.js</code> 파일이 생성된다.     </p>
+<p>대표적인 예제로서 다음과 같은 코드가 index.js 에 담겨있을 것이다.   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const functions = require(&apos;firebase-functions&apos;);</span><br><span class="line"></span><br><span class="line"> // Create and Deploy Your First Cloud Functions</span><br><span class="line"> // https://firebase.google.com/docs/functions/write-firebase-functions</span><br><span class="line"></span><br><span class="line">exports.helloWorld = functions.https.onRequest((request, response) =&gt; &#123;</span><br><span class="line">    response.send(&quot;Hello from Firebase!&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>이 코드가 실행되면 <code>helloWorld</code> 라는 이름의 function 이 배포되어 <code>배포된 주소 도메인 /helloWorld</code> 와 같은 형태로 해당 function을 호출 할 수 있다. (java의 매서드 같은 개념과 유사하다고 느꼈다.)     </p>
+<p>이 원리에 기반하여 다음과 같은 테스트 코드를 배포하고자 하였다. <em>(배포 테스트용 코드)</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//socket io 연결을 위한 socketRun function 정의 </span><br><span class="line"> var app = require(&apos;express&apos;)();</span><br><span class="line"> var http = require(&apos;http&apos;).createServer(app);</span><br><span class="line"> var io = require(&apos;socket.io&apos;)(http);</span><br><span class="line"></span><br><span class="line">io.on(&apos;connection&apos;, function(socket)&#123;</span><br><span class="line">    console.log(&apos;YCAR CLIENT CONNECTED!&apos;, socket.id);</span><br><span class="line">    io.emit(&apos;alert&apos;, &apos;소켓 연결 됐다 마!&apos;);</span><br><span class="line">    socket.on(&apos;disconnect&apos;, function()&#123;</span><br><span class="line">        console.log(&apos;YCAR CLIENT DISCONNECTED&apos;, socket.id);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"> http.listen(5001, function()&#123;</span><br><span class="line">      console.log(&apos;YCAR NODE SERVER START!!!!!&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"> exports.app = functions.https.onRequest(app);</span><br></pre></td></tr></table></figure>
+
+<p>클라이언트 단에는 다음과 같이 소켓 연결을 시도한다. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...이상 생략 ... </span><br><span class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;//code.jquery.com/jquery-1.11.1.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;    </span><br><span class="line">    &lt;h1&gt;firebase 소켓 서버 배포 테스트&lt;/h1&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">      var socket = io(&apos;http://localhost:5001&apos;);</span><br><span class="line">      socket.on(&apos;alert&apos;, function(msg)&#123;</span><br><span class="line">        alert(msg);</span><br><span class="line">      &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="socket-cdn-을-못-읽는-에러-404-cors-origin-에러-발생"><a href="#socket-cdn-을-못-읽는-에러-404-cors-origin-에러-발생" class="headerlink" title="socket cdn 을 못 읽는 에러(404) + cors-origin 에러 발생"></a>socket cdn 을 못 읽는 에러(404) + cors-origin 에러 발생</h3><p>그러나 계속 클라이언트 단에서 socket cdn 을 읽지 못하거나, 읽었다 하더라도 cors-origin 에러를 발생시켰다. 이에, 다음과 같이 4가지의 방법을 시도해보았다. </p>
+<h4 id="방법-1-firebase-공식문서에서-express-프로젝트의-cors-설정"><a href="#방법-1-firebase-공식문서에서-express-프로젝트의-cors-설정" class="headerlink" title="방법 1. firebase 공식문서에서 express 프로젝트의 cors 설정"></a>방법 1. firebase 공식문서에서 express 프로젝트의 cors 설정</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//cors 미들웨어 설치 후 --&gt; cors를 express.js 앱에  추가 </span><br><span class="line"> const cors = require(&apos;cors&apos;)(&#123;origin: true&#125;);</span><br><span class="line"> app.use(cors);</span><br><span class="line"> // Add middleware to authenticate requests</span><br></pre></td></tr></table></figure>
+
+<h4 id="방법-2-명시적으로-path-설정"><a href="#방법-2-명시적으로-path-설정" class="headerlink" title="방법 2. 명시적으로 path 설정"></a>방법 2. 명시적으로 path 설정</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var io = require(&apos;socket.io&apos;)(http, &#123;path: &apos;/socket.io&apos;&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="방법-3-명시적으로-origin-설정-01"><a href="#방법-3-명시적으로-origin-설정-01" class="headerlink" title="방법 3. 명시적으로 origin 설정 01"></a>방법 3. 명시적으로 origin 설정 01</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">io.set(&apos;origins&apos;, &apos;http://localhost:5000&apos;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="방법-4-명시적으로-origin-설정-02"><a href="#방법-4-명시적으로-origin-설정-02" class="headerlink" title="방법 4. 명시적으로 origin 설정 02"></a>방법 4. 명시적으로 origin 설정 02</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var io = require(&apos;socket.io&apos;)(http, &#123;</span><br><span class="line">    handlePreflightRequest: (req, res) =&gt; &#123;</span><br><span class="line">        const headers = &#123;</span><br><span class="line">            &quot;Access-Control-Allow-Headers&quot;: &quot;Content-Type, Authorization&quot;,</span><br><span class="line">            &quot;Access-Control-Allow-Origin&quot;: &quot;http://localhost:5000&quot;, //or the specific origin you want to give access to,</span><br><span class="line">            //&quot;Access-Control-Allow-Origin&quot;: req.headers.origin, //or the specific origin you want to give access to,</span><br><span class="line">            &quot;Access-Control-Allow-Credentials&quot;: true</span><br><span class="line">        &#125;;</span><br><span class="line">        res.writeHead(200, headers);</span><br><span class="line">        res.end();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="방법-5-명시적으로-origin-설정-03"><a href="#방법-5-명시적으로-origin-설정-03" class="headerlink" title="방법 5. 명시적으로 origin 설정 03"></a>방법 5. 명시적으로 origin 설정 03</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">io.origins((origin, callback) =&gt; &#123;</span><br><span class="line">    if (origin !== &apos;http://localhost:5000&apos;) &#123;</span><br><span class="line">        return callback(&apos;origin not allowed&apos;, false);</span><br><span class="line">    &#125;</span><br><span class="line">    callback(null, true);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>모든 방법이 전혀 차도가 없었다. firebase 배포는 일단 멈춰두고 다른 플랫폼을 통해 배포를 시도해보기로 했다. 우선은 배포가 되는 것이 중요하니까. </p>
+<br>
+
+<h2 id="AWS-EC2에-배포-결론-성공"><a href="#AWS-EC2에-배포-결론-성공" class="headerlink" title="AWS EC2에 배포 - 결론: 성공"></a>AWS EC2에 배포 - 결론: 성공</h2><p>aws 에 배포하는 것은 spring 프로젝트를 배포할 때와 거의 비슷했다. 다만, 일반적으로 spring project 를 배포할 때, 나는 </p>
+<ol>
+<li>aws ec2 인스턴스 생성 </li>
+<li>pem key를 puTTY 이용하여 ppk 키로 별도생성</li>
+<li>해당 ppk 키 이용하여 인스턴스 접속 </li>
+<li>STS에서는 spring project 를 war 파일로 export </li>
+<li>filezila 이용해서 4번의 war 파일 tomcat8의 webapps로 옮기기</li>
+<li>tomcat 서버에서 배포    </li>
+</ol>
+<p>순서로 진행을 하였다. 하지만 node 서버의 경우 war 파일로 배포를 하는 것이 불가하고, 내장된 node 모듈들과 기타 파일들이 같이 배포될 필요가 있었기에 git clone 방법을 이용하기로 했다.    </p>
+<br>
+
+<h3 id="ec2-node-git-배포성공"><a href="#ec2-node-git-배포성공" class="headerlink" title="ec2 + node + git = 배포성공!"></a>ec2 + node + git = 배포성공!</h3><ol>
+<li><p>현재 연결된 ec2 인스턴스에 깃 설치 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install git</span><br><span class="line">git init</span><br><span class="line">git config --global user.name &quot;your username&quot;</span><br><span class="line">git config --global user.email [your mail address]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>nvm(노드 버전 관리자) 설치</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>nvm 활성화</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. ~/.nvm/nvm.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>node 설치 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nvm install node</span><br><span class="line">//특정버전을 설치하고 싶다면 </span><br><span class="line">//nvm install node 6.14.4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>설치 확인</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -e &quot;console.log(&apos;Running Node.js &apos; + process.version)&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git 에 node server 배포를 위한 레파지토리 생성 및 커밋</p>
+</li>
+<li><p>해당 repository 를 현재의 인스턴스로 clone</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone + [repository 주소]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>서버파일 위치로 들어가서 서버 실행 –&gt; 끝!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node + [서버js파일]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<h3 id="참고사이트"><a href="#참고사이트" class="headerlink" title="참고사이트 :"></a>참고사이트 :</h3><ul>
+<li><a href="https://docs.aws.amazon.com/ko_kr/sdk-for-javascript/v2/developer-guide/setting-up-node-on-ec2-instance.html" target="_blank" rel="noopener">aws 공식문서</a></li>
+<li><a href="https://medium.com/@nishankjaintdk/setting-up-a-node-js-app-on-a-linux-ami-on-an-aws-ec2-instance-with-nginx-59cbc1bcc68c" target="_blank" rel="noopener">Nishank Jain 님의 미디엄</a></li>
+<li><a href="https://strongstar.tistory.com/28" target="_blank" rel="noopener">strongstar님의 블로그</a></li>
+<li><a href="https://www.youtube.com/watch?v=Gy-Cmjat-Ec&amp;t=151s" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Gy-Cmjat-Ec&amp;t=151s</a></li>
+</ul>
+
+      
+    </div>
+    <!-- <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://miniminis.github.io/2019/10/11/node/node-deploy/" title="firebase와 aws ec2에 node 서버 배포하기" target="_blank" rel="external">https://miniminis.github.io/2019/10/11/node/node-deploy/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/miniminis" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/miniminis" target="_blank"><span class="text-dark">Flash</span><small class="ml-1x">FullStack Android Developer</small></a></h3>
+        <div></div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div> -->
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/10/13/spring/springboot-deploy/" title="스프링 부트 프로젝트 Git + Maven + AWS EC2 배포하기"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/10/09/insight/insight-bitcoin-1/" title="비트코인, NGO 암호화 평가에서 ‘평균 미만’"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+    <script defer>
+    var disqus_config = function () {
+        
+            this.page.url = 'https://miniminis.github.io/2019/10/11/node/node-deploy/';
+        
+        this.page.identifier = 'node/node-deploy';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'miniminis-github-io-2' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+
+
+    <script defer type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-149033629-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+</body>
+</html>

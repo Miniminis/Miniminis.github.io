@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>이것이 리눅스다(2020) 09 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF | Hexo</title>
+  <meta name="description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="이것이 리눅스다(2020) 09 &#x2F; 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF">
+<meta property="og:url" content="https://miniminis.github.io/2020/05/31/linux/linux-thisislinux09/index.html">
+<meta property="og:site_name" content="플래시블로그FlashBlog">
+<meta property="og:description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-12T07:25:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="이것이 리눅스다(2020) 09 &#x2F; 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF">
+<meta name="twitter:description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://miniminis.github.io/2020/05/31/linux/linux-thisislinux09/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="플래시블로그FlashBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/miniminis" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flash</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">FullStack Android Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Seoul, Korea</small>
+      </div>
+      
+      <!-- <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div> -->
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <!-- <span class="menu-title">Home</span> -->
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <!-- <span class="menu-title">Archives</span> -->
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">Categories</span> -->
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">menu.Projects</span> -->
+            <span class="menu-title">Projects</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <!-- <span class="menu-title">About</span> -->
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-linux/linux-thisislinux09" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      이것이 리눅스다(2020) 09 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/05/31/linux/linux-thisislinux09/" class="article-date">
+	  <time datetime="2020-05-31T09:15:03.000Z" itemprop="datePublished">2020-05-31</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/linux/">linux</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/31/linux/linux-thisislinux09/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B8529915277" target="_blank" rel="noopener">[링크]</a>를 통해 구입할 수 있고, 강의는 <a href="https://www.youtube.com/playlist?list=PLVsNizTWUw7EJ9z-LW3lv3VC-6HI9I3hN" target="_blank" rel="noopener">[링크]</a>에서 확인할 수 있다. 한빛에서 네이버 카페<a href="https://cafe.naver.com/thisislinux" target="_blank" rel="noopener">[링크]</a>도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…! 감사합니다…!)<br><br><br></p>
+<h2 id="DNF-Dandified-dnf"><a href="#DNF-Dandified-dnf" class="headerlink" title="DNF(Dandified dnf)"></a>DNF(Dandified dnf)</h2><ul>
+<li>“rpm” 명령의 패키지 의존성 문제를 완전하게 해결함</li>
+<li>인터넷을 통하여 필요한 저장소(repository)에서 자동으로 모두 다운로드해서 설치하는 방식</li>
+<li>CentOS7의 yum, CentOS8은 yum 이 개선된 dnf 명령을 사용한다. </li>
+</ul>
+<br>
+
+<h3 id="DNF-기본-사용법"><a href="#DNF-기본-사용법" class="headerlink" title="DNF 기본 사용법"></a>DNF 기본 사용법</h3><ul>
+<li>기본설치 : <code>dnf install [패키지이름]</code><ul>
+<li>주로 <code>dnf -y install [패키지이름]으로 사용</code></li>
+<li><code>-y</code>는 사용자의 확인을 모두 yes로 간주하고 설치를 진행한다는 옵션임 </li>
+</ul>
+</li>
+<li>RPM 파일 설치 : <code>dnf install [rpm파일이름].rpm</code></li>
+<li>업데이트 가능한 목록 보기 : <code>dnf check-update</code></li>
+<li>업데이트 : <code>dnf update [패키지이름]</code></li>
+<li>삭제 : <code>dnf remove [패키지이름]</code></li>
+<li>정보확인 : <code>dnf info [패키지이름]</code></li>
+</ul>
+<br>
+
+<h3 id="터미널에서-확인"><a href="#터미널에서-확인" class="headerlink" title="터미널에서 확인"></a>터미널에서 확인</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Packages]# cd </span><br><span class="line">[root@localhost ~]# dnf info mysql* </span><br><span class="line">마지막 메타 데이터 만료 확인 : 3 days, 19:23:56 전에 2020년 05월 02일 (토) 오전 09시 45분 37초. </span><br><span class="line">사용 가능한 패키지 </span><br><span class="line">이름         : mysql </span><br><span class="line">버전         : 8.0.17 </span><br><span class="line">릴리즈       : 3.module_el8.0.0+181+899d6349 </span><br><span class="line">아키텍처     : x86_64 </span><br><span class="line">크기         : 11 M </span><br><span class="line">소스         : mysql-8.0.17-3.module_el8.0.0+181+899d6349.src.rpm </span><br><span class="line">리포지터리   : AppStream </span><br><span class="line">요약         : MySQL client programs and shared libraries </span><br><span class="line">URL          : http://www.mysql.com </span><br><span class="line">라이선스     : GPLv2 with exceptions and LGPLv2 and BSD </span><br><span class="line">설명         : MySQL is a multi-user, multi-threaded SQL database server. MySQL </span><br><span class="line">             : is a client/server implementation consisting of a server daemon </span><br><span class="line">             : (mysqld) and many different client programs and libraries. The </span><br><span class="line">             : base package contains the standard MySQL client programs and </span><br><span class="line">             : generic MySQL files. </span><br><span class="line">이름         : mysql-common </span><br><span class="line">버전         : 8.0.17 </span><br><span class="line">릴리즈       : 3.module_el8.0.0+181+899d6349 </span><br><span class="line">아키텍처     : x86_64 </span><br><span class="line">크기         : 143 k </span><br><span class="line">소스         : mysql-8.0.17-3.module_el8.0.0+181+899d6349.src.rpm </span><br><span class="line">리포지터리   : AppStream </span><br><span class="line">요약         : The shared files required for MySQL server and client </span><br><span class="line">URL          : http://www.mysql.com </span><br><span class="line">라이선스     : GPLv2 with exceptions and LGPLv2 and BSD </span><br><span class="line">설명         : The mysql-common package provides the essential shared files for </span><br><span class="line">             : any MySQL program. You will need to install this package to use </span><br><span class="line">             : any other MySQL package. </span><br><span class="line">이름         : mysql-devel </span><br><span class="line">버전         : 8.0.17 </span><br><span class="line">릴리즈       : 3.module_el8.0.0+181+899d6349 </span><br><span class="line">아키텍처     : x86_64 </span><br><span class="line">크기         : 147 k </span><br><span class="line">소스         : mysql-8.0.17-3.module_el8.0.0+181+899d6349.src.rpm </span><br><span class="line">리포지터리   : AppStream </span><br><span class="line">요약         : Files for development of MySQL applications </span><br><span class="line">URL          : http://www.mysql.com </span><br><span class="line">라이선스     : GPLv2 with exceptions and LGPLv2 and BSD </span><br><span class="line">설명         : MySQL is a multi-user, multi-threaded SQL database server. This </span><br><span class="line">             : package contains the libraries and header files that are needed </span><br><span class="line">             : for developing MySQL client applications. </span><br><span class="line">이름         : mysql-errmsg </span><br><span class="line">버전         : 8.0.17 </span><br><span class="line">릴리즈       : 3.module_el8.0.0+181+899d6349 </span><br><span class="line">아키텍처     : x86_64 </span><br><span class="line">크기         : 557 k </span><br><span class="line">소스         : mysql-8.0.17-3.module_el8.0.0+181+899d6349.src.rpm </span><br><span class="line">리포지터리   : AppStream </span><br><span class="line">요약         : The error messages files required by MySQL server </span><br><span class="line">URL          : http://www.mysql.com </span><br><span class="line">라이선스     : GPLv2 with exceptions and LGPLv2 and BSD </span><br><span class="line">설명         : The package provides error messages files for the MySQL daemon </span><br><span class="line">이름         : mysql-libs </span><br><span class="line">버전         : 8.0.17 </span><br><span class="line">릴리즈       : 3.module_el8.0.0+181+899d6349 </span><br><span class="line">아키텍처     : x86_64 </span><br><span class="line">크기         : 1.2 M </span><br><span class="line">소스         : mysql-8.0.17-3.module_el8.0.0+181+899d6349.src.rpm </span><br><span class="line">리포지터리   : AppStream </span><br><span class="line">요약         : The shared libraries required for MySQL clients </span><br><span class="line">URL          : http://www.mysql.com </span><br><span class="line">라이선스     : GPLv2 with exceptions and LGPLv2 and BSD </span><br><span class="line">설명         : The mysql-libs package provides the essential shared libraries </span><br><span class="line">             : for any MySQL client program or interface. You will need to </span><br><span class="line">             : install this package to use any other MySQL package or any </span><br><span class="line">             : clients that need to connect to a MySQL server. </span><br><span class="line">이름         : mysql-server </span><br><span class="line">버전         : 8.0.17 </span><br><span class="line">릴리즈       : 3.module_el8.0.0+181+899d6349 </span><br><span class="line">아키텍처     : x86_64 </span><br><span class="line">크기         : 22 M </span><br><span class="line">소스         : mysql-8.0.17-3.module_el8.0.0+181+899d6349.src.rpm </span><br><span class="line">리포지터리   : AppStream </span><br><span class="line">요약         : The MySQL server and related files </span><br><span class="line">URL          : http://www.mysql.com </span><br><span class="line">라이선스     : GPLv2 with exceptions and LGPLv2 and BSD </span><br><span class="line">설명         : MySQL is a multi-user, multi-threaded SQL database server. MySQL </span><br><span class="line">             : is a client/server implementation consisting of a server daemon </span><br><span class="line">             : (mysqld) and many different client programs and libraries. This </span><br><span class="line">             : package contains the MySQL server and some accompanying files and </span><br><span class="line">             : directories. </span><br><span class="line">이름         : mysql-test </span><br><span class="line">버전         : 8.0.17 </span><br><span class="line">릴리즈       : 3.module_el8.0.0+181+899d6349 </span><br><span class="line">아키텍처     : x86_64 </span><br><span class="line">크기         : 132 M </span><br><span class="line">소스         : mysql-8.0.17-3.module_el8.0.0+181+899d6349.src.rpm </span><br><span class="line">리포지터리   : AppStream </span><br><span class="line">요약         : The test suite distributed with MySQL </span><br><span class="line">URL          : http://www.mysql.com </span><br><span class="line">라이선스     : GPLv2 with exceptions and LGPLv2 and BSD </span><br><span class="line">설명         : MySQL is a multi-user, multi-threaded SQL database server. This </span><br><span class="line">             : package contains the regression test suite distributed with </span><br><span class="line">             : the MySQL sources. </span><br><span class="line">[root@localhost ~]# ^C </span><br><span class="line">[root@localhost ~]# dnf info mysql-errmsg* </span><br><span class="line">사용 가능한 패키지 </span><br><span class="line">이름         : mysql-errmsg </span><br><span class="line">버전         : 8.0.17 </span><br><span class="line">릴리즈       : 3.module_el8.0.0+181+899d6349 </span><br><span class="line">아키텍처     : x86_64 </span><br><span class="line">크기         : 557 k </span><br><span class="line">소스         : mysql-8.0.17-3.module_el8.0.0+181+899d6349.src.rpm </span><br><span class="line">리포지터리   : AppStream </span><br><span class="line">요약         : The error messages files required by MySQL server </span><br><span class="line">URL          : http://www.mysql.com </span><br><span class="line">라이선스     : GPLv2 with exceptions and LGPLv2 and BSD </span><br><span class="line">설명         : The package provides error messages files for the MySQL daemon </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# dnf install mysql-errmsg </span><br><span class="line">CentOS-8 - AppStream                            3.2 kB/s | 4.3 kB     00:01     </span><br><span class="line">CentOS-8 - Base                                 3.8 kB/s | 3.9 kB     00:01     </span><br><span class="line">CentOS-8 - PowerTools                           2.9 kB/s | 4.3 kB     00:01     </span><br><span class="line">CentOS-8 - Plus                                 9.3 kB/s | 3.0 kB     00:00     </span><br><span class="line">CentOS-8 - Extras                               1.2 kB/s | 1.5 kB     00:01     </span><br><span class="line">종속성이 해결되었습니다. </span><br><span class="line">================================================================================ </span><br><span class="line"> 꾸러미             아키텍처 </span><br><span class="line">                           버전                                 리포지토리 </span><br><span class="line">                                                                           크기 </span><br><span class="line">================================================================================ </span><br><span class="line">Installing: </span><br><span class="line"> mysql-errmsg       x86_64 8.0.17-3.module_el8.0.0+181+899d6349 AppStream 557 k </span><br><span class="line">종속성 설치: </span><br><span class="line"> mariadb-connector-c-config </span><br><span class="line">                    noarch 3.0.7-1.el8                          AppStream  13 k </span><br><span class="line"> mysql-common       x86_64 8.0.17-3.module_el8.0.0+181+899d6349 AppStream 143 k </span><br><span class="line">Enabling module streams: </span><br><span class="line"> mysql                     8.0                                                  </span><br><span class="line">거래 요약 </span><br><span class="line">================================================================================ </span><br><span class="line">설치  3 꾸러미 </span><br><span class="line">총 다운로드 크기 : 713 k </span><br><span class="line">설치 크기 : 8.3 M </span><br><span class="line">이게 괜찮습니까 [y / N] : y </span><br><span class="line">패키지 다운로드중: </span><br><span class="line">(1/3): mariadb-connector-c-config-3.0.7-1.el8.n 8.0 kB/s |  13 kB     00:01     </span><br><span class="line">(2/3): mysql-common-8.0.17-3.module_el8.0.0+181  56 kB/s | 143 kB     00:02     </span><br><span class="line">(3/3): mysql-errmsg-8.0.17-3.module_el8.0.0+181 171 kB/s | 557 kB     00:03     </span><br><span class="line">-------------------------------------------------------------------------------- </span><br><span class="line">합계                                            219 kB/s | 713 kB     00:03      </span><br><span class="line">트랜잭션 점검 실행 중 </span><br><span class="line">트랜잭션 검사가 성공했습니다. </span><br><span class="line">트랜잭션 테스트 실행 중 </span><br><span class="line">트랜잭션 테스트가 완료되었습니다. </span><br><span class="line">거래 실행 중 </span><br><span class="line">  준비 중입니다  :                                                          1/1  </span><br><span class="line">  Installing     : mariadb-connector-c-config-3.0.7-1.el8.noarch            1/3  </span><br><span class="line">  Installing     : mysql-common-8.0.17-3.module_el8.0.0+181+899d6349.x86_   2/3  </span><br><span class="line">  Installing     : mysql-errmsg-8.0.17-3.module_el8.0.0+181+899d6349.x86_   3/3  </span><br><span class="line">  스크립틀릿 실행: mysql-errmsg-8.0.17-3.module_el8.0.0+181+899d6349.x86_   3/3  </span><br><span class="line">  확인 중        : mariadb-connector-c-config-3.0.7-1.el8.noarch            1/3  </span><br><span class="line">  확인 중        : mysql-common-8.0.17-3.module_el8.0.0+181+899d6349.x86_   2/3  </span><br><span class="line">  확인 중        : mysql-errmsg-8.0.17-3.module_el8.0.0+181+899d6349.x86_   3/3  </span><br><span class="line">설치됨: </span><br><span class="line">  mysql-errmsg-8.0.17-3.module_el8.0.0+181+899d6349.x86_64                       </span><br><span class="line">  mariadb-connector-c-config-3.0.7-1.el8.noarch                                  </span><br><span class="line">  mysql-common-8.0.17-3.module_el8.0.0+181+899d6349.x86_64                       </span><br><span class="line">완료되었습니다!</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# dnf -y remove mc </span><br><span class="line">종속성이 해결되었습니다. </span><br><span class="line">================================================================================ </span><br><span class="line"> 꾸러미       아키텍처         버전                     리포지토리         크기 </span><br><span class="line">================================================================================ </span><br><span class="line">삭제 중: </span><br><span class="line"> mc           x86_64           1:4.8.19-9.el8           @System           6.8 M </span><br><span class="line">거래 요약 </span><br><span class="line">================================================================================ </span><br><span class="line">삭제  1 꾸러미 </span><br><span class="line">자유 공간 : 6.8 M </span><br><span class="line">트랜잭션 점검 실행 중 </span><br><span class="line">트랜잭션 검사가 성공했습니다. </span><br><span class="line">트랜잭션 테스트 실행 중 </span><br><span class="line">트랜잭션 테스트가 완료되었습니다. </span><br><span class="line">거래 실행 중 </span><br><span class="line">  준비 중입니다  :                                                          1/1  </span><br><span class="line">  삭제 중        : mc-1:4.8.19-9.el8.x86_64                                 1/1  </span><br><span class="line">  스크립틀릿 실행: mc-1:4.8.19-9.el8.x86_64                                 1/1  </span><br><span class="line">  확인 중        : mc-1:4.8.19-9.el8.x86_64                                 1/1  </span><br><span class="line">제거됨: </span><br><span class="line">  mc-1:4.8.19-9.el8.x86_64                                                       </span><br><span class="line">완료되었습니다! </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# dnf -y install  mc </span><br><span class="line">마지막 메타 데이터 만료 확인 : 0:03:32 전에 2020년 05월 06일 (수) 오전 05시 10분 37초. </span><br><span class="line">종속성이 해결되었습니다. </span><br><span class="line">================================================================================ </span><br><span class="line"> 꾸러미      아키텍처        버전                      리포지토리          크기 </span><br><span class="line">================================================================================ </span><br><span class="line">Installing: </span><br><span class="line"> mc          x86_64          1:4.8.19-9.el8            AppStream          1.9 M </span><br><span class="line">거래 요약 </span><br><span class="line">================================================================================ </span><br><span class="line">설치  1 꾸러미 </span><br><span class="line">총 다운로드 크기 : 1.9 M </span><br><span class="line">설치 크기 : 6.8 M </span><br><span class="line">패키지 다운로드중: </span><br><span class="line">mc-4.8.19-9.el8.x86_64.rpm                      302 kB/s | 1.9 MB     00:06     </span><br><span class="line">-------------------------------------------------------------------------------- </span><br><span class="line">합계                                            302 kB/s | 1.9 MB     00:06      </span><br><span class="line">트랜잭션 점검 실행 중 </span><br><span class="line">트랜잭션 검사가 성공했습니다. </span><br><span class="line">트랜잭션 테스트 실행 중 </span><br><span class="line">트랜잭션 테스트가 완료되었습니다. </span><br><span class="line">거래 실행 중 </span><br><span class="line">  준비 중입니다  :                                                          1/1  </span><br><span class="line">  Installing     : mc-1:4.8.19-9.el8.x86_64                                 1/1  </span><br><span class="line">  스크립틀릿 실행: mc-1:4.8.19-9.el8.x86_64                                 1/1  </span><br><span class="line">  확인 중        : mc-1:4.8.19-9.el8.x86_64                                 1/1  </span><br><span class="line">설치됨: </span><br><span class="line">  mc-1:4.8.19-9.el8.x86_64                                                       </span><br><span class="line">완료되었습니다! </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# dnf -y remove mc </span><br><span class="line">종속성이 해결되었습니다. </span><br><span class="line">================================================================================ </span><br><span class="line"> 꾸러미      아키텍처        버전                     리포지토리           크기 </span><br><span class="line">================================================================================ </span><br><span class="line">삭제 중: </span><br><span class="line"> mc          x86_64          1:4.8.19-9.el8           @AppStream          6.8 M </span><br><span class="line">거래 요약 </span><br><span class="line">================================================================================ </span><br><span class="line">삭제  1 꾸러미 </span><br><span class="line">자유 공간 : 6.8 M </span><br><span class="line">트랜잭션 점검 실행 중 </span><br><span class="line">트랜잭션 검사가 성공했습니다. </span><br><span class="line">트랜잭션 테스트 실행 중 </span><br><span class="line">트랜잭션 테스트가 완료되었습니다. </span><br><span class="line">거래 실행 중 </span><br><span class="line">  준비 중입니다  :                                                          1/1  </span><br><span class="line">  삭제 중        : mc-1:4.8.19-9.el8.x86_64                                 1/1  </span><br><span class="line">  스크립틀릿 실행: mc-1:4.8.19-9.el8.x86_64                                 1/1  </span><br><span class="line">  확인 중        : mc-1:4.8.19-9.el8.x86_64                                 1/1  </span><br><span class="line">제거됨: </span><br><span class="line">  mc-1:4.8.19-9.el8.x86_64                                                       </span><br><span class="line">완료되었습니다!</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="DNF-고급-사용법"><a href="#DNF-고급-사용법" class="headerlink" title="DNF 고급 사용법"></a>DNF 고급 사용법</h2><ul>
+<li>패키지 그룹설치 : <code>dnf groupinstall [패키지그룹이름]</code></li>
+<li>패키지 리스트 확인 : <code>dnf list [패키지이름]</code></li>
+<li>특정 파일이 속한 패키지 이름 확인 : <code>dnf provides 파일이름</code></li>
+<li>GPG 키 검사 생략 <ul>
+<li><code>dnf install -nogpgcheck rpm파일이름.rpm</code></li>
+<li>CentOS8 에서 인증되지 않은 패키지를 강제로 설치할 때 사용함 </li>
+</ul>
+</li>
+<li>기존 저장소 목록 지우기 : <code>dnf clean all</code></li>
+</ul>
+<br>
+
+<h3 id="DNF-작동방식"><a href="#DNF-작동방식" class="headerlink" title="DNF 작동방식"></a>DNF 작동방식</h3><ol>
+<li>저장소(repository)폴더에서 dnf install 입력</li>
+<li>/etc/yum.repos.d/ 디렉터리의 repo 파일을 열어서 URL 주소 확인</li>
+<li>전체 패키지 목록 파일을 CentOS 8 패키지 저장소에 요청</li>
+<li>CentOS8 패키지 저장소는 전체 패키지 목록 파일만 다운로드 줌 </li>
+<li>설치할 패키지와 관련된 패키지의 이름을 화면에 출력 </li>
+<li>y 를 입력하면 설치에 필요한 패키지 파일을 CentOS8 패키지 저장소에 요청하게 되고</li>
+<li>CentOS8 패키지 저장소는 설치할 패키지 파일을 다운로드래서 자동설치해준다. </li>
+</ol>
+<p><br><br></p>
+<h3 id="DNF-작동방식-설정파일"><a href="#DNF-작동방식-설정파일" class="headerlink" title="DNF 작동방식 설정파일"></a>DNF 작동방식 설정파일</h3><ul>
+<li>/etc/yum.conf 파일 : 특별히 변경할 필요가 없음</li>
+<li>/etc/yum.repos.d/ 디렉토리 <ul>
+<li>dnf 명령을 입력했을 때 검색하게 되는 네트워크의 주소가 들어있는 파일이 있다. </li>
+</ul>
+</li>
+<li>/etc/yum.repos.d/ 디렉터리의 *.repo 파일<ul>
+<li>CentOs 8의 1905버전만 설치되도록 하기 위해서 /etc/yum.repo 내용을 모두 삭제하고 This.repo 파일을 새로 생성하여 남겨둠.</li>
+<li>This.repo 파일에 BaseOS, AppStream 등의 저장소를 기입함.<br><br><br></li>
+</ul>
+</li>
+</ul>
+<h2 id="network를-이용한-설치방법과-DVD를-이용한-설치방법-동시에-사용하기-실습"><a href="#network를-이용한-설치방법과-DVD를-이용한-설치방법-동시에-사용하기-실습" class="headerlink" title="network를 이용한 설치방법과 DVD를 이용한 설치방법 동시에 사용하기 실습"></a>network를 이용한 설치방법과 DVD를 이용한 설치방법 동시에 사용하기 실습</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# umount </span><br><span class="line">umount: bad usage </span><br><span class="line">Try &apos;umount --help&apos; for more information. </span><br><span class="line">[root@localhost ~]# clear </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# umount /dev/cdrom </span><br><span class="line">[root@localhost ~]# umount /dev/cdrom </span><br><span class="line">umount: /dev/cdrom: not mounted. </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# mkdir /media/cdrom </span><br><span class="line">[root@localhost ~]# mount /dev/cdrom /media/cdrom/ </span><br><span class="line">mount: /media/cdrom: WARNING: device write-protected, mounted read-only. </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# ls /media/cdrom/ </span><br><span class="line">AppStream  BaseOS  EFI  TRANS.TBL  images  isolinux  media.repo </span><br><span class="line"></span><br><span class="line">[root@localhost ~]# cd /etc/yum.repos.d/ </span><br><span class="line">[root@localhost yum.repos.d]# pwd </span><br><span class="line">/etc/yum.repos.d </span><br><span class="line">[root@localhost yum.repos.d]# ls -l </span><br><span class="line">합계 8 </span><br><span class="line">-rw-r--r--. 1 root root  589  5월  2 09:34 This.repo </span><br><span class="line">drwxr-xr-x. 2 root root 4096  5월  2 09:31 backup </span><br><span class="line">[root@localhost yum.repos.d]# mv This.repo backup/ </span><br><span class="line">[root@localhost yum.repos.d]# ls </span><br><span class="line">backup </span><br><span class="line">[root@localhost yum.repos.d]# vi dvd.repo</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="dvd-repo-내용"><a href="#dvd-repo-내용" class="headerlink" title="dvd.repo 내용"></a>dvd.repo 내용</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[DVD-BaseOS] </span><br><span class="line">name=CentOS DVD BaseOS </span><br><span class="line">baseurl=file:///media/cdrom/BaseOS/ </span><br><span class="line">gpgcheck=0 </span><br><span class="line">[DVD-AppStream] </span><br><span class="line">name=CentOS DVD AppStream </span><br><span class="line">baseurl=file:///media/cdrom/Appstream/ </span><br><span class="line">gpgcheck=0</span><br><span class="line">-- INSERT --</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"># 인터넷이 안됨에도 cd에서 잘 가져와서 사용하고 있음! 아까 repo file에서 url설정을 해주었기 때문임</span><br><span class="line">[root@localhost yum.repos.d]# ifdown ens160 </span><br><span class="line">연결 &apos;ens160&apos;이(가) 성공적으로 비활성화되었습니다(D-Bus 활성 경로: /org/freedesktop/NetworkManager/ActiveConnection/1). </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost yum.repos.d]# ping www.google.com </span><br><span class="line">ping: www.google.com: 이름 혹은 서비스를 알 수 없습니다 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost yum.repos.d]# dnf -y install mariadb </span><br><span class="line">CentOS DVD AppStream                             90 MB/s | 5.2 MB     00:00     </span><br><span class="line">CentOS DVD BaseOS                               3.8 MB/s | 3.9 kB     00:00     </span><br><span class="line">종속성이 해결되었습니다. </span><br><span class="line">================================================================================ </span><br><span class="line"> 꾸러미       아키텍처 </span><br><span class="line">                     버전                                   리포지토리     크기 </span><br><span class="line">================================================================================ </span><br><span class="line">Installing: </span><br><span class="line"> mariadb      x86_64 3:10.3.11-2.module_el8.0.0+35+6f2527ed DVD-AppStream 6.2 M </span><br><span class="line">종속성 설치: </span><br><span class="line"> mariadb-common </span><br><span class="line">              x86_64 3:10.3.11-2.module_el8.0.0+35+6f2527ed DVD-AppStream  62 k </span><br><span class="line"> mariadb-connector-c </span><br><span class="line">              x86_64 3.0.7-1.el8                            DVD-AppStream 148 k </span><br><span class="line">Enabling module streams: </span><br><span class="line"> mariadb             10.3                                                       </span><br><span class="line">거래 요약 </span><br><span class="line">================================================================================ </span><br><span class="line">설치  3 꾸러미 </span><br><span class="line">총합 크기: 6.4 M </span><br><span class="line">설치 크기 : 39 M </span><br><span class="line">패키지 다운로드중: </span><br><span class="line">트랜잭션 점검 실행 중 </span><br><span class="line">트랜잭션 검사가 성공했습니다. </span><br><span class="line">트랜잭션 테스트 실행 중 </span><br><span class="line">트랜잭션 테스트가 완료되었습니다. </span><br><span class="line">거래 실행 중 </span><br><span class="line">  스크립틀릿 실행: mariadb-connector-c-3.0.7-1.el8.x86_64                   1/1  </span><br><span class="line">  준비 중입니다  :                                                          1/1  </span><br><span class="line">  Installing     : mariadb-connector-c-3.0.7-1.el8.x86_64                   1/3  </span><br><span class="line">  Installing     : mariadb-common-3:10.3.11-2.module_el8.0.0+35+6f2527ed.   2/3  </span><br><span class="line">  Installing     : mariadb-3:10.3.11-2.module_el8.0.0+35+6f2527ed.x86_64    3/3  </span><br><span class="line">  스크립틀릿 실행: mariadb-3:10.3.11-2.module_el8.0.0+35+6f2527ed.x86_64    3/3  </span><br><span class="line">  확인 중        : mariadb-3:10.3.11-2.module_el8.0.0+35+6f2527ed.x86_64    1/3  </span><br><span class="line">  확인 중        : mariadb-common-3:10.3.11-2.module_el8.0.0+35+6f2527ed.   2/3  </span><br><span class="line">  확인 중        : mariadb-connector-c-3.0.7-1.el8.x86_64                   3/3  </span><br><span class="line">설치됨: </span><br><span class="line">  mariadb-3:10.3.11-2.module_el8.0.0+35+6f2527ed.x86_64                          </span><br><span class="line">  mariadb-common-3:10.3.11-2.module_el8.0.0+35+6f2527ed.x86_64                   </span><br><span class="line">  mariadb-connector-c-3.0.7-1.el8.x86_64                                         </span><br><span class="line">완료되었습니다!</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># dvd.repo에 아래의 내용 추가</span><br><span class="line">[Network-PowerTools] </span><br><span class="line">name=CentOS-$releasever - PowerTools </span><br><span class="line">baseurl=http://mirror.centos.org/centos-8/8.0.1905/PowerTools/x86_64/os/ </span><br><span class="line">        http://vault.centos.org/8.0.1905/PowerTools/x86_64/os/ </span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# dnf clean all </span><br><span class="line">12 파일이 삭제되었습니다. </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# ifup ens160 </span><br><span class="line">연결이 성공적으로 활성화되었습니다 (D-Bus 활성 경로: /org/freedesktop/NetworkManager/ActiveConnection/4) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# dnf install mc help2man </span><br><span class="line">CentOS DVD AppStream                            260 MB/s | 5.2 MB     00:00     </span><br><span class="line">CentOS DVD BaseOS                               273 MB/s | 2.2 MB     00:00     </span><br><span class="line">CentOS-8 - PowerTools                           225 kB/s | 1.8 MB     00:08     </span><br><span class="line">마지막 메타 데이터 만료 확인 : 0:00:01 전에 2020년 05월 06일 (수) 오전 05시 44분 51초. </span><br><span class="line">종속성이 해결되었습니다. </span><br><span class="line">================================================================================ </span><br><span class="line"> 꾸러미        아키텍처    버전                   리포지토리               크기 </span><br><span class="line">================================================================================ </span><br><span class="line">Installing: </span><br><span class="line"> mc            x86_64      1:4.8.19-9.el8         DVD-AppStream           1.9 M </span><br><span class="line"> help2man      noarch      1.47.6-1.el8           Network-PowerTools      186 k </span><br><span class="line">거래 요약 </span><br><span class="line">================================================================================ </span><br><span class="line">설치  2 꾸러미 </span><br><span class="line">총합 크기: 2.1 M </span><br><span class="line">총 다운로드 크기 : 186 k </span><br><span class="line">설치 크기 : 7.1 M </span><br><span class="line">이게 괜찮습니까 [y / N] : y </span><br><span class="line">패키지 다운로드중: </span><br><span class="line">[MIRROR] help2man-1.47.6-1.el8.noarch.rpm: Status code: 403 for http://mirror.centos.org/centos-8/8.0.1905/PowerTools/x86_64/os/Packages/help2man-1.47.6-1.el8.noarch.rpm </span><br><span class="line">help2man-1.47.6-1.el8.noarch.rpm                 60 kB/s | 186 kB     00:03     </span><br><span class="line">-------------------------------------------------------------------------------- </span><br><span class="line">합계                                             60 kB/s | 186 kB     00:03      </span><br><span class="line">트랜잭션 점검 실행 중 </span><br><span class="line">트랜잭션 검사가 성공했습니다. </span><br><span class="line">트랜잭션 테스트 실행 중 </span><br><span class="line">트랜잭션 테스트가 완료되었습니다. </span><br><span class="line">거래 실행 중 </span><br><span class="line">  준비 중입니다  :                                                          1/1  </span><br><span class="line">  Installing     : help2man-1.47.6-1.el8.noarch                             1/2  </span><br><span class="line">  스크립틀릿 실행: help2man-1.47.6-1.el8.noarch                             1/2  </span><br><span class="line">  Installing     : mc-1:4.8.19-9.el8.x86_64                                 2/2  </span><br><span class="line">  스크립틀릿 실행: mc-1:4.8.19-9.el8.x86_64                                 2/2  </span><br><span class="line">  확인 중        : mc-1:4.8.19-9.el8.x86_64                                 1/2  </span><br><span class="line">  확인 중        : help2man-1.47.6-1.el8.noarch                             2/2  </span><br><span class="line">설치됨: </span><br><span class="line">  mc-1:4.8.19-9.el8.x86_64             help2man-1.47.6-1.el8.noarch             </span><br><span class="line">완료되었습니다!</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# dnf clean all </span><br><span class="line">21 파일이 삭제되었습니다. </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# dnf grouplist </span><br><span class="line">CentOS DVD AppStream                            291 MB/s | 5.2 MB     00:00     </span><br><span class="line">CentOS DVD BaseOS                               305 MB/s | 2.2 MB     00:00     </span><br><span class="line">CentOS-8 - PowerTools                           201 kB/s | 1.8 MB     00:09     </span><br><span class="line">사용 가능한 환경 그룹 : </span><br><span class="line">   서버 - GUI 사용 </span><br><span class="line">   서버 </span><br><span class="line">   최소 설치 </span><br><span class="line">   가상화 호스트 </span><br><span class="line">   사용자 정의 운영 체제  </span><br><span class="line">설치된 환경 그룹 : </span><br><span class="line">   워크스테이션 </span><br><span class="line">사용 가능한 그룹 : </span><br><span class="line">   컨테이너 관리  </span><br><span class="line">   .NET 코어 개발  </span><br><span class="line">   RPM 개발 툴  </span><br><span class="line">   스마트카드 지원 </span><br><span class="line">   개발용 툴  </span><br><span class="line">   그래픽기반 관리 툴  </span><br><span class="line">   헤드리스 관리  </span><br><span class="line">   레거시 UNIX 호환성 </span><br><span class="line">   네트워크 서버 </span><br><span class="line">   과학기술 지원 </span><br><span class="line">   보안 툴  </span><br><span class="line">   시스템 툴  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# dnf grouplist hidden </span><br><span class="line">마지막 메타 데이터 만료 확인 : 0:00:08 전에 2020년 05월 06일 (수) 오전 05시 48분 28초. </span><br><span class="line">사용 가능한 환경 그룹 : </span><br><span class="line">   서버 - GUI 사용 </span><br><span class="line">   서버 </span><br><span class="line">   최소 설치 </span><br><span class="line">   가상화 호스트 </span><br><span class="line">   사용자 정의 운영 체제  </span><br><span class="line">설치된 환경 그룹 : </span><br><span class="line">   워크스테이션 </span><br><span class="line">설치된 그룹 : </span><br><span class="line">   base-x </span><br><span class="line">   게스트 데스크탑 에이전트 </span><br><span class="line">   인터넷 브라우저 </span><br><span class="line">   멀티미디어 </span><br><span class="line">   VMware 플랫폼 특정 패키지  </span><br><span class="line">   인쇄 클라이언트 </span><br><span class="line">   핵심 </span><br><span class="line">   글꼴 </span><br><span class="line">   GNOME </span><br><span class="line">   하드웨어 지원  </span><br><span class="line">   일반적인 NetworkManager 서브 모듈  </span><br><span class="line">   표준  </span><br><span class="line">   워크스테이션 제품 코어  </span><br><span class="line">사용 가능한 그룹 : </span><br><span class="line">   백업 클라이언트 </span><br><span class="line">   AppStream과 충돌  </span><br><span class="line">   컨테이너 관리  </span><br><span class="line">   디버깅 툴  </span><br><span class="line">   데스크탑 디버깅과 성능 툴  </span><br><span class="line">   .NET 코어 개발  </span><br><span class="line">   FTP 서버 </span><br><span class="line">   GNOME 응용 프로그램 </span><br><span class="line">   그래픽 생성 툴  </span><br><span class="line">   게스트 에이전트 </span><br><span class="line">   입력 방식 </span><br><span class="line">   인터넷 프로그램 </span><br><span class="line">   자바 플랫폼 </span><br><span class="line">   레거시 X Window 시스템 호환성 </span><br><span class="line">   오피스 스위트/생산성 </span><br><span class="line">   Atomic Host ostree 지원  </span><br><span class="line">   KVM 플랫폼 특정 패키지  </span><br><span class="line">   Hyper-v 플랫폼 특정 패키지  </span><br><span class="line">   원격 데스크탑 클라이언트 </span><br><span class="line">   RPM 개발 툴  </span><br><span class="line">   스마트카드 지원 </span><br><span class="line">   TeX 형식 시스템  </span><br><span class="line">   가상화 클라이언트 </span><br><span class="line">   가상화 하이퍼바이저 </span><br><span class="line">   가상화 플랫폼 </span><br><span class="line">   가상화 툴  </span><br><span class="line">   기본 웹 서버 </span><br><span class="line">   추가 개발 </span><br><span class="line">   Anaconda 툴  </span><br><span class="line">   기본 </span><br><span class="line">   BaseOS와 충돌  </span><br><span class="line">   개발용 툴  </span><br><span class="line">   전화연결 네트워킹 지원 </span><br><span class="line">   파일 및 스토리지 서버 </span><br><span class="line">   그래픽기반 관리 툴  </span><br><span class="line">   하드웨어 모니터링 유틸리티 </span><br><span class="line">   헤드리스 관리  </span><br><span class="line">   Infiniband 지원 </span><br><span class="line">   거대 시스템 성능 </span><br><span class="line">   레거시 UNIX 호환성 </span><br><span class="line">   메일 서버 </span><br><span class="line">   메인프레임 억세스 </span><br><span class="line">   네트워크 파일 시스템 클라이언트 </span><br><span class="line">   네트워크 서버 </span><br><span class="line">   네트워킹 툴  </span><br><span class="line">   성능 툴  </span><br><span class="line">   플랫폼 개발 </span><br><span class="line">   Python Web </span><br><span class="line">   Linux 용 원격 관리 </span><br><span class="line">   과학기술 지원 </span><br><span class="line">   보안 툴  </span><br><span class="line">   서버 제품 코어  </span><br><span class="line">   Windows 파일 서버 </span><br><span class="line">   시스템 툴  </span><br><span class="line">   CentOS PowerTools </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# dnf groupinstall &quot;자바 플랫폼&quot; </span><br><span class="line">마지막 메타 데이터 만료 확인 : 0:00:41 전에 2020년 05월 06일 (수) 오전 05시 48분 28초. </span><br><span class="line">종속성이 해결되었습니다. </span><br><span class="line">================================================================================ </span><br><span class="line"> 꾸러미                      아키텍처 </span><br><span class="line">                                    버전                    리포지토리     크기 </span><br><span class="line">================================================================================ </span><br><span class="line">Installing group/module packages: </span><br><span class="line"> icedtea-web                 noarch 1.7.1-9.el8             DVD-AppStream 1.6 M </span><br><span class="line"> java-1.8.0-openjdk          x86_64 1:1.8.0.201.b09-2.el8   DVD-AppStream 278 k </span><br><span class="line">종속성 설치: </span><br><span class="line"> copy-jdk-configs            noarch 3.7-1.el8               DVD-AppStream  27 k </span><br><span class="line"> java-1.8.0-openjdk-headless x86_64 1:1.8.0.201.b09-2.el8   DVD-AppStream  32 M </span><br><span class="line"> javapackages-filesystem     noarch 5.3.0-1.module_el8.0.0+11+5b8c10bd </span><br><span class="line">                                                            DVD-AppStream  30 k </span><br><span class="line"> javapackages-tools          noarch 5.3.0-1.module_el8.0.0+11+5b8c10bd </span><br><span class="line">                                                            DVD-AppStream  44 k </span><br><span class="line"> tagsoup                     noarch 1.2.1-15.el8            DVD-AppStream 118 k </span><br><span class="line"> ttmkfdir                    x86_64 3.0.9-54.el8            DVD-AppStream  62 k </span><br><span class="line"> tzdata-java                 noarch 2019a-1.el8             DVD-AppStream 188 k </span><br><span class="line"> xorg-x11-fonts-Type1        noarch 7.5-19.el8              DVD-AppStream 522 k </span><br><span class="line"> lksctp-tools                x86_64 1.0.18-3.el8            DVD-BaseOS    100 k </span><br><span class="line">Enabling module streams: </span><br><span class="line"> javapackages-runtime               201801                                      </span><br><span class="line">Installing Groups: </span><br><span class="line"> Java Platform                                                                  </span><br><span class="line">거래 요약 </span><br><span class="line">================================================================================ </span><br><span class="line">설치  11 꾸러미 </span><br><span class="line">총합 크기: 35 M </span><br><span class="line">설치 크기 : 116 M </span><br><span class="line">이게 괜찮습니까 [y / N] : y </span><br><span class="line">패키지 다운로드중: </span><br><span class="line">트랜잭션 점검 실행 중 </span><br><span class="line">트랜잭션 검사가 성공했습니다. </span><br><span class="line">트랜잭션 테스트 실행 중 </span><br><span class="line">트랜잭션 테스트가 완료되었습니다. </span><br><span class="line">거래 실행 중 </span><br><span class="line">  스크립틀릿 실행: copy-jdk-configs-3.7-1.el8.noarch                        1/1  </span><br><span class="line">  스크립틀릿 실행: java-1.8.0-openjdk-headless-1:1.8.0.201.b09-2.el8.x86_   1/1  </span><br><span class="line">  준비 중입니다  :                                                          1/1  </span><br><span class="line">  Installing     : javapackages-filesystem-5.3.0-1.module_el8.0.0+11+5b    1/11  </span><br><span class="line">  Installing     : lksctp-tools-1.0.18-3.el8.x86_64                        2/11  </span><br><span class="line">  스크립틀릿 실행: lksctp-tools-1.0.18-3.el8.x86_64                        2/11  </span><br><span class="line">  Installing     : tzdata-java-2019a-1.el8.noarch                          3/11  </span><br><span class="line">  Installing     : ttmkfdir-3.0.9-54.el8.x86_64                            4/11  </span><br><span class="line">  Installing     : xorg-x11-fonts-Type1-7.5-19.el8.noarch                  5/11  </span><br><span class="line">  스크립틀릿 실행: xorg-x11-fonts-Type1-7.5-19.el8.noarch                  5/11  </span><br><span class="line">  Installing     : copy-jdk-configs-3.7-1.el8.noarch                       6/11  </span><br><span class="line">  Installing     : java-1.8.0-openjdk-headless-1:1.8.0.201.b09-2.el8.x8    7/11  </span><br><span class="line">  스크립틀릿 실행: java-1.8.0-openjdk-headless-1:1.8.0.201.b09-2.el8.x8    7/11  </span><br><span class="line">  Installing     : javapackages-tools-5.3.0-1.module_el8.0.0+11+5b8c10b    8/11  </span><br><span class="line">  Installing     : tagsoup-1.2.1-15.el8.noarch                             9/11  </span><br><span class="line">  Installing     : java-1.8.0-openjdk-1:1.8.0.201.b09-2.el8.x86_64        10/11  </span><br><span class="line">  스크립틀릿 실행: java-1.8.0-openjdk-1:1.8.0.201.b09-2.el8.x86_64        10/11  </span><br><span class="line">  Installing     : icedtea-web-1.7.1-9.el8.noarch                         11/11  </span><br><span class="line">  스크립틀릿 실행: icedtea-web-1.7.1-9.el8.noarch                         11/11  </span><br><span class="line">  스크립틀릿 실행: copy-jdk-configs-3.7-1.el8.noarch                      11/11  </span><br><span class="line">  스크립틀릿 실행: java-1.8.0-openjdk-1:1.8.0.201.b09-2.el8.x86_64        11/11  </span><br><span class="line">  스크립틀릿 실행: icedtea-web-1.7.1-9.el8.noarch                         11/11  </span><br><span class="line">  확인 중        : copy-jdk-configs-3.7-1.el8.noarch                       1/11  </span><br><span class="line">  확인 중        : icedtea-web-1.7.1-9.el8.noarch                          2/11  </span><br><span class="line">  확인 중        : java-1.8.0-openjdk-1:1.8.0.201.b09-2.el8.x86_64         3/11  </span><br><span class="line">  확인 중        : java-1.8.0-openjdk-headless-1:1.8.0.201.b09-2.el8.x8    4/11  </span><br><span class="line">  확인 중        : javapackages-filesystem-5.3.0-1.module_el8.0.0+11+5b    5/11  </span><br><span class="line">  확인 중        : javapackages-tools-5.3.0-1.module_el8.0.0+11+5b8c10b    6/11  </span><br><span class="line">  확인 중        : tagsoup-1.2.1-15.el8.noarch                             7/11  </span><br><span class="line">  확인 중        : ttmkfdir-3.0.9-54.el8.x86_64                            8/11  </span><br><span class="line">  확인 중        : tzdata-java-2019a-1.el8.noarch                          9/11  </span><br><span class="line">  확인 중        : xorg-x11-fonts-Type1-7.5-19.el8.noarch                 10/11  </span><br><span class="line">  확인 중        : lksctp-tools-1.0.18-3.el8.x86_64                       11/11  </span><br><span class="line">설치됨: </span><br><span class="line">  icedtea-web-1.7.1-9.el8.noarch                                                 </span><br><span class="line">  java-1.8.0-openjdk-1:1.8.0.201.b09-2.el8.x86_64                                </span><br><span class="line">  copy-jdk-configs-3.7-1.el8.noarch                                              </span><br><span class="line">  java-1.8.0-openjdk-headless-1:1.8.0.201.b09-2.el8.x86_64                       </span><br><span class="line">  javapackages-filesystem-5.3.0-1.module_el8.0.0+11+5b8c10bd.noarch              </span><br><span class="line">  javapackages-tools-5.3.0-1.module_el8.0.0+11+5b8c10bd.noarch                   </span><br><span class="line">  tagsoup-1.2.1-15.el8.noarch                                                    </span><br><span class="line">  ttmkfdir-3.0.9-54.el8.x86_64                                                   </span><br><span class="line">  tzdata-java-2019a-1.el8.noarch                                                 </span><br><span class="line">  xorg-x11-fonts-Type1-7.5-19.el8.noarch                                         </span><br><span class="line">  lksctp-tools-1.0.18-3.el8.x86_64                                               </span><br><span class="line">완료되었습니다!</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <!-- <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://miniminis.github.io/2020/05/31/linux/linux-thisislinux09/" title="이것이 리눅스다(2020) 09 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF" target="_blank" rel="external">https://miniminis.github.io/2020/05/31/linux/linux-thisislinux09/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/miniminis" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/miniminis" target="_blank"><span class="text-dark">Flash</span><small class="ml-1x">FullStack Android Developer</small></a></h3>
+        <div></div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div> -->
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/05/31/linux/linux-thisislinux10/" title="이것이 리눅스다(2020) 10 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - 파일 압축과 묶기/파일위치검색"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/05/31/linux/linux-thisislinux08/" title="이것이 리눅스다(2020) 08 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - RPM"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+    <script defer>
+    var disqus_config = function () {
+        
+            this.page.url = 'https://miniminis.github.io/2020/05/31/linux/linux-thisislinux09/';
+        
+        this.page.identifier = 'linux/linux-thisislinux09';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'miniminis-github-io-2' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+
+
+    <script defer type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-149033629-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+</body>
+</html>

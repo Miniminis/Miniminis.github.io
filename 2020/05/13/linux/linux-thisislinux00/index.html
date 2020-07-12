@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>이것이 리눅스다(2020) 00 / 목차 | Hexo</title>
+  <meta name="description" content="비전공자로서 컴퓨터 공학 지식이 많이 부족하다는 것을 몸으로, 머리로 느끼고 있는 하루하루이다. 리눅스를 통해서 운영체제를 공부해볼까하고 찾아보다가 ‘이것이 리눅스다’라는 진리의 책을 발견하였고, 마침 최근에 2020년 개정판이 나와서 그 과정을 따라가보며 공부해보기로 했다. 좋은 책의 목차는 공부를 하는데 아주 중요한 길잡이가 된다. 전체적인 그림과 흐름">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="이것이 리눅스다(2020) 00 &#x2F; 목차">
+<meta property="og:url" content="https://miniminis.github.io/2020/05/13/linux/linux-thisislinux00/index.html">
+<meta property="og:site_name" content="플래시블로그FlashBlog">
+<meta property="og:description" content="비전공자로서 컴퓨터 공학 지식이 많이 부족하다는 것을 몸으로, 머리로 느끼고 있는 하루하루이다. 리눅스를 통해서 운영체제를 공부해볼까하고 찾아보다가 ‘이것이 리눅스다’라는 진리의 책을 발견하였고, 마침 최근에 2020년 개정판이 나와서 그 과정을 따라가보며 공부해보기로 했다. 좋은 책의 목차는 공부를 하는데 아주 중요한 길잡이가 된다. 전체적인 그림과 흐름">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-12T07:25:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="이것이 리눅스다(2020) 00 &#x2F; 목차">
+<meta name="twitter:description" content="비전공자로서 컴퓨터 공학 지식이 많이 부족하다는 것을 몸으로, 머리로 느끼고 있는 하루하루이다. 리눅스를 통해서 운영체제를 공부해볼까하고 찾아보다가 ‘이것이 리눅스다’라는 진리의 책을 발견하였고, 마침 최근에 2020년 개정판이 나와서 그 과정을 따라가보며 공부해보기로 했다. 좋은 책의 목차는 공부를 하는데 아주 중요한 길잡이가 된다. 전체적인 그림과 흐름">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://miniminis.github.io/2020/05/13/linux/linux-thisislinux00/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="플래시블로그FlashBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/miniminis" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flash</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">FullStack Android Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Seoul, Korea</small>
+      </div>
+      
+      <!-- <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div> -->
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <!-- <span class="menu-title">Home</span> -->
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <!-- <span class="menu-title">Archives</span> -->
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">Categories</span> -->
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-projects">
+          <a href="/projects">
+            
+            <i class="icon icon-folder"></i>
+            
+            <!-- <span class="menu-title">menu.Projects</span> -->
+            <span class="menu-title">Projects</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about.html">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <!-- <span class="menu-title">About</span> -->
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-linux/linux-thisislinux00" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      이것이 리눅스다(2020) 00 / 목차
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/05/13/linux/linux-thisislinux00/" class="article-date">
+	  <time datetime="2020-05-12T22:09:33.000Z" itemprop="datePublished">2020-05-13</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/linux/">linux</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/13/linux/linux-thisislinux00/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>비전공자로서 컴퓨터 공학 지식이 많이 부족하다는 것을 몸으로, 머리로 느끼고 있는 하루하루이다. 리눅스를 통해서 운영체제를 공부해볼까하고 찾아보다가 ‘이것이 리눅스다’라는 진리의 책을 발견하였고, 마침 최근에 2020년 개정판이 나와서 그 과정을 따라가보며 공부해보기로 했다.</p>
+<p>좋은 책의 목차는 공부를 하는데 아주 중요한 길잡이가 된다. 전체적인 그림과 흐름을 그릴 수 있도록 해주며 낯선 개념과 단어들에 자연스럽게 노출될 수 있도록 해준다. 오늘은 이 책의 전반적인 목차를 정리하며 앞으로 배우고 익힐 개념들에 대해서 밑그림을 그려보도록 하겠다.<br><br><br><br></p>
+<h2 id="PART01-성공적인-학습을-위한-준비-작업과-CentOS-설치"><a href="#PART01-성공적인-학습을-위한-준비-작업과-CentOS-설치" class="headerlink" title="PART01 성공적인 학습을 위한 준비 작업과 CentOS 설치"></a>PART01 성공적인 학습을 위한 준비 작업과 CentOS 설치</h2><h3 id="CHAPTER-01-실습-환경-구축"><a href="#CHAPTER-01-실습-환경-구축" class="headerlink" title="CHAPTER 01 실습 환경 구축"></a>CHAPTER 01 실습 환경 구축</h3><p>1.1 가상머신의 소개와 설치<br>1.2 가상머신 생성<br>1.3 VMware의 특징<br>1.4 원활한 실습 진행을 위한 사전 준비</p>
+<h3 id="CHAPTER-02-CentOS-리눅스에-대한-간단한-소개"><a href="#CHAPTER-02-CentOS-리눅스에-대한-간단한-소개" class="headerlink" title="CHAPTER 02 CentOS 리눅스에 대한 간단한 소개"></a>CHAPTER 02 CentOS 리눅스에 대한 간단한 소개</h3><p>2.1 리눅스의 개요<br>2.2 CentOS 리눅스 배포판</p>
+<h3 id="CHAPTER-03-CentOS-리눅스-설치"><a href="#CHAPTER-03-CentOS-리눅스-설치" class="headerlink" title="CHAPTER 03 CentOS 리눅스 설치"></a>CHAPTER 03 CentOS 리눅스 설치</h3><p>3.1 3대의 CentOS 설치<br>3.2 WinClient 설치<br><br><br><br></p>
+<h2 id="PART-02-CentOS-리눅스의-기본-개념과-리눅스-관리자의-기본-역할"><a href="#PART-02-CentOS-리눅스의-기본-개념과-리눅스-관리자의-기본-역할" class="headerlink" title="PART 02 CentOS 리눅스의 기본 개념과 리눅스 관리자의 기본 역할"></a>PART 02 CentOS 리눅스의 기본 개념과 리눅스 관리자의 기본 역할</h2><h3 id="CHAPTER-04-서버를-구축할-때-알아야-할-필수-개념과-명령어"><a href="#CHAPTER-04-서버를-구축할-때-알아야-할-필수-개념과-명령어" class="headerlink" title="CHAPTER 04 서버를 구축할 때 알아야 할 필수 개념과 명령어"></a>CHAPTER 04 서버를 구축할 때 알아야 할 필수 개념과 명령어</h3><p>4.1 리눅스 운영 전에 알아야 할 개념<br>4.2 리눅스 기본 명령어<br>4.3 사용자 관리와 파일 속성<br>4.4 리눅스 관리자를 위한 명령어<br>4.5 네트워크 관련 설정과 명령어<br>4.6 파이프, 필터, 리디렉션<br>4.7 프로세스, 데몬, 서비스<br>4.8 서비스와 소켓<br>4.9 응급 복구<br>4.10 GRUB 부트로더<br>4.11 간단한 커널 컴파일</p>
+<h3 id="CHAPTER-05-X-윈도를-사용해보자"><a href="#CHAPTER-05-X-윈도를-사용해보자" class="headerlink" title="CHAPTER 05 X 윈도를 사용해보자"></a>CHAPTER 05 X 윈도를 사용해보자</h3><p>5.1 그놈 데스크톱 환경 설정<br>5.2 X 윈도 응용프로그램<br>5.3 소프트웨어 센터<br>5.4 리눅스에서 Windows 응용프로그램 실행</p>
+<h3 id="CHAPTER-06-하드디스크-관리와-사용자별-공간-할당"><a href="#CHAPTER-06-하드디스크-관리와-사용자별-공간-할당" class="headerlink" title="CHAPTER 06 하드디스크 관리와 사용자별 공간 할당"></a>CHAPTER 06 하드디스크 관리와 사용자별 공간 할당</h3><p>6.1 하드디스크 한 개 추가하기<br>6.2 여러 개의 하드디스크를 하나처럼 사용하기<br>6.3 LVM<br>6.4 CentOS를 RAID에 설치하기<br>6.5 사용자별로 공간을 할당해주자</p>
+<h3 id="CHAPTER-07-셸-스크립트-프로그래밍"><a href="#CHAPTER-07-셸-스크립트-프로그래밍" class="headerlink" title="CHAPTER 07 셸 스크립트 프로그래밍"></a>CHAPTER 07 셸 스크립트 프로그래밍</h3><p>7.1 셸의 기본<br>7.2 셸 스크립트 프로그래밍 실습<br><br><br><br></p>
+<h2 id="PART-03-네트워크-서버-구축-실무-I"><a href="#PART-03-네트워크-서버-구축-실무-I" class="headerlink" title="PART 03 네트워크 서버 구축 실무 I"></a>PART 03 네트워크 서버 구축 실무 I</h2><h3 id="CHAPTER-08-원격지-시스템-관리"><a href="#CHAPTER-08-원격지-시스템-관리" class="headerlink" title="CHAPTER 08 원격지 시스템 관리"></a>CHAPTER 08 원격지 시스템 관리</h3><p>8.1 텔넷 서버<br>8.2 OpenSSH 서버<br>8.3 XRDP 서버</p>
+<h3 id="CHAPTER-09-네임-서버-설치와-운영"><a href="#CHAPTER-09-네임-서버-설치와-운영" class="headerlink" title="CHAPTER 09 네임 서버 설치와 운영"></a>CHAPTER 09 네임 서버 설치와 운영</h3><p>9.1 네임 서버의 개념<br>9.2 네임 서버의 구축</p>
+<h3 id="CHAPTER-10-메일-서버-설치와-운영"><a href="#CHAPTER-10-메일-서버-설치와-운영" class="headerlink" title="CHAPTER 10 메일 서버 설치와 운영"></a>CHAPTER 10 메일 서버 설치와 운영</h3><p>10.1 메일 서버의 개념<br>10.2 센드메일 서버 구현<br>10.3 웹 메일 설치 및 사용</p>
+<h3 id="CHAPTER-11-데이터베이스-서버-구축과-운영"><a href="#CHAPTER-11-데이터베이스-서버-구축과-운영" class="headerlink" title="CHAPTER 11 데이터베이스 서버 구축과 운영"></a>CHAPTER 11 데이터베이스 서버 구축과 운영</h3><p>11.1 DBMS의 개념과 간단한 SQL문<br>11.2 MariaDB 설치와 운영<br>11.3 Windows용 응용프로그램과 리눅스 DBMS의 연동<br>11.4 Oracle Database Express의 설치와 운영</p>
+<h3 id="CHAPTER-12-웹-서버-설치와-운영"><a href="#CHAPTER-12-웹-서버-설치와-운영" class="headerlink" title="CHAPTER 12 웹 서버 설치와 운영"></a>CHAPTER 12 웹 서버 설치와 운영</h3><p>12.1 APM 설치와 웹 사이트 구축<br>12.2 웹 서버의 응용 서비스<br>12.3 웹 서버 설정 파일<br><br><br><br></p>
+<h2 id="Part04-네트워크-서버-구축-실무-II"><a href="#Part04-네트워크-서버-구축-실무-II" class="headerlink" title="Part04 네트워크 서버 구축 실무 II"></a>Part04 네트워크 서버 구축 실무 II</h2><h3 id="CHAPTER-13-FTP-서버-설치와-운영"><a href="#CHAPTER-13-FTP-서버-설치와-운영" class="headerlink" title="CHAPTER 13 FTP 서버 설치와 운영"></a>CHAPTER 13 FTP 서버 설치와 운영</h3><p>13.1 vsftpd의 설치와 운영<br>13.2 proFTPD의 설치와 운영</p>
+<h3 id="CHAPTER-14-NFS-서버-설치와-운영"><a href="#CHAPTER-14-NFS-서버-설치와-운영" class="headerlink" title="CHAPTER 14 NFS 서버 설치와 운영"></a>CHAPTER 14 NFS 서버 설치와 운영</h3><p>14.1 NFS 서버 구현</p>
+<h3 id="CHAPTER-15-Samba-서버-설치와-운영"><a href="#CHAPTER-15-Samba-서버-설치와-운영" class="headerlink" title="CHAPTER 15 Samba 서버 설치와 운영"></a>CHAPTER 15 Samba 서버 설치와 운영</h3><p>15.1 리눅스에서 Windows의 폴더와 프린터 사용<br>15.2 Windows에서 리눅스 폴더와 프린터의 사용</p>
+<h3 id="CHAPTER-16-DHCP-서버-설치와-운영"><a href="#CHAPTER-16-DHCP-서버-설치와-운영" class="headerlink" title="CHAPTER 16 DHCP 서버 설치와 운영"></a>CHAPTER 16 DHCP 서버 설치와 운영</h3><p>16.1 DHCP 개념<br>16.2 DHCP 구현</p>
+<h3 id="CHAPTER-17-프록시-서버-설치와-운영"><a href="#CHAPTER-17-프록시-서버-설치와-운영" class="headerlink" title="CHAPTER 17 프록시 서버 설치와 운영"></a>CHAPTER 17 프록시 서버 설치와 운영</h3><p>17.1 프록시 서버의 개념<br>17.2 프록시 서버의 구현</p>
+<h3 id="CHAPTER-18-방화벽-컴퓨터-만들기"><a href="#CHAPTER-18-방화벽-컴퓨터-만들기" class="headerlink" title="CHAPTER 18 방화벽 컴퓨터 만들기"></a>CHAPTER 18 방화벽 컴퓨터 만들기</h3><p>18.1 보안을 위한 네트워크 설계<br>18.2 리눅스 방화벽 컴퓨터 구축</p>
+<h3 id="CHAPTER-19-PXE-설치-서버"><a href="#CHAPTER-19-PXE-설치-서버" class="headerlink" title="CHAPTER 19 PXE 설치 서버"></a>CHAPTER 19 PXE 설치 서버</h3><p>19.1 PXE 설치 서버의 개념과 구현<br>19.2 킥스타트</p>
+
+      
+    </div>
+    <!-- <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://miniminis.github.io/2020/05/13/linux/linux-thisislinux00/" title="이것이 리눅스다(2020) 00 / 목차" target="_blank" rel="external">https://miniminis.github.io/2020/05/13/linux/linux-thisislinux00/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/miniminis" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/miniminis" target="_blank"><span class="text-dark">Flash</span><small class="ml-1x">FullStack Android Developer</small></a></h3>
+        <div></div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div> -->
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/05/14/linux/linux-thisislinux02/" title="이것이 리눅스다(2020) 02 / Vmware 특징, 리눅스 개요"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/05/13/linux/linux-thisislinux01/" title="이것이 리눅스다(2020) 01 / 가상머신 설치 + Window10 가상OS 설치에러"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
+        
+        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
+        
+        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+    <script defer>
+    var disqus_config = function () {
+        
+            this.page.url = 'https://miniminis.github.io/2020/05/13/linux/linux-thisislinux00/';
+        
+        this.page.identifier = 'linux/linux-thisislinux00';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'miniminis-github-io-2' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+
+
+    <script defer type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-149033629-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+</body>
+</html>
