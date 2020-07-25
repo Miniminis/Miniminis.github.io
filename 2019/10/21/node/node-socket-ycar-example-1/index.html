@@ -1,224 +1,167 @@
 <!DOCTYPE html>
-<html lang=en>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="flash&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
   
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="format-detection" content="telephone=no,email=no,adress=no">
-  <!-- Color theme for statusbar -->
-  <meta name="theme-color" content="#000000">
-  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
-  <meta http-equiv="window-target" content="_top">
+    <link rel="shortcut icon" href="/css/images/logo.png">
   
-  
-  <title>Socket.io 이용하여 서로 다른 두 사용자간 실시간 데이터 공유 | Hexo</title>
-  <meta name="description" content="지난번 firebase와 aws ec2에 node 서버 배포하기 포스팅을 통해 연차 프로젝트를 간단히 소개하며 node 서버의 최종 배포 부분을 다루었다. 연차 프로젝트는 직장인을 위한 카풀 웹앱으로, 탑승자용 어플리케이션과 운전자용 어플리케이션이 나누어져있다. 오늘은 바로 이 두 사용자, 탑승자와 운전자가 실시간으로 데이터를 공유하는 부분을 구성하는 과정">
-<meta name="keywords" content="nodejs">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Socket.io 이용하여 서로 다른 두 사용자간 실시간 데이터 공유">
-<meta property="og:url" content="https://miniminis.github.io/2019/10/21/node/node-socket-ycar-example-1/index.html">
-<meta property="og:site_name" content="플래시블로그FlashBlog">
-<meta property="og:description" content="지난번 firebase와 aws ec2에 node 서버 배포하기 포스팅을 통해 연차 프로젝트를 간단히 소개하며 node 서버의 최종 배포 부분을 다루었다. 연차 프로젝트는 직장인을 위한 카풀 웹앱으로, 탑승자용 어플리케이션과 운전자용 어플리케이션이 나누어져있다. 오늘은 바로 이 두 사용자, 탑승자와 운전자가 실시간으로 데이터를 공유하는 부분을 구성하는 과정">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://miniminis.github.io/images/ycar14.png">
-<meta property="og:image" content="https://miniminis.github.io/images/ycar15.png">
-<meta property="og:image" content="https://miniminis.github.io/images/ycar18.png">
-<meta property="og:updated_time" content="2020-07-12T07:25:50.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Socket.io 이용하여 서로 다른 두 사용자간 실시간 데이터 공유">
-<meta name="twitter:description" content="지난번 firebase와 aws ec2에 node 서버 배포하기 포스팅을 통해 연차 프로젝트를 간단히 소개하며 node 서버의 최종 배포 부분을 다루었다. 연차 프로젝트는 직장인을 위한 카풀 웹앱으로, 탑승자용 어플리케이션과 운전자용 어플리케이션이 나누어져있다. 오늘은 바로 이 두 사용자, 탑승자와 운전자가 실시간으로 데이터를 공유하는 부분을 구성하는 과정">
-<meta name="twitter:image" content="https://miniminis.github.io/images/ycar14.png">
-  <!-- Canonical links -->
-  <link rel="canonical" href="https://miniminis.github.io/2019/10/21/node/node-socket-ycar-example-1/index.html">
-  
-    <link rel="alternate" href="/atom.xml" title="플래시블로그FlashBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png" type="image/x-icon">
-  
+  <title>
+    
+      Socket.io 이용하여 서로 다른 두 사용자간 실시간 데이터 공유 | Flashlog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   
+    <link rel="stylesheet" href="/css/plugins/gitment.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+    <script src="/js/gitment.js"></script>
   
   
   
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149033629-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-149033629-1');
+    </script>
+
 </head>
-
-
-<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
-  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-  <div class="slimContent">
-    <div class="navbar-header">
-      
-      
-      <div class="profile-block text-center">
-        <a id="avatar" href="https://github.com/miniminis" target="_blank">
-          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
-        </a>
-        <h2 id="name" class="hidden-xs hidden-sm">Flash</h2>
-        <h3 id="title" class="hidden-xs hidden-sm hidden-md">FullStack Android Developer</h3>
-        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Seoul, Korea</small>
-      </div>
-      
-      <!-- <div class="search" id="search-form-wrap">
-
-    <form class="search-form sidebar-form">
-        <div class="input-group">
-            <input type="text" class="search-form-input form-control" placeholder="Search" />
-            <span class="input-group-btn">
-                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
-            </span>
-        </div>
-    </form>
-    <div class="ins-search">
-  <div class="ins-search-mask"></div>
-  <div class="ins-search-container">
-    <div class="ins-input-wrapper">
-      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
-      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-    </div>
-    <div class="ins-section-wrapper">
-      <div class="ins-section-container"></div>
-    </div>
-  </div>
+<div class="wechat-share">
+  <img src="/css/images/logo.png">
 </div>
 
-
-</div> -->
-      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Flashlog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags2/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about2/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
     </div>
-    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
-      <ul class="nav navbar-nav main-nav ">
+    <div class="menu-mask">
+      <ul class="menu-list">
         
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
         
-        <li class="menu-item menu-item-home">
-          <a href="/">
+          <li class="menu-item">
             
-            <i class="icon icon-home-fill"></i>
+              <a href="/tags2/" class="menu-link">Tags</a>
             
-            <!-- <span class="menu-title">Home</span> -->
-            <span class="menu-title">Home</span>
-          </a>
-        </li>
+          </li>
         
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives">
+          <li class="menu-item">
             
-            <i class="icon icon-archives-fill"></i>
+              <a href="/project/" class="menu-link">Projects</a>
             
-            <!-- <span class="menu-title">Archives</span> -->
-            <span class="menu-title">Archives</span>
-          </a>
-        </li>
+          </li>
         
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories">
+          <li class="menu-item">
             
-            <i class="icon icon-folder"></i>
+              <a href="/about2/" class="menu-link">About</a>
             
-            <!-- <span class="menu-title">Categories</span> -->
-            <span class="menu-title">Categories</span>
-          </a>
-        </li>
-        
-        
-        <li class="menu-item menu-item-projects">
-          <a href="/projects">
-            
-            <i class="icon icon-folder"></i>
-            
-            <!-- <span class="menu-title">menu.Projects</span> -->
-            <span class="menu-title">Projects</span>
-          </a>
-        </li>
-        
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about.html">
-            
-            <i class="icon icon-cup-fill"></i>
-            
-            <!-- <span class="menu-title">About</span> -->
-            <span class="menu-title">About</span>
-          </a>
-        </li>
+          </li>
         
       </ul>
-      
-	
-    <ul class="social-links">
-    	
-        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
-        
-        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
-        
-        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
-        
-        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
-        
-    </ul>
-
-    </nav>
+    </div>
   </div>
 </header>
 
-  
-  
-<main class="main" role="main">
-  <div class="content">
-  <article id="post-node/node-socket-ycar-example-1" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-    
-    <div class="article-header">
-      
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Socket.io 이용하여 서로 다른 두 사용자간 실시간 데이터 공유
-    </h1>
-  
-
-      
-      <div class="article-meta">
-        <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2019/10/21/node/node-socket-ycar-example-1/" class="article-date">
-	  <time datetime="2019-10-21T05:50:15.000Z" itemprop="datePublished">2019-10-21</time>
-	</a>
-</span>
-        
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/node/">node</a>
-  </span>
-
-        
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/nodejs/">nodejs</a>
-  </span>
-
-
-        
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/10/21/node/node-socket-ycar-example-1/#comments" class="article-comment-link">Comments</a></span>
-        
-      </div>
-    </div>
-    <div class="article-entry marked-body" itemprop="articleBody">
-      
-        <p>지난번 <a href="https://miniminis.github.io/2019/10/11/node-deploy/">firebase와 aws ec2에 node 서버 배포하기</a> 포스팅을 통해 연차 프로젝트를 간단히 소개하며 node 서버의 최종 배포 부분을 다루었다. 연차 프로젝트는 직장인을 위한 카풀 웹앱으로, 탑승자용 어플리케이션과 운전자용 어플리케이션이 나누어져있다. 오늘은 바로 이 두 사용자, 탑승자와 운전자가 실시간으로 데이터를 공유하는 부분을 구성하는 과정에서, socket.io 를 이용하여 node 서버를 구축한 과정을 간단히 포스팅할까한다. <em>클라이언트 쪽 실제 코드는 훨씬 길지만, socket 통신부분의 핵심이 되는 부분만 간략하게 표현하였다.</em><br><br></p>
+    <div id="article-banner">
+  <h2>Socket.io 이용하여 서로 다른 두 사용자간 실시간 데이터 공유</h2>
+  <p class="post-date">2019-10-21</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>지난번 <a href="https://miniminis.github.io/2019/10/11/node-deploy/">firebase와 aws ec2에 node 서버 배포하기</a> 포스팅을 통해 연차 프로젝트를 간단히 소개하며 node 서버의 최종 배포 부분을 다루었다. 연차 프로젝트는 직장인을 위한 카풀 웹앱으로, 탑승자용 어플리케이션과 운전자용 어플리케이션이 나누어져있다. 오늘은 바로 이 두 사용자, 탑승자와 운전자가 실시간으로 데이터를 공유하는 부분을 구성하는 과정에서, socket.io 를 이용하여 node 서버를 구축한 과정을 간단히 포스팅할까한다. <em>클라이언트 쪽 실제 코드는 훨씬 길지만, socket 통신부분의 핵심이 되는 부분만 간략하게 표현하였다.</em><br><br></p>
 <h2 id="구현하고자-하는-것-구현-결과-이미지-포함"><a href="#구현하고자-하는-것-구현-결과-이미지-포함" class="headerlink" title="구현하고자 하는 것 (구현 결과 이미지 포함)"></a>구현하고자 하는 것 (구현 결과 이미지 포함)</h2><p>소켓 통신을 이용해 구현하고자 하는 세 부분은 다음과 같았다. </p>
 <h4 id="1-카풀-리스트에서-탑승자는-탑승대기-운전자는-운행시작을-누른다-gt-gt-운행-중-화면으로-동시에-전환"><a href="#1-카풀-리스트에서-탑승자는-탑승대기-운전자는-운행시작을-누른다-gt-gt-운행-중-화면으로-동시에-전환" class="headerlink" title="1. 카풀 리스트에서 탑승자는 탑승대기, 운전자는 운행시작을 누른다 &gt;&gt; 운행 중 화면으로 동시에 전환"></a>1. 카풀 리스트에서 탑승자는 탑승대기, 운전자는 운행시작을 누른다 &gt;&gt; 운행 중 화면으로 동시에 전환</h4><p><img src="/images/ycar14.png" alt="운행시작"></p>
 <h4 id="2-운행-중-화면에서-탑승자가-운행종료를-누르면-gt-gt-두-사용자의-화면이-동시에-결제페이지로-이동"><a href="#2-운행-중-화면에서-탑승자가-운행종료를-누르면-gt-gt-두-사용자의-화면이-동시에-결제페이지로-이동" class="headerlink" title="2. 운행 중 화면에서 탑승자가 운행종료를 누르면 &gt;&gt; 두 사용자의 화면이 동시에 결제페이지로 이동"></a>2. 운행 중 화면에서 탑승자가 운행종료를 누르면 &gt;&gt; 두 사용자의 화면이 동시에 결제페이지로 이동</h4><p><img src="/images/ycar15.png" alt="운행시작"></p>
@@ -294,177 +237,201 @@
 <li><a href="https://thebook.io/006982/" target="_blank" rel="noopener">Node.js 교과서</a></li>
 <li><a href="https://medium.com/wasd/node-js%EC%99%80-socket-io%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%B1%84%ED%8C%85-%EA%B5%AC%ED%98%84-1-cb215954847b" target="_blank" rel="noopener">Node.js와 Socket.io를 이용한 채팅 구현 (1) ~ (3)</a></li>
 </ul>
-
-      
-    </div>
-    <!-- <div class="article-footer">
-      <blockquote class="mt-2x">
-  <ul class="post-copyright list-unstyled">
+</section>
+    <!-- Tags START -->
     
-    <li class="post-copyright-link hidden-xs">
-      <strong>本文链接：</strong>
-      <a href="https://miniminis.github.io/2019/10/21/node/node-socket-ycar-example-1/" title="Socket.io 이용하여 서로 다른 두 사용자간 실시간 데이터 공유" target="_blank" rel="external">https://miniminis.github.io/2019/10/21/node/node-socket-ycar-example-1/</a>
-    </li>
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#nodejs" >
+    <span class="tag-code">nodejs</span>
+  </a>
+
+      </div>
     
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-</blockquote>
-
-
-<div class="panel panel-default panel-badger">
-  <div class="panel-body">
-    <figure class="media">
-      <div class="media-left">
-        <a href="https://github.com/miniminis" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/miniminis" target="_blank"><span class="text-dark">Flash</span><small class="ml-1x">FullStack Android Developer</small></a></h3>
-        <div></div>
-      </div>
-    </figure>
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/10/19/architecture/architecture-01/">
+        <span class="nav-arrow">← </span>
+        
+          REST에 대한 간단한 정리
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2019/10/23/android/android-01/">
+        
+          안드로이드 환경설정, 주요 기능, HelloAndroid 프로그램 만들어보기
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
   </div>
-</div>
 
-
-    </div> -->
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
   </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
   
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
     
-  <section id="comments">
-  	
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </section>
-
-
-  
-</div>
-
-  <nav class="bar bar-footer clearfix" data-stick-bottom>
-  <div class="bar-inner">
-  
-  <ul class="pager pull-left">
-    
-    <li class="prev">
-      <a href="/2019/10/23/android/android-01/" title="안드로이드 환경설정, 주요 기능, HelloAndroid 프로그램 만들어보기"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/2019/10/19/architecture/architecture-01/" title="REST에 대한 간단한 정리"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
-    </li>
-    
-    
-  </ul>
-  
-  
-  
-  <div class="bar-right">
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#구현하고자-하는-것-구현-결과-이미지-포함"><span class="toc-nav-text">구현하고자 하는 것 (구현 결과 이미지 포함)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-카풀-리스트에서-탑승자는-탑승대기-운전자는-운행시작을-누른다-gt-gt-운행-중-화면으로-동시에-전환"><span class="toc-nav-text">1. 카풀 리스트에서 탑승자는 탑승대기, 운전자는 운행시작을 누른다 &gt;&gt; 운행 중 화면으로 동시에 전환</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-운행-중-화면에서-탑승자가-운행종료를-누르면-gt-gt-두-사용자의-화면이-동시에-결제페이지로-이동"><span class="toc-nav-text">2. 운행 중 화면에서 탑승자가 운행종료를 누르면 &gt;&gt; 두 사용자의 화면이 동시에 결제페이지로 이동</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3-사용자가-결제에-성공하면-gt-gt-결제-내역-정보를-두-사용자에게-동시에-표시"><span class="toc-nav-text">3. 사용자가 결제에 성공하면 &gt;&gt; 결제 내역 정보를 두 사용자에게 동시에 표시</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#왜-node-어째서-socket-io"><span class="toc-nav-text">왜 node, 어째서 socket.io?</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Html5-표준안의-일부로-나온-Web-Socket-프로토콜의-경우는-지원하는-브라우저가-한정되어있었고-브라우저마다-지원하는-버전에도-차이가-있었다"><span class="toc-nav-text">Html5 표준안의 일부로 나온 Web Socket 프로토콜의 경우는 지원하는 브라우저가 한정되어있었고 브라우저마다 지원하는 버전에도 차이가 있었다.</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#반면-socket-io-같은-경우는-표준기술이-아니라-node-js-모듈의-일부로서-Web-Socket과-관련-기술들을-하나의-API로-모아놓은-개념이었다-따라서-해당-모듈이-브라우저마다-적합한-socket-기술을-적용해줄-수-있었고-구현하기에도-훨씬-편했다"><span class="toc-nav-text">반면 socket.io 같은 경우는 표준기술이 아니라 node.js 모듈의 일부로서 Web Socket과 관련 기술들을 하나의 API로 모아놓은 개념이었다. 따라서 해당 모듈이 브라우저마다 적합한 socket 기술을 적용해줄 수 있었고 구현하기에도 훨씬 편했다.</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#서버와-클라이언트-소켓-연결"><span class="toc-nav-text">서버와 클라이언트 소켓 연결</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#server-js"><span class="toc-nav-text">server.js</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#carpoollistClient-jsp"><span class="toc-nav-text">carpoollistClient.jsp</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#carpoollistDriver-jsp"><span class="toc-nav-text">carpoollistDriver.jsp</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Room-이용하여-운전자에서-운행시작버튼을-누르면-탑승자와-운전자-모두-운행중-페이지로-동시에-전환"><span class="toc-nav-text">Room 이용하여 운전자에서 운행시작버튼을 누르면 탑승자와 운전자 모두 운행중 페이지로 동시에 전환</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#server-js-1"><span class="toc-nav-text">server.js</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#carpoollistClient-jsp-1"><span class="toc-nav-text">carpoollistClient.jsp</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#carpoollistDriver-jsp-1"><span class="toc-nav-text">carpoollistDriver.jsp</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#탑승자가-운행-종료-버튼을-누르면-탑승자와-운전자-모두-결제-페이지로-이동"><span class="toc-nav-text">탑승자가 운행 종료 버튼을 누르면 탑승자와 운전자 모두 결제 페이지로 이동</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#server-js-2"><span class="toc-nav-text">server.js</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#passengerDriving-jsp"><span class="toc-nav-text">passengerDriving.jsp</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#driverDriving-jsp"><span class="toc-nav-text">driverDriving.jsp</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#탑승자가-결제에-성공하면-탑승자와-운전자-모두-결제-내역-확인-페이지로-이동-결제-데이터의-공유"><span class="toc-nav-text">탑승자가 결제에 성공하면 탑승자와 운전자 모두 결제 내역 확인 페이지로 이동 : 결제 데이터의 공유</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#server-js-3"><span class="toc-nav-text">server.js</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#success-jsp-탑승자"><span class="toc-nav-text">success.jsp (탑승자)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#driverPaychk-jsp-운전자"><span class="toc-nav-text">driverPaychk.jsp (운전자)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#정리"><span class="toc-nav-text">정리</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#참고"><span class="toc-nav-text">참고</span></a></li></ol>
     
   </div>
-  </div>
-</nav>
+</aside>
   
-
-
+  <!-- Catalog END -->
 </main>
 
-  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
-	
-	
-    <ul class="social-links">
-    	
-        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
-        
-        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
-        
-        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
-        
-        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
-        
-    </ul>
-
-    <div class="copyright">
-    	
-        <div class="publishby">
-        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
-        </div>
-    </div>
-</footer>
-  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <script>
-window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
-</script>
-<script src="/js/plugin.min.js"></script>
-<script src="/js/application.js"></script>
+  (function () {
+    var url = 'https://miniminis.github.io/2019/10/21/node/node-socket-ycar-example-1/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
 
-    <script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+  <script>
+    var gitmentConfig = "miniminis";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Socket.io 이용하여 서로 다른 두 사용자간 실시간 데이터 공유",
+        owner: "miniminis",
+        repo: "miniminis.github.io",
+        oauth: {
+          client_id: "6777a600f48bea19d4c9",
+          client_secret: "a873dcd4221c63013a85e792d2f3f0db2d90e245"
         },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <!-- <br> -->
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
 </script>
-<script src="/js/insight.js"></script>
-
-
-
-
-
-   
-
-
-
-
-   
-    
-    <script defer>
-    var disqus_config = function () {
-        
-            this.page.url = 'https://miniminis.github.io/2019/10/21/node/node-socket-ycar-example-1/';
-        
-        this.page.identifier = 'node/node-socket-ycar-example-1';
-    };
-    (function() { 
-        var d = document, s = d.createElement('script');  
-        s.src = '//' + 'miniminis-github-io-2' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-
-
-
-
-
-
-    <script defer type="text/javascript">
-(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-149033629-1', 'auto');
-ga('send', 'pageview');
-
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
 </script>
 
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
 
-
-</body>
+<script src="/js/script.js"></script>
+  </body>
 </html>

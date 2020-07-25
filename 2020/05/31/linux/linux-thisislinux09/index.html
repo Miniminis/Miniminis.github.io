@@ -1,220 +1,167 @@
 <!DOCTYPE html>
-<html lang=en>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="flash&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
   
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="format-detection" content="telephone=no,email=no,adress=no">
-  <!-- Color theme for statusbar -->
-  <meta name="theme-color" content="#000000">
-  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
-  <meta http-equiv="window-target" content="_top">
+    <link rel="shortcut icon" href="/css/images/logo.png">
   
-  
-  <title>이것이 리눅스다(2020) 09 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF | Hexo</title>
-  <meta name="description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
-<meta name="keywords" content="linux">
-<meta property="og:type" content="article">
-<meta property="og:title" content="이것이 리눅스다(2020) 09 &#x2F; 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF">
-<meta property="og:url" content="https://miniminis.github.io/2020/05/31/linux/linux-thisislinux09/index.html">
-<meta property="og:site_name" content="플래시블로그FlashBlog">
-<meta property="og:description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-07-12T07:25:36.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="이것이 리눅스다(2020) 09 &#x2F; 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF">
-<meta name="twitter:description" content="‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 [링크]를 통해 구입할 수 있고, 강의는 [링크]에서 확인할 수 있다. 한빛에서 네이버 카페[링크]도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…!">
-  <!-- Canonical links -->
-  <link rel="canonical" href="https://miniminis.github.io/2020/05/31/linux/linux-thisislinux09/index.html">
-  
-    <link rel="alternate" href="/atom.xml" title="플래시블로그FlashBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png" type="image/x-icon">
-  
+  <title>
+    
+      이것이 리눅스다(2020) 09 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF | Flashlog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   
+    <link rel="stylesheet" href="/css/plugins/gitment.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+    <script src="/js/gitment.js"></script>
   
   
   
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149033629-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-149033629-1');
+    </script>
+
 </head>
-
-
-<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
-  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-  <div class="slimContent">
-    <div class="navbar-header">
-      
-      
-      <div class="profile-block text-center">
-        <a id="avatar" href="https://github.com/miniminis" target="_blank">
-          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
-        </a>
-        <h2 id="name" class="hidden-xs hidden-sm">Flash</h2>
-        <h3 id="title" class="hidden-xs hidden-sm hidden-md">FullStack Android Developer</h3>
-        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Seoul, Korea</small>
-      </div>
-      
-      <!-- <div class="search" id="search-form-wrap">
-
-    <form class="search-form sidebar-form">
-        <div class="input-group">
-            <input type="text" class="search-form-input form-control" placeholder="Search" />
-            <span class="input-group-btn">
-                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
-            </span>
-        </div>
-    </form>
-    <div class="ins-search">
-  <div class="ins-search-mask"></div>
-  <div class="ins-search-container">
-    <div class="ins-input-wrapper">
-      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
-      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-    </div>
-    <div class="ins-section-wrapper">
-      <div class="ins-section-container"></div>
-    </div>
-  </div>
+<div class="wechat-share">
+  <img src="/css/images/logo.png">
 </div>
 
-
-</div> -->
-      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Flashlog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags2/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about2/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
     </div>
-    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
-      <ul class="nav navbar-nav main-nav ">
+    <div class="menu-mask">
+      <ul class="menu-list">
         
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
         
-        <li class="menu-item menu-item-home">
-          <a href="/">
+          <li class="menu-item">
             
-            <i class="icon icon-home-fill"></i>
+              <a href="/tags2/" class="menu-link">Tags</a>
             
-            <!-- <span class="menu-title">Home</span> -->
-            <span class="menu-title">Home</span>
-          </a>
-        </li>
+          </li>
         
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives">
+          <li class="menu-item">
             
-            <i class="icon icon-archives-fill"></i>
+              <a href="/project/" class="menu-link">Projects</a>
             
-            <!-- <span class="menu-title">Archives</span> -->
-            <span class="menu-title">Archives</span>
-          </a>
-        </li>
+          </li>
         
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories">
+          <li class="menu-item">
             
-            <i class="icon icon-folder"></i>
+              <a href="/about2/" class="menu-link">About</a>
             
-            <!-- <span class="menu-title">Categories</span> -->
-            <span class="menu-title">Categories</span>
-          </a>
-        </li>
-        
-        
-        <li class="menu-item menu-item-projects">
-          <a href="/projects">
-            
-            <i class="icon icon-folder"></i>
-            
-            <!-- <span class="menu-title">menu.Projects</span> -->
-            <span class="menu-title">Projects</span>
-          </a>
-        </li>
-        
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about.html">
-            
-            <i class="icon icon-cup-fill"></i>
-            
-            <!-- <span class="menu-title">About</span> -->
-            <span class="menu-title">About</span>
-          </a>
-        </li>
+          </li>
         
       </ul>
-      
-	
-    <ul class="social-links">
-    	
-        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
-        
-        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
-        
-        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
-        
-        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
-        
-    </ul>
-
-    </nav>
+    </div>
   </div>
 </header>
 
-  
-  
-<main class="main" role="main">
-  <div class="content">
-  <article id="post-linux/linux-thisislinux09" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-    
-    <div class="article-header">
-      
-        
-  
-    <h1 class="article-title" itemprop="name">
-      이것이 리눅스다(2020) 09 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF
-    </h1>
-  
-
-      
-      <div class="article-meta">
-        <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2020/05/31/linux/linux-thisislinux09/" class="article-date">
-	  <time datetime="2020-05-31T09:15:03.000Z" itemprop="datePublished">2020-05-31</time>
-	</a>
-</span>
-        
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/linux/">linux</a>
-  </span>
-
-        
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/linux/">linux</a>
-  </span>
-
-
-        
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/31/linux/linux-thisislinux09/#comments" class="article-comment-link">Comments</a></span>
-        
-      </div>
-    </div>
-    <div class="article-entry marked-body" itemprop="articleBody">
-      
-        <p>‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B8529915277" target="_blank" rel="noopener">[링크]</a>를 통해 구입할 수 있고, 강의는 <a href="https://www.youtube.com/playlist?list=PLVsNizTWUw7EJ9z-LW3lv3VC-6HI9I3hN" target="_blank" rel="noopener">[링크]</a>에서 확인할 수 있다. 한빛에서 네이버 카페<a href="https://cafe.naver.com/thisislinux" target="_blank" rel="noopener">[링크]</a>도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…! 감사합니다…!)<br><br><br></p>
+    <div id="article-banner">
+  <h2>이것이 리눅스다(2020) 09 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF</h2>
+  <p class="post-date">2020-05-31</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>‘이것이 리눅스다 2020년 개정판’을 공부하고 있다. 나와 같이 블로그나 글을 통해 공부하는 것이 더 편한 사람들을 위해 공부의 과정을 간단하게나마 글로 남기고자 한다. 책은 <a href="https://www.hanbit.co.kr/store/books/look.php?p_code=B8529915277" target="_blank" rel="noopener">[링크]</a>를 통해 구입할 수 있고, 강의는 <a href="https://www.youtube.com/playlist?list=PLVsNizTWUw7EJ9z-LW3lv3VC-6HI9I3hN" target="_blank" rel="noopener">[링크]</a>에서 확인할 수 있다. 한빛에서 네이버 카페<a href="https://cafe.naver.com/thisislinux" target="_blank" rel="noopener">[링크]</a>도 운영하고 있어서 정말 편하게 공부하고 있다. (열심히 공부해서 성공하겠습니다…! 감사합니다…!)<br><br><br></p>
 <h2 id="DNF-Dandified-dnf"><a href="#DNF-Dandified-dnf" class="headerlink" title="DNF(Dandified dnf)"></a>DNF(Dandified dnf)</h2><ul>
 <li>“rpm” 명령의 패키지 의존성 문제를 완전하게 해결함</li>
 <li>인터넷을 통하여 필요한 저장소(repository)에서 자동으로 모두 다운로드해서 설치하는 방식</li>
@@ -292,177 +239,201 @@
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# dnf clean all </span><br><span class="line">21 파일이 삭제되었습니다. </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# dnf grouplist </span><br><span class="line">CentOS DVD AppStream                            291 MB/s | 5.2 MB     00:00     </span><br><span class="line">CentOS DVD BaseOS                               305 MB/s | 2.2 MB     00:00     </span><br><span class="line">CentOS-8 - PowerTools                           201 kB/s | 1.8 MB     00:09     </span><br><span class="line">사용 가능한 환경 그룹 : </span><br><span class="line">   서버 - GUI 사용 </span><br><span class="line">   서버 </span><br><span class="line">   최소 설치 </span><br><span class="line">   가상화 호스트 </span><br><span class="line">   사용자 정의 운영 체제  </span><br><span class="line">설치된 환경 그룹 : </span><br><span class="line">   워크스테이션 </span><br><span class="line">사용 가능한 그룹 : </span><br><span class="line">   컨테이너 관리  </span><br><span class="line">   .NET 코어 개발  </span><br><span class="line">   RPM 개발 툴  </span><br><span class="line">   스마트카드 지원 </span><br><span class="line">   개발용 툴  </span><br><span class="line">   그래픽기반 관리 툴  </span><br><span class="line">   헤드리스 관리  </span><br><span class="line">   레거시 UNIX 호환성 </span><br><span class="line">   네트워크 서버 </span><br><span class="line">   과학기술 지원 </span><br><span class="line">   보안 툴  </span><br><span class="line">   시스템 툴  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# dnf grouplist hidden </span><br><span class="line">마지막 메타 데이터 만료 확인 : 0:00:08 전에 2020년 05월 06일 (수) 오전 05시 48분 28초. </span><br><span class="line">사용 가능한 환경 그룹 : </span><br><span class="line">   서버 - GUI 사용 </span><br><span class="line">   서버 </span><br><span class="line">   최소 설치 </span><br><span class="line">   가상화 호스트 </span><br><span class="line">   사용자 정의 운영 체제  </span><br><span class="line">설치된 환경 그룹 : </span><br><span class="line">   워크스테이션 </span><br><span class="line">설치된 그룹 : </span><br><span class="line">   base-x </span><br><span class="line">   게스트 데스크탑 에이전트 </span><br><span class="line">   인터넷 브라우저 </span><br><span class="line">   멀티미디어 </span><br><span class="line">   VMware 플랫폼 특정 패키지  </span><br><span class="line">   인쇄 클라이언트 </span><br><span class="line">   핵심 </span><br><span class="line">   글꼴 </span><br><span class="line">   GNOME </span><br><span class="line">   하드웨어 지원  </span><br><span class="line">   일반적인 NetworkManager 서브 모듈  </span><br><span class="line">   표준  </span><br><span class="line">   워크스테이션 제품 코어  </span><br><span class="line">사용 가능한 그룹 : </span><br><span class="line">   백업 클라이언트 </span><br><span class="line">   AppStream과 충돌  </span><br><span class="line">   컨테이너 관리  </span><br><span class="line">   디버깅 툴  </span><br><span class="line">   데스크탑 디버깅과 성능 툴  </span><br><span class="line">   .NET 코어 개발  </span><br><span class="line">   FTP 서버 </span><br><span class="line">   GNOME 응용 프로그램 </span><br><span class="line">   그래픽 생성 툴  </span><br><span class="line">   게스트 에이전트 </span><br><span class="line">   입력 방식 </span><br><span class="line">   인터넷 프로그램 </span><br><span class="line">   자바 플랫폼 </span><br><span class="line">   레거시 X Window 시스템 호환성 </span><br><span class="line">   오피스 스위트/생산성 </span><br><span class="line">   Atomic Host ostree 지원  </span><br><span class="line">   KVM 플랫폼 특정 패키지  </span><br><span class="line">   Hyper-v 플랫폼 특정 패키지  </span><br><span class="line">   원격 데스크탑 클라이언트 </span><br><span class="line">   RPM 개발 툴  </span><br><span class="line">   스마트카드 지원 </span><br><span class="line">   TeX 형식 시스템  </span><br><span class="line">   가상화 클라이언트 </span><br><span class="line">   가상화 하이퍼바이저 </span><br><span class="line">   가상화 플랫폼 </span><br><span class="line">   가상화 툴  </span><br><span class="line">   기본 웹 서버 </span><br><span class="line">   추가 개발 </span><br><span class="line">   Anaconda 툴  </span><br><span class="line">   기본 </span><br><span class="line">   BaseOS와 충돌  </span><br><span class="line">   개발용 툴  </span><br><span class="line">   전화연결 네트워킹 지원 </span><br><span class="line">   파일 및 스토리지 서버 </span><br><span class="line">   그래픽기반 관리 툴  </span><br><span class="line">   하드웨어 모니터링 유틸리티 </span><br><span class="line">   헤드리스 관리  </span><br><span class="line">   Infiniband 지원 </span><br><span class="line">   거대 시스템 성능 </span><br><span class="line">   레거시 UNIX 호환성 </span><br><span class="line">   메일 서버 </span><br><span class="line">   메인프레임 억세스 </span><br><span class="line">   네트워크 파일 시스템 클라이언트 </span><br><span class="line">   네트워크 서버 </span><br><span class="line">   네트워킹 툴  </span><br><span class="line">   성능 툴  </span><br><span class="line">   플랫폼 개발 </span><br><span class="line">   Python Web </span><br><span class="line">   Linux 용 원격 관리 </span><br><span class="line">   과학기술 지원 </span><br><span class="line">   보안 툴  </span><br><span class="line">   서버 제품 코어  </span><br><span class="line">   Windows 파일 서버 </span><br><span class="line">   시스템 툴  </span><br><span class="line">   CentOS PowerTools </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# dnf groupinstall &quot;자바 플랫폼&quot; </span><br><span class="line">마지막 메타 데이터 만료 확인 : 0:00:41 전에 2020년 05월 06일 (수) 오전 05시 48분 28초. </span><br><span class="line">종속성이 해결되었습니다. </span><br><span class="line">================================================================================ </span><br><span class="line"> 꾸러미                      아키텍처 </span><br><span class="line">                                    버전                    리포지토리     크기 </span><br><span class="line">================================================================================ </span><br><span class="line">Installing group/module packages: </span><br><span class="line"> icedtea-web                 noarch 1.7.1-9.el8             DVD-AppStream 1.6 M </span><br><span class="line"> java-1.8.0-openjdk          x86_64 1:1.8.0.201.b09-2.el8   DVD-AppStream 278 k </span><br><span class="line">종속성 설치: </span><br><span class="line"> copy-jdk-configs            noarch 3.7-1.el8               DVD-AppStream  27 k </span><br><span class="line"> java-1.8.0-openjdk-headless x86_64 1:1.8.0.201.b09-2.el8   DVD-AppStream  32 M </span><br><span class="line"> javapackages-filesystem     noarch 5.3.0-1.module_el8.0.0+11+5b8c10bd </span><br><span class="line">                                                            DVD-AppStream  30 k </span><br><span class="line"> javapackages-tools          noarch 5.3.0-1.module_el8.0.0+11+5b8c10bd </span><br><span class="line">                                                            DVD-AppStream  44 k </span><br><span class="line"> tagsoup                     noarch 1.2.1-15.el8            DVD-AppStream 118 k </span><br><span class="line"> ttmkfdir                    x86_64 3.0.9-54.el8            DVD-AppStream  62 k </span><br><span class="line"> tzdata-java                 noarch 2019a-1.el8             DVD-AppStream 188 k </span><br><span class="line"> xorg-x11-fonts-Type1        noarch 7.5-19.el8              DVD-AppStream 522 k </span><br><span class="line"> lksctp-tools                x86_64 1.0.18-3.el8            DVD-BaseOS    100 k </span><br><span class="line">Enabling module streams: </span><br><span class="line"> javapackages-runtime               201801                                      </span><br><span class="line">Installing Groups: </span><br><span class="line"> Java Platform                                                                  </span><br><span class="line">거래 요약 </span><br><span class="line">================================================================================ </span><br><span class="line">설치  11 꾸러미 </span><br><span class="line">총합 크기: 35 M </span><br><span class="line">설치 크기 : 116 M </span><br><span class="line">이게 괜찮습니까 [y / N] : y </span><br><span class="line">패키지 다운로드중: </span><br><span class="line">트랜잭션 점검 실행 중 </span><br><span class="line">트랜잭션 검사가 성공했습니다. </span><br><span class="line">트랜잭션 테스트 실행 중 </span><br><span class="line">트랜잭션 테스트가 완료되었습니다. </span><br><span class="line">거래 실행 중 </span><br><span class="line">  스크립틀릿 실행: copy-jdk-configs-3.7-1.el8.noarch                        1/1  </span><br><span class="line">  스크립틀릿 실행: java-1.8.0-openjdk-headless-1:1.8.0.201.b09-2.el8.x86_   1/1  </span><br><span class="line">  준비 중입니다  :                                                          1/1  </span><br><span class="line">  Installing     : javapackages-filesystem-5.3.0-1.module_el8.0.0+11+5b    1/11  </span><br><span class="line">  Installing     : lksctp-tools-1.0.18-3.el8.x86_64                        2/11  </span><br><span class="line">  스크립틀릿 실행: lksctp-tools-1.0.18-3.el8.x86_64                        2/11  </span><br><span class="line">  Installing     : tzdata-java-2019a-1.el8.noarch                          3/11  </span><br><span class="line">  Installing     : ttmkfdir-3.0.9-54.el8.x86_64                            4/11  </span><br><span class="line">  Installing     : xorg-x11-fonts-Type1-7.5-19.el8.noarch                  5/11  </span><br><span class="line">  스크립틀릿 실행: xorg-x11-fonts-Type1-7.5-19.el8.noarch                  5/11  </span><br><span class="line">  Installing     : copy-jdk-configs-3.7-1.el8.noarch                       6/11  </span><br><span class="line">  Installing     : java-1.8.0-openjdk-headless-1:1.8.0.201.b09-2.el8.x8    7/11  </span><br><span class="line">  스크립틀릿 실행: java-1.8.0-openjdk-headless-1:1.8.0.201.b09-2.el8.x8    7/11  </span><br><span class="line">  Installing     : javapackages-tools-5.3.0-1.module_el8.0.0+11+5b8c10b    8/11  </span><br><span class="line">  Installing     : tagsoup-1.2.1-15.el8.noarch                             9/11  </span><br><span class="line">  Installing     : java-1.8.0-openjdk-1:1.8.0.201.b09-2.el8.x86_64        10/11  </span><br><span class="line">  스크립틀릿 실행: java-1.8.0-openjdk-1:1.8.0.201.b09-2.el8.x86_64        10/11  </span><br><span class="line">  Installing     : icedtea-web-1.7.1-9.el8.noarch                         11/11  </span><br><span class="line">  스크립틀릿 실행: icedtea-web-1.7.1-9.el8.noarch                         11/11  </span><br><span class="line">  스크립틀릿 실행: copy-jdk-configs-3.7-1.el8.noarch                      11/11  </span><br><span class="line">  스크립틀릿 실행: java-1.8.0-openjdk-1:1.8.0.201.b09-2.el8.x86_64        11/11  </span><br><span class="line">  스크립틀릿 실행: icedtea-web-1.7.1-9.el8.noarch                         11/11  </span><br><span class="line">  확인 중        : copy-jdk-configs-3.7-1.el8.noarch                       1/11  </span><br><span class="line">  확인 중        : icedtea-web-1.7.1-9.el8.noarch                          2/11  </span><br><span class="line">  확인 중        : java-1.8.0-openjdk-1:1.8.0.201.b09-2.el8.x86_64         3/11  </span><br><span class="line">  확인 중        : java-1.8.0-openjdk-headless-1:1.8.0.201.b09-2.el8.x8    4/11  </span><br><span class="line">  확인 중        : javapackages-filesystem-5.3.0-1.module_el8.0.0+11+5b    5/11  </span><br><span class="line">  확인 중        : javapackages-tools-5.3.0-1.module_el8.0.0+11+5b8c10b    6/11  </span><br><span class="line">  확인 중        : tagsoup-1.2.1-15.el8.noarch                             7/11  </span><br><span class="line">  확인 중        : ttmkfdir-3.0.9-54.el8.x86_64                            8/11  </span><br><span class="line">  확인 중        : tzdata-java-2019a-1.el8.noarch                          9/11  </span><br><span class="line">  확인 중        : xorg-x11-fonts-Type1-7.5-19.el8.noarch                 10/11  </span><br><span class="line">  확인 중        : lksctp-tools-1.0.18-3.el8.x86_64                       11/11  </span><br><span class="line">설치됨: </span><br><span class="line">  icedtea-web-1.7.1-9.el8.noarch                                                 </span><br><span class="line">  java-1.8.0-openjdk-1:1.8.0.201.b09-2.el8.x86_64                                </span><br><span class="line">  copy-jdk-configs-3.7-1.el8.noarch                                              </span><br><span class="line">  java-1.8.0-openjdk-headless-1:1.8.0.201.b09-2.el8.x86_64                       </span><br><span class="line">  javapackages-filesystem-5.3.0-1.module_el8.0.0+11+5b8c10bd.noarch              </span><br><span class="line">  javapackages-tools-5.3.0-1.module_el8.0.0+11+5b8c10bd.noarch                   </span><br><span class="line">  tagsoup-1.2.1-15.el8.noarch                                                    </span><br><span class="line">  ttmkfdir-3.0.9-54.el8.x86_64                                                   </span><br><span class="line">  tzdata-java-2019a-1.el8.noarch                                                 </span><br><span class="line">  xorg-x11-fonts-Type1-7.5-19.el8.noarch                                         </span><br><span class="line">  lksctp-tools-1.0.18-3.el8.x86_64                                               </span><br><span class="line">완료되었습니다!</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-    <!-- <div class="article-footer">
-      <blockquote class="mt-2x">
-  <ul class="post-copyright list-unstyled">
+</section>
+    <!-- Tags START -->
     
-    <li class="post-copyright-link hidden-xs">
-      <strong>本文链接：</strong>
-      <a href="https://miniminis.github.io/2020/05/31/linux/linux-thisislinux09/" title="이것이 리눅스다(2020) 09 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF" target="_blank" rel="external">https://miniminis.github.io/2020/05/31/linux/linux-thisislinux09/</a>
-    </li>
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#linux" >
+    <span class="tag-code">linux</span>
+  </a>
+
+      </div>
     
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-</blockquote>
-
-
-<div class="panel panel-default panel-badger">
-  <div class="panel-body">
-    <figure class="media">
-      <div class="media-left">
-        <a href="https://github.com/miniminis" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/miniminis" target="_blank"><span class="text-dark">Flash</span><small class="ml-1x">FullStack Android Developer</small></a></h3>
-        <div></div>
-      </div>
-    </figure>
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/05/31/linux/linux-thisislinux08/">
+        <span class="nav-arrow">← </span>
+        
+          이것이 리눅스다(2020) 08 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - RPM
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2020/05/31/linux/linux-thisislinux10/">
+        
+          이것이 리눅스다(2020) 10 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - 파일 압축과 묶기/파일위치검색
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
   </div>
-</div>
 
-
-    </div> -->
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
   </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
   
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
     
-  <section id="comments">
-  	
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    
-  </section>
-
-
-  
-</div>
-
-  <nav class="bar bar-footer clearfix" data-stick-bottom>
-  <div class="bar-inner">
-  
-  <ul class="pager pull-left">
-    
-    <li class="prev">
-      <a href="/2020/05/31/linux/linux-thisislinux10/" title="이것이 리눅스다(2020) 10 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - 파일 압축과 묶기/파일위치검색"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/2020/05/31/linux/linux-thisislinux08/" title="이것이 리눅스다(2020) 08 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - RPM"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
-    </li>
-    
-    
-  </ul>
-  
-  
-  
-  <div class="bar-right">
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#DNF-Dandified-dnf"><span class="toc-nav-text">DNF(Dandified dnf)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#DNF-기본-사용법"><span class="toc-nav-text">DNF 기본 사용법</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#터미널에서-확인"><span class="toc-nav-text">터미널에서 확인</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#DNF-고급-사용법"><span class="toc-nav-text">DNF 고급 사용법</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#DNF-작동방식"><span class="toc-nav-text">DNF 작동방식</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#DNF-작동방식-설정파일"><span class="toc-nav-text">DNF 작동방식 설정파일</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#network를-이용한-설치방법과-DVD를-이용한-설치방법-동시에-사용하기-실습"><span class="toc-nav-text">network를 이용한 설치방법과 DVD를 이용한 설치방법 동시에 사용하기 실습</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#dvd-repo-내용"><span class="toc-nav-text">dvd.repo 내용</span></a></li></ol></li></ol></li></ol>
     
   </div>
-  </div>
-</nav>
+</aside>
   
-
-
+  <!-- Catalog END -->
 </main>
 
-  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
-	
-	
-    <ul class="social-links">
-    	
-        <li><a href="https://github.com/miniminis" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
-        
-        <li><a href="mailto:minhee4735@gmail.com" target="_blank" title="Mail" data-toggle=tooltip data-placement=top><i class="icon icon-mail"></i></a></li>
-        
-        <li><a href="https://brunch.co.kr/@miniblackgoat" target="_blank" title="Brunch" data-toggle=tooltip data-placement=top><i class="icon icon-brunch"></i></a></li>
-        
-        <li><a href="/rss2.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
-        
-    </ul>
-
-    <div class="copyright">
-    	
-        <div class="publishby">
-        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
-        </div>
-    </div>
-</footer>
-  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <script>
-window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
-</script>
-<script src="/js/plugin.min.js"></script>
-<script src="/js/application.js"></script>
+  (function () {
+    var url = 'https://miniminis.github.io/2020/05/31/linux/linux-thisislinux09/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
 
-    <script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+  <script>
+    var gitmentConfig = "miniminis";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "이것이 리눅스다(2020) 09 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - DNF",
+        owner: "miniminis",
+        repo: "miniminis.github.io",
+        oauth: {
+          client_id: "6777a600f48bea19d4c9",
+          client_secret: "a873dcd4221c63013a85e792d2f3f0db2d90e245"
         },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <!-- <br> -->
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
 </script>
-<script src="/js/insight.js"></script>
-
-
-
-
-
-   
-
-
-
-
-   
-    
-    <script defer>
-    var disqus_config = function () {
-        
-            this.page.url = 'https://miniminis.github.io/2020/05/31/linux/linux-thisislinux09/';
-        
-        this.page.identifier = 'linux/linux-thisislinux09';
-    };
-    (function() { 
-        var d = document, s = d.createElement('script');  
-        s.src = '//' + 'miniminis-github-io-2' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-
-
-
-
-
-
-    <script defer type="text/javascript">
-(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-149033629-1', 'auto');
-ga('send', 'pageview');
-
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
 </script>
 
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
 
-
-</body>
+<script src="/js/script.js"></script>
+  </body>
 </html>
