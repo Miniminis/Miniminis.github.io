@@ -8,6 +8,22 @@
     </url>
 
     <url>
+        <loc>https://miniminis.github.io/2020/07/26/5mincs/cswithpython1/</loc>
+        <lastmod>2020-07-26T01:04:44.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2020/07/26/5mincs/cswithpython0/</loc>
+        <lastmod>2020-07-25T23:58:08.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://miniminis.github.io/2019/09/16/hexo/hexo-blog-making/</loc>
         <lastmod>2020-07-25T03:35:16.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -128,23 +144,7 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2020/05/30/linux/linux-thisislinux05/</loc>
-        <lastmod>2020-07-12T07:25:36.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://miniminis.github.io/2020/05/30/linux/linux-thisislinux04/</loc>
-        <lastmod>2020-07-12T07:25:36.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2020/05/31/linux/linux-thisislinux08/</loc>
         <lastmod>2020-07-12T07:25:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -160,7 +160,15 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2020/05/30/linux/linux-thisislinux06/</loc>
+        <loc>https://miniminis.github.io/2020/05/30/linux/linux-thisislinux05/</loc>
+        <lastmod>2020-07-12T07:25:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2020/05/31/linux/linux-thisislinux08/</loc>
         <lastmod>2020-07-12T07:25:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -169,6 +177,14 @@
 
     <url>
         <loc>https://miniminis.github.io/2020/05/31/linux/linux-thisislinux09/</loc>
+        <lastmod>2020-07-12T07:25:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2020/05/30/linux/linux-thisislinux06/</loc>
         <lastmod>2020-07-12T07:25:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -192,7 +208,7 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2019/10/09/insight/insight-bitcoin-1/</loc>
+        <loc>https://miniminis.github.io/2019/10/13/insight/insight-africa-coding-edu-for-girl/</loc>
         <lastmod>2020-07-12T07:24:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -200,7 +216,7 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2019/10/13/insight/insight-africa-coding-edu-for-girl/</loc>
+        <loc>https://miniminis.github.io/2019/10/09/insight/insight-bitcoin-1/</loc>
         <lastmod>2020-07-12T07:24:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -248,14 +264,6 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2019/10/23/android/android-01/</loc>
-        <lastmod>2020-07-12T07:22:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://miniminis.github.io/2019/10/24/android/android-02/</loc>
         <lastmod>2020-07-12T07:22:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -265,6 +273,14 @@
 
     <url>
         <loc>https://miniminis.github.io/2019/10/24/android/android-03/</loc>
+        <lastmod>2020-07-12T07:22:00.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/23/android/android-01/</loc>
         <lastmod>2020-07-12T07:22:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

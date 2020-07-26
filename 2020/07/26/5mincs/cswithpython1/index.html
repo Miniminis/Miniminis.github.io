@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="flash&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      5분컴공 1 / 32비트 컴퓨터와 64비트 컴퓨터는 무엇이 다를까? | Flashlog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/css/plugins/gitment.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+    <script src="/js/gitment.js"></script>
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149033629-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-149033629-1');
+    </script>
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png">
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Flashlog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags2/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about2/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags2/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about2/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>5분컴공 1 / 32비트 컴퓨터와 64비트 컴퓨터는 무엇이 다를까?</h2>
+  <p class="post-date">2020-07-26</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p><a href="http://www.yes24.com/Product/goods/58552941?scode=029" target="_blank" rel="noopener">[컴퓨터사이언스 부트캠프 with 파이썬]</a> 책을 보면서 컴퓨터 공학의 주요 개념들을 공부하고 있습니다.<br>시간이 많이 없어서 틈틈히 짬나는대로 책을 읽고 정리하고 있습니다.<br>이 글을 읽는 분들도 5분만에 후루룩 읽고 컴퓨터와, 그리고 프로그래밍과 좀 더 친해질 수 있었으면 좋겠습니다.</p>
+<br>
+
+<h2 id="컴퓨터가-데이터를-처리하는-방법"><a href="#컴퓨터가-데이터를-처리하는-방법" class="headerlink" title="컴퓨터가 데이터를 처리하는 방법"></a>컴퓨터가 데이터를 처리하는 방법</h2><p>컴퓨터는 우리와 말하는 언어가 다르죠. 사람은 다양한 언어를 통해 의견을 표현하고 소통하지만, 컴퓨터는 오직 0과 1로만 데이터를 저장하고 처리합니다. </p>
+<p>0과 1을 표현할 수 있는 데이터 단위는 ‘비트’라고 부르며, 8비트는 1바이트가 됩니다. 즉, 아래와 같습니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 bit(0 or 1) * 8 = 1byte</span><br></pre></td></tr></table></figure>
+
+<p>그렇다면, 오늘의 주제인 32비트 컴퓨터와 64비트 컴퓨터는 어떤 차이가 있는 것일까요? </p>
+<br>
+
+<h2 id="한번에-얼마만큼의-데이터를-처리할-수-있는가"><a href="#한번에-얼마만큼의-데이터를-처리할-수-있는가" class="headerlink" title="한번에 얼마만큼의 데이터를 처리할 수 있는가?"></a>한번에 얼마만큼의 데이터를 처리할 수 있는가?</h2><p>결론부터 말씀을 드리자면, 32비트 컴퓨터와 64비트 컴퓨터의 차이는 <code>한번에 데이터를 처리할 수 있는 양</code>입니다. 32비트 컴퓨터는 한번에 32비트의 데이터를 처리하고, 64비트 컴퓨터는 한번에 64비트의 데이터를 처리할 수 있습니다. </p>
+<p>한번에 처리할 수 있는 데이터의 양이 클수록 당연히 속도도 더 빠르겠지요. 그래서 64비트 컴퓨터는 32비트 컴퓨터보다 빠르다고 말할 수 있을 것입니다. </p>
+<br>
+
+<h2 id="왜-32비트-컴퓨터는-4GB-이상의-메모리를-사용할-수-없을까"><a href="#왜-32비트-컴퓨터는-4GB-이상의-메모리를-사용할-수-없을까" class="headerlink" title="왜 32비트 컴퓨터는 4GB 이상의 메모리를 사용할 수 없을까?"></a>왜 32비트 컴퓨터는 4GB 이상의 메모리를 사용할 수 없을까?</h2><p>컴퓨터에는 ‘메모리’라고 불리는 저장공간이 있습니다. 이 메모리 내부에는 각각의 주소가 존재합니다. </p>
+<p>메모리주소의 개념은 흔히 우편번호에 빗대어 설명되곤 합니다. <code>대한민국</code>라는 한정된 영토 내에 존재하는 모든 집과 건물들에 <code>우편번호</code>가 매겨져있어서 그 번호만 보면 위치를 알 수 있고, 찾아갈 수 있죠. </p>
+<p>메모리주소도 이와 비슷합니다. 컴퓨터 내의 한정된 메모리 자원에 주소를 부여합니다. 하지만 컴퓨터는 0과 1만 인식할 수 있으므로 2진수로 표현하도록 합니다. 메모리주소 1개는 메모리에서 1바이트를 의미합니다. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1개의 메모리주소 = 1byte</span><br></pre></td></tr></table></figure>
+
+<p>8비트 컴퓨터의 경우는 2진수 8자리로 메모리주소를 표현하므로, 2^8 개의 주소를 표현할 수 있고, 32비트 컴퓨터의 경우는 2진수 32자리로 메모리주소를 표현하므로, 2^32개의 주소를 표현할 수 있는 셈입니다. </p>
+<p>정리하자면 아래와 같이 생각할 수 있을 듯 합니다. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">32비트 컴퓨터에서 표현할 수 있는 메모리주소의 양 : 2^32</span><br><span class="line">메모리주소 1개는 = 1바이트 이므로 32비트에서는 2^32 개의 바이트를 표현함.</span><br><span class="line">2^32 = 2^10(kb) * 2^10(mb) * 2^10(gb) * 2*2 = 4gb</span><br></pre></td></tr></table></figure>
+
+<p>이러한 이유에서 32비트 컴퓨터는 4기가바이트의 메모리 주소를 가질 수 있습니다. 그렇기 때문에 32비트 컴퓨터에 4gb 보다 큰 메모리를 추가하는 것은 돈낭비가 되는 것입니다. 메모리가 할당받을 주소가 없기 때문에 쓸 수 없는 것! </p>
+<br>
+
+<h2 id="변수의-의미"><a href="#변수의-의미" class="headerlink" title="변수의 의미"></a>변수의 의미</h2><p>프로그래밍을 하다보면 ‘변수’라는 그릇에 데이터를 담아서 저장하고 표현합니다. 위의 개념들을 통해서 결국 변수 역시도 메모리를 차지하는 영역이며 메모리주소를 부여받은 것임을 알 수 있습니다.</p>
+<h3 id="파이썬에서-변수는"><a href="#파이썬에서-변수는" class="headerlink" title="파이썬에서 변수는?"></a>파이썬에서 변수는?</h3><p><img src="/blog/source/images/cswithpython1_1.jpg" alt="파이썬변수"></p>
+<p>이 책을 공부하면서 처음 알게된 개념은, 파이썬은 다른 언어들과 다르게 변수안에 데이터를 담고 있지 않다는 것입니다. 제가 처음 프로그래밍을 시작했던 자바를 포함하여 많은 프로그래밍 언어들은 ‘변수’가 일종의 데이터를 담는 그릇처럼 생각되고, 그 변수 안에 데이터를 저장하고 그 변수를 통해 데이터를 표현합니다. </p>
+<p>하지만 파이썬의 경우, 변수 내에 데이터를 직접 담고 있지 않고, 메모리 내에서 데이터를 저장하고 있는 그 주소를 가리키고 있습니다. 실제 데이터를 가진 공간을 가리키고 있는 것입니다. 변수는 그 값 객체를 참고하고 있을 뿐입니다.</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#5mincs" >
+    <span class="tag-code">5mincs</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/07/26/5mincs/cswithpython0/">
+        <span class="nav-arrow">← </span>
+        
+          5분컴공 0 / 목차
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#컴퓨터가-데이터를-처리하는-방법"><span class="toc-nav-text">컴퓨터가 데이터를 처리하는 방법</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#한번에-얼마만큼의-데이터를-처리할-수-있는가"><span class="toc-nav-text">한번에 얼마만큼의 데이터를 처리할 수 있는가?</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#왜-32비트-컴퓨터는-4GB-이상의-메모리를-사용할-수-없을까"><span class="toc-nav-text">왜 32비트 컴퓨터는 4GB 이상의 메모리를 사용할 수 없을까?</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#변수의-의미"><span class="toc-nav-text">변수의 의미</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#파이썬에서-변수는"><span class="toc-nav-text">파이썬에서 변수는?</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://miniminis.github.io/2020/07/26/5mincs/cswithpython1/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+  <script>
+    var gitmentConfig = "miniminis";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "5분컴공 1 / 32비트 컴퓨터와 64비트 컴퓨터는 무엇이 다를까?",
+        owner: "miniminis",
+        repo: "miniminis.github.io",
+        oauth: {
+          client_id: "6777a600f48bea19d4c9",
+          client_secret: "a873dcd4221c63013a85e792d2f3f0db2d90e245"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <!-- <br> -->
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

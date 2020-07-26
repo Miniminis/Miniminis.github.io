@@ -8,6 +8,13 @@
     </url>
 
     <url>
+        <loc>https://miniminis.github.io/categories/5mincs/</loc>
+        <lastmod>2020-07-26T01:04:44.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://miniminis.github.io/categories/hexo/</loc>
         <lastmod>2020-07-25T03:35:16.000Z</lastmod>
         <changefreq>weekly</changefreq>
