@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="flash&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      5분 컴공 4 / 차곡차곡 쌓이는 함수 | Flashlog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/css/plugins/gitment.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+    <script src="/js/gitment.js"></script>
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149033629-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-149033629-1');
+    </script>
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png">
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Flashlog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags2/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about2/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags2/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about2/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>5분 컴공 4 / 차곡차곡 쌓이는 함수</h2>
+  <p class="post-date">2020-08-03</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p><em>1시간30분</em></p>
+<p><a href="http://www.yes24.com/Product/goods/58552941?scode=029" target="_blank" rel="noopener">[컴퓨터사이언스 부트캠프 with 파이썬]</a> 책을 보면서 컴퓨터 공학 기초를 공부하고 있습니다.<br>시간이 많이 없어서 틈틈히 짬나는대로 책을 읽고 정리하고 있습니다.</p>
+<br>
+
+<h2 id="함수-차곡차곡-쌓이는-스택"><a href="#함수-차곡차곡-쌓이는-스택" class="headerlink" title="함수, 차곡차곡 쌓이는 스택"></a>함수, 차곡차곡 쌓이는 스택</h2><p>함수는 영어로 function 이라고 하죠. 단어 그대로 사용하면 무엇인가 유용하게 사용할 수 있는 기능입니다.</p>
+<p>프로그래밍을 할때, 자주 사용되는 코드들을 함수로 정의해놓고 쓰다보면 불필요하게 반복되는 코드를 쓸 필요도 없어지고, 흐름도 좀 더 명확해지며 가독성도 좋아집니다.</p>
+<br>
+
+<p>맨 처음 유투브를 보며 이것저것 따라하면서 코딩을 할 때에는 함수가 정확히 어떤 원리로 작동되는지 알지 못했습니다. 그냥 필요한 기능들을 미리 정의해놓고 가져다가 쓰면 되는구나~ 정도였죠. 오늘은 함수가 호출될때 일어나는 일들을 살펴보면서 그 원리에 대해서 알아봅시다!</p>
+<br>
+
+<h2 id="지역변수와-전역변수"><a href="#지역변수와-전역변수" class="headerlink" title="지역변수와 전역변수"></a>지역변수와 전역변수</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 전역변수 </span><br><span class="line">g_var = 10         #1 전역변수 선언</span><br><span class="line">def func():</span><br><span class="line">    print(&quot;g_var = &#123;&#125;&quot;.format(g_var)) </span><br><span class="line">if __name__ == &quot;__main__&quot;: </span><br><span class="line">    func() </span><br><span class="line"></span><br><span class="line"># 실행결과 g_var = 10</span><br></pre></td></tr></table></figure>
+
+<p>전역변수는 함수 밖에 선언된 변수입니다. 그 범위가 넓죠.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 지역변수</span><br><span class="line">g_var = 10       #1 전역변수</span><br><span class="line">def func(): </span><br><span class="line">    g_var = 20   #2 </span><br><span class="line">    print(&quot;g_var = &#123;&#125; in function&quot;.format(g_var))  #3: 지역변수</span><br><span class="line">if __name__ == &quot;__main__&quot;: </span><br><span class="line">    func() </span><br><span class="line">    print(&quot;g_var = &#123;&#125; in main&quot;.format(g_var))      #4 전역변수 값 출력</span><br><span class="line"></span><br><span class="line"># 실행결과 g_var = 20 in function </span><br><span class="line">#         g_var = 10 in main</span><br></pre></td></tr></table></figure>
+
+<p>지역변수는 함수 내에 선언된 변수입니다.<br>위의 실행결과를 보면, 함수 내에서는 전역변수의 값을 가져와 변경할 수가 없는 것으로 보입니다.</p>
+<p>함수 내부에서 전역변수의 값을 변경하고자 할 때에는 두 가지 방법을 이용합니다. </p>
+<h3 id="1-global-keyword-를-사용해서-local-매소드-내에서-전역변수를-변경"><a href="#1-global-keyword-를-사용해서-local-매소드-내에서-전역변수를-변경" class="headerlink" title="1. global keyword 를 사용해서 local 매소드 내에서 전역변수를 변경"></a>1. global keyword 를 사용해서 local 매소드 내에서 전역변수를 변경</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">g_var = 10            #1 전역변수 선언</span><br><span class="line">def func(): </span><br><span class="line">    global g_var      #2 전역변수 global 이용해서 함수 내로 가져오기 </span><br><span class="line">    g_var = 20        #3 전역변수 값 변경 </span><br><span class="line">if __name__ == &quot;__main__&quot;: </span><br><span class="line">    print(&quot;g_var : &#123;&#125; before&quot;.format(g_var))  # 전역변수 10 출력  </span><br><span class="line">    func()                                      # 함수 내에서 전역변수 값 가져와서 변경 </span><br><span class="line">    print(&quot;g_var : &#123;&#125; after&quot;.format(g_var))     # 바뀐 전역변수 값 20 출력</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-nonlocal-keyword-이용해서-local-매소드-내에서-전역변수를-변경"><a href="#2-nonlocal-keyword-이용해서-local-매소드-내에서-전역변수를-변경" class="headerlink" title="2. nonlocal keyword 이용해서 local 매소드 내에서 전역변수를 변경"></a>2. nonlocal keyword 이용해서 local 매소드 내에서 전역변수를 변경</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def outer(): </span><br><span class="line">    a = 2           #1 a=2, b=3</span><br><span class="line">    b = 3 </span><br><span class="line">    def inner(): </span><br><span class="line">        nonlocal a  #2 nonlocal 이용해서 inner() 외부에 선언된 a 변수의 값 가져오기</span><br><span class="line">        a = 100     #3 가져온 외부의 a 값 변경 </span><br><span class="line">    inner() # inner 함수 실행</span><br><span class="line">    print(&quot;locals in outer : a = &#123;&#125;, b = &#123;&#125;&quot;.format(a, b))      # a=100, b=3 </span><br><span class="line">if __name__ == &quot;__main__&quot;: </span><br><span class="line">    outer()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="인자전달방식에-따른-함수의-분류"><a href="#인자전달방식에-따른-함수의-분류" class="headerlink" title="인자전달방식에 따른 함수의 분류"></a>인자전달방식에 따른 함수의 분류</h2><p>함수는 인자 전달방식에 따라서 아래와 같이 분류될 수 있습니다. </p>
+<ol>
+<li>값에 의한 전달 </li>
+<li>참조에 의한 전달 </li>
+<li>객체참조에 의한 전달</li>
+</ol>
+<h3 id="값에-의한-전달-C언어"><a href="#값에-의한-전달-C언어" class="headerlink" title="값에 의한 전달 (C언어)"></a>값에 의한 전달 (C언어)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">void change_value(int x, int value) // #3 change_value() 함수 정의 </span><br><span class="line">&#123;</span><br><span class="line">    x = value;                      // #4 전달받은 x 값을 value 값으로 변경 </span><br><span class="line">    cout &lt;&lt; &quot;x : &quot; &lt;&lt; x &lt;&lt; &quot; in change_value&quot; &lt;&lt; endl;  //#5 함수 내에서 x 값 확인</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    int x = 10;                     // #1 변수 x 선언</span><br><span class="line">    change_value(x, 20);            // #2 change_value() 함수 호출, x값 넘겨주기 </span><br><span class="line">    cout &lt;&lt; &quot;x : &quot; &lt;&lt; x &lt;&lt; &quot; in main&quot; &lt;&lt; endl;  //#6 메인에서 x 값 확인</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">실행결과 </span><br><span class="line">x : 20 in change_value</span><br><span class="line">x : 10 in main</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>함수 내에서 출력한 내용은 변했는데, 메인 함수에서 다시 확인해보니 변수 x 값은 그대로입니다. 이유는 변수 x를 전달한 것이 아니라, x의 값을 전달했기 때문!!</p>
+<p><strong>스택프레임 개념</strong></p>
+<blockquote>
+<p>함수가 호출될 때 메모리 내에서는 “스택프레임”이 생긴다. 함수 내에 정의되어있는 변수들이 메모리를 차지하는 공간이 생기고 함수가 호출되는 순서에 따라서 차곡차곡 위로 쌓인다 –&gt; 스택구조로! 그래서 제일 나중에 호출된 함수가 가장 먼저 사라지고, 제일 먼저 호출된 함수는 가장 나중에 사라지게 된다.</p>
+</blockquote>
+<p><img src="/images/cswithpython4_1.jpg" alt="image1"></p>
+<br>
+
+<h3 id="참조에-의한-전달-C언어"><a href="#참조에-의한-전달-C언어" class="headerlink" title="참조에 의한 전달 (C언어)"></a>참조에 의한 전달 (C언어)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">void change_value(int *x, int value) // #3 change_value() 함수 정의</span><br><span class="line">&#123;</span><br><span class="line">    *x = value;                       // #4 포인터 변수 x로 main 함수의 x가 참조하고 있는 메모리의 주소를 찾아서 value 값을 삽입 </span><br><span class="line">    cout &lt;&lt; &quot;x : &quot; &lt;&lt; *x &lt;&lt; &quot; in change_value&quot; &lt;&lt; endl; // #5 함수 내에서 x값 출력</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    int x = 10;                       // #1 변수 x정의</span><br><span class="line">    change_value(&amp;x, 20);             // #2 change_value() 함수 호출 : 인자로 변수 x가 차지하고 있는 메모리 주소의 첫번재 바이트를 전달(포인터변수)</span><br><span class="line">    cout &lt;&lt; &quot;x : &quot; &lt;&lt; x &lt;&lt; &quot; in main&quot; &lt;&lt; endl;      //#6 main 함수 내에서 x값 출력</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">실행결과</span><br><span class="line">x : 20 in change_value</span><br><span class="line">x : 20 in main</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>(그 악명높은… 말로만 듣던…) 포인터 변수를 통해서 메모리주소값을 직접 넘겨서, 함수내에서 메인함수에 정의된 변수의 값을 변경하였습니다!!!</p>
+<p><img src="/images/cswithpython4_2.jpg" alt="image2"></p>
+<br>
+
+<h3 id="객체참조에-의한-전달-파이썬-변경불가능객체전달"><a href="#객체참조에-의한-전달-파이썬-변경불가능객체전달" class="headerlink" title="객체참조에 의한 전달 (파이썬-변경불가능객체전달)"></a>객체참조에 의한 전달 (파이썬-변경불가능객체전달)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def change_value(x, value):   #3 change_value() 함수 정의</span><br><span class="line">    x = value                 #4 x값을 value 로 변경</span><br><span class="line">    print(&quot;x : &#123;&#125; in change_value&quot;.format(x))   #5 x = 20</span><br><span class="line"></span><br><span class="line">if __name__ = = &quot;__main__&quot;:</span><br><span class="line">    x = 10                    #1 변수 x 선언</span><br><span class="line">    change_value(x, 20)       #2 change_value() 호출</span><br><span class="line">    print(&quot;x : &#123;&#125; in main&quot;.format(x))   #6 x=10</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">실행결과 </span><br><span class="line">x : 20 in change_value </span><br><span class="line">x : 10 in main</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>파이썬의 경우는 C언어처럼 변수 내부의 값을 담고 있는 형태가 아니라, 메모리에 저장되어있는 값을 참조하는 형태. 변수 이름은 값을 가리키는 형태입니다!</p>
+<p><img src="/images/cswithpython4_3.jpg" alt="image3"></p>
+<br>
+
+<h3 id="객체참조에-의한-전달-파이썬-변경가능객체전달"><a href="#객체참조에-의한-전달-파이썬-변경가능객체전달" class="headerlink" title="객체참조에 의한 전달 (파이썬-변경가능객체전달)"></a>객체참조에 의한 전달 (파이썬-변경가능객체전달)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def func(li):</span><br><span class="line">    li[0] = &apos;I am your father!&apos;   #3. func() 정의, 전달받은 리스트의 요소 변경 시도</span><br><span class="line"></span><br><span class="line">if __name__ = = &quot;__main__&quot;:</span><br><span class="line">    li = [1, 2, 3, 4]       #1. list 정의</span><br><span class="line">    func(li)                #2. func() 호출</span><br><span class="line">    print(li)               #4. list 요소 확인을 위해서 print() </span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">실행결과 [&apos;I am your father!&apos;, 2, 3, 4]</span><br><span class="line"></span><br><span class="line">리스트의 요소를 직접 참조하여 변경했기 때문에 리스트가 변경됨</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def func(li): </span><br><span class="line">    li = [&apos;I am your father&apos;, 2, 3, 4]   #1 </span><br><span class="line">if _ _name__ = = &quot;__main__&quot;: </span><br><span class="line">    li = [1, 2, 3, 4] </span><br><span class="line">    func(li) </span><br><span class="line">    print(li) </span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">실행결과 [1, 2, 3, 4]</span><br><span class="line">아예 새로운 리스트를 정의한 경우는 main 함수의 li의 요소를 바꾼 것이 아니기 때문에 예외.</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="람다함수"><a href="#람다함수" class="headerlink" title="람다함수"></a>람다함수</h2><p>람다함수는 이름이 없는 함수입니다. return 문이 따로 없기 때문에 x=10과 같이 할당문은 쓰일 수가 없습니다. 보통은 자주 사용하지 않는 함수를 람다함수로 씁니다. 아래와 같이 쓰일 수 있습니다. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; f = lambda x: x ** 2</span><br><span class="line">&gt;&gt;&gt; f(2)</span><br><span class="line">4</span><br><span class="line">&gt;&gt;&gt; f(5)</span><br><span class="line">25</span><br></pre></td></tr></table></figure>
+
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#5mincs" >
+    <span class="tag-code">5mincs</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/07/30/5mincs/cswithpython3/">
+        <span class="nav-arrow">← </span>
+        
+          5분컴공 3 / 0과 1만 아는 컴퓨터, 문자는 어떻게 인식하지?
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#함수-차곡차곡-쌓이는-스택"><span class="toc-nav-text">함수, 차곡차곡 쌓이는 스택</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#지역변수와-전역변수"><span class="toc-nav-text">지역변수와 전역변수</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-global-keyword-를-사용해서-local-매소드-내에서-전역변수를-변경"><span class="toc-nav-text">1. global keyword 를 사용해서 local 매소드 내에서 전역변수를 변경</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-nonlocal-keyword-이용해서-local-매소드-내에서-전역변수를-변경"><span class="toc-nav-text">2. nonlocal keyword 이용해서 local 매소드 내에서 전역변수를 변경</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#인자전달방식에-따른-함수의-분류"><span class="toc-nav-text">인자전달방식에 따른 함수의 분류</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#값에-의한-전달-C언어"><span class="toc-nav-text">값에 의한 전달 (C언어)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#참조에-의한-전달-C언어"><span class="toc-nav-text">참조에 의한 전달 (C언어)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#객체참조에-의한-전달-파이썬-변경불가능객체전달"><span class="toc-nav-text">객체참조에 의한 전달 (파이썬-변경불가능객체전달)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#객체참조에-의한-전달-파이썬-변경가능객체전달"><span class="toc-nav-text">객체참조에 의한 전달 (파이썬-변경가능객체전달)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#람다함수"><span class="toc-nav-text">람다함수</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://miniminis.github.io/2020/08/03/5mincs/cswithpython4/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+  <script>
+    var gitmentConfig = "miniminis";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "5분 컴공 4 / 차곡차곡 쌓이는 함수",
+        owner: "miniminis",
+        repo: "miniminis.github.io",
+        oauth: {
+          client_id: "6777a600f48bea19d4c9",
+          client_secret: "a873dcd4221c63013a85e792d2f3f0db2d90e245"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <!-- <br> -->
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
