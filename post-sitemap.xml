@@ -9,7 +9,7 @@
 
     <url>
         <loc>https://miniminis.github.io/2020/08/09/5mincs/cswithpython7/</loc>
-        <lastmod>2020-08-09T08:04:24.000Z</lastmod>
+        <lastmod>2020-08-09T08:09:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -128,7 +128,7 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2019/10/27/node/node-express-framework-01/</loc>
+        <loc>https://miniminis.github.io/2019/10/27/node/node-express-framework-02/</loc>
         <lastmod>2020-07-12T07:25:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -136,7 +136,7 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2019/10/27/node/node-express-framework-02/</loc>
+        <loc>https://miniminis.github.io/2019/10/27/node/node-express-framework-01/</loc>
         <lastmod>2020-07-12T07:25:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -160,7 +160,7 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2020/05/13/linux/linux-thisislinux01/</loc>
+        <loc>https://miniminis.github.io/2020/05/13/linux/linux-thisislinux00/</loc>
         <lastmod>2020-07-12T07:25:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -168,7 +168,7 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2020/05/13/linux/linux-thisislinux00/</loc>
+        <loc>https://miniminis.github.io/2020/05/30/linux/linux-thisislinux04/</loc>
         <lastmod>2020-07-12T07:25:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -192,7 +192,7 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2020/05/30/linux/linux-thisislinux05/</loc>
+        <loc>https://miniminis.github.io/2020/05/31/linux/linux-thisislinux08/</loc>
         <lastmod>2020-07-12T07:25:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -200,7 +200,7 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2020/05/30/linux/linux-thisislinux04/</loc>
+        <loc>https://miniminis.github.io/2020/05/30/linux/linux-thisislinux05/</loc>
         <lastmod>2020-07-12T07:25:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -216,23 +216,7 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2020/05/30/linux/linux-thisislinux06/</loc>
-        <lastmod>2020-07-12T07:25:36.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2020/05/31/linux/linux-thisislinux08/</loc>
-        <lastmod>2020-07-12T07:25:36.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://miniminis.github.io/2020/05/31/linux/linux-thisislinux10/</loc>
+        <loc>https://miniminis.github.io/2020/05/13/linux/linux-thisislinux01/</loc>
         <lastmod>2020-07-12T07:25:36.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -248,6 +232,22 @@
     </url>
 
     <url>
+        <loc>https://miniminis.github.io/2020/05/30/linux/linux-thisislinux06/</loc>
+        <lastmod>2020-07-12T07:25:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2020/05/31/linux/linux-thisislinux10/</loc>
+        <lastmod>2020-07-12T07:25:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://miniminis.github.io/2019/10/13/aws/awslinuxcommand/</loc>
         <lastmod>2020-07-12T07:25:06.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -256,7 +256,7 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2019/10/09/insight/insight-bitcoin-1/</loc>
+        <loc>https://miniminis.github.io/2019/10/13/insight/insight-africa-coding-edu-for-girl/</loc>
         <lastmod>2020-07-12T07:24:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -264,7 +264,7 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2019/10/13/insight/insight-africa-coding-edu-for-girl/</loc>
+        <loc>https://miniminis.github.io/2019/10/09/insight/insight-bitcoin-1/</loc>
         <lastmod>2020-07-12T07:24:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -344,14 +344,6 @@
     </url>
 
     <url>
-        <loc>https://miniminis.github.io/2019/10/07/algorithm/algorithm-1/</loc>
-        <lastmod>2020-07-12T07:18:12.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://miniminis.github.io/2019/10/07/algorithm/algorithm-2/</loc>
         <lastmod>2020-07-12T07:18:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -361,6 +353,14 @@
 
     <url>
         <loc>https://miniminis.github.io/2019/10/07/algorithm/algorithm-4/</loc>
+        <lastmod>2020-07-12T07:18:12.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://miniminis.github.io/2019/10/07/algorithm/algorithm-1/</loc>
         <lastmod>2020-07-12T07:18:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
