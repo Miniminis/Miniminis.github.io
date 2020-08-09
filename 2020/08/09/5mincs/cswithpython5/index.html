@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="flash&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      5분 컴공 5 / 절차 지향 프로그래밍 vs 객체 지향 프로그래밍 | Flashlog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/css/plugins/gitment.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+    <script src="/js/gitment.js"></script>
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149033629-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-149033629-1');
+    </script>
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png">
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Flashlog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags2/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about2/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags2/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about2/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>5분 컴공 5 / 절차 지향 프로그래밍 vs 객체 지향 프로그래밍</h2>
+  <p class="post-date">2020-08-09</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p><em>120분</em></p>
+<p><a href="http://www.yes24.com/Product/goods/58552941?scode=029" target="_blank" rel="noopener">[컴퓨터사이언스 부트캠프 with 파이썬]</a> 책을 보면서 컴퓨터 공학 기초를 공부하고 있습니다.<br>시간이 많이 없어서 틈틈히 짬나는대로 책을 읽고 정리하고 있습니다.</p>
+<br>
+
+<h2 id="프로그래밍-패러다임"><a href="#프로그래밍-패러다임" class="headerlink" title="프로그래밍 패러다임"></a>프로그래밍 패러다임</h2><p>프로그래밍은 ‘개발자’라는 사람이 하는 일이다. 개발자 본인이 어떤 철학을 가지고 개발했는지에 따라서 그 결과물인 프로그램 역시 다양한 모습을 띄게 된다. </p>
+<p>프로그램의 큰 그림을 좌지우지 하는 문제이기에 프로그래밍을 바라보는 다양한 시각과 통찰을 배우는 것은 꽤나 중요한 일이라고 생각된다. 눈앞의 코드들을 따라 치면서 그럴듯하게 하나의 프로그램을 만들어내는 것이 아니라, 개발을 하면서 그 안에 어떠한 형태이던지 자신만의 철학을 담을 수 있는 개발자가 되고 싶기에 이번 장을 또 열심히 공부하고자 한다.</p>
+<br>
+
+<h2 id="what-is-절차-지향-프로그래밍"><a href="#what-is-절차-지향-프로그래밍" class="headerlink" title="what is 절차 지향 프로그래밍"></a>what is 절차 지향 프로그래밍</h2><p>프로시저 또는 함수라고도 부른다. 한눈에 이 프로그램이 어떤 일을 하는지 알 수 있게 프로그래밍하는 것을 말하며, 절차지향으로 짜인 프로그램을 보면 함수들의 이름만봐도 그 프로그램의 용도를 알 수 있다.</p>
+<h2 id="what-is-객체-지향-프로그래밍"><a href="#what-is-객체-지향-프로그래밍" class="headerlink" title="what is 객체 지향 프로그래밍"></a>what is 객체 지향 프로그래밍</h2><p>객체의 사전적 의미는 고정된 형태나 모양이 있어서 만지거나 볼 수 있는 것. 사람, 동물, 물건 등이다. 이를 통해 객체지향프로그래밍의 의미를 알아보자면 현실세계에 존재하는 객체를 모델링하여 프로그래밍하는 것이라고 할 수 있다.</p>
+<h3 id="캡슐화"><a href="#캡슐화" class="headerlink" title="캡슐화"></a>캡슐화</h3><ul>
+<li>객체가 지니는 특징은 변수로, 행동이나 기능은 함수로 표현하여 하나의 단위(클래스)로 묶는 것</li>
+<li>예를 들면, 사람이라는 클래스에는 키, 몸무게, 직업, 성별 등의 특성이 변수로 표현될 수 있으며 잠자기, 숨쉬기와 같은 행동이 함수로 표현될 수 있다. </li>
+<li>이러한 클래스에 대한 객체로 나, 히로시, 에이미 등 많은 사람들이 표현될 수 있다. </li>
+</ul>
+<h3 id="클래스"><a href="#클래스" class="headerlink" title="클래스"></a>클래스</h3><ul>
+<li>Person 을 클래스로 만들어 객체지향 프로그래밍을 해보자 </li>
+<li>속성 = 멤버 + 매서드</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Person:</span><br><span class="line">    def __init__(self, name, money):</span><br><span class="line">        self.name = name </span><br><span class="line">        self.money = money </span><br><span class="line"></span><br><span class="line">    def give_money(self, other, money): </span><br><span class="line">        self.money -= money</span><br><span class="line">        other.get_money(money) </span><br><span class="line"></span><br><span class="line">    def get_money(self, money):</span><br><span class="line">        self.money += money</span><br><span class="line"></span><br><span class="line">    def show(self):</span><br><span class="line">        print(&apos;&#123;&#125; : &#123;&#125; &apos;.format(self.name, self.money))</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line"></span><br><span class="line">    # 객체 생성</span><br><span class="line">    g = Person(&apos;greg&apos;, 5000)  </span><br><span class="line">    j = Person(&apos;john&apos;, 2000)</span><br><span class="line"></span><br><span class="line">    g.show()</span><br><span class="line">    j.show()</span><br><span class="line">    print(&apos;&apos;)</span><br><span class="line"></span><br><span class="line">    # 메시지 패싱</span><br><span class="line">    g.give_money(j, 2000)     </span><br><span class="line"></span><br><span class="line">    g.show()</span><br><span class="line">    j.show()</span><br></pre></td></tr></table></figure>
+
+<p>왜 클래스에서 정의된 매서드에는 인자가 self 가 포함되어있는데, 실제로 인스턴스 생성 및 매서드 호출시에는 self 객체를 넘겨주지 않을까?</p>
+<ul>
+<li>인스턴스 매서드를 호출하면, 객체가 자동으로 첫번째 인자인 self 로 객체 자신을 전달하기 때문임!</li>
+</ul>
+<p>파이썬의 클래스를 좀 더 살펴보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;&gt;&gt;&gt;Person class&quot;)</span><br><span class="line">print(type(Person.__init__))</span><br><span class="line">print(type(Person.give_money))</span><br><span class="line">print(type(Person.get_money))</span><br><span class="line">print(type(Person.show))</span><br><span class="line"></span><br><span class="line">print()</span><br><span class="line"></span><br><span class="line">print(&apos;&gt;&gt;&gt;Instance g and j&apos;)</span><br><span class="line">print(type(g.give_money))</span><br><span class="line">print(type(j.get_money))</span><br></pre></td></tr></table></figure>
+
+<p>Person class 내부의 매서드들은 function, instance g 와 j의 매서드들은 method 라고 출력됨을 확인할 수 있다. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">print(&apos;&gt;&gt;&gt;&apos;)</span><br><span class="line">print(dir(g.give_money))</span><br><span class="line">print(g.give_money.__func__)</span><br><span class="line">print(g.give_money.__self__)</span><br><span class="line"></span><br><span class="line">print(&apos;&gt;&gt;&gt;&apos;)</span><br><span class="line">print(g.give_money.__func__ is Person.give_money)</span><br><span class="line">print(g.give_money.__self__ is g)</span><br></pre></td></tr></table></figure>
+
+<p>instance g 의 give_money method 는 Person 클래스의 give_money() 함수이고<br>instance g 의 give_money method 는 객체 자신인 g를 참조하고 있다.<br>따라서 매서드 내부에 함수와 객체의 참조를 가지고 있으므로, 매서드 호출 시에 self 를 전달하지 않아도 되는 것이다!</p>
+<h3 id="정보은닉"><a href="#정보은닉" class="headerlink" title="정보은닉"></a>정보은닉</h3><ul>
+<li>캡술화 : 관련있는 변수와 매서드를 묶어 클래스로 만들어 내는 것</li>
+<li>정보은닉 : 외부에서 접근하지 못하도록 변수나 매서드에 대한 접근성을 제약하는 것</li>
+</ul>
+<h4 id="파이썬은-정보은닉을-제공하지-않으므로-C-의-정보은닉을-살펴보기로함"><a href="#파이썬은-정보은닉을-제공하지-않으므로-C-의-정보은닉을-살펴보기로함" class="headerlink" title="파이썬은 정보은닉을 제공하지 않으므로 C++의 정보은닉을 살펴보기로함"></a>파이썬은 정보은닉을 제공하지 않으므로 C++의 정보은닉을 살펴보기로함</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Account&#123;</span><br><span class="line">public: // #1</span><br><span class="line">    // 생성자: 파이썬 클래스의 __init__( )과 같다</span><br><span class="line">    Account(string name, int money)&#123;</span><br><span class="line">        user = name;</span><br><span class="line">        balance = money;</span><br><span class="line">    &#125;</span><br><span class="line">    // 인스턴스 메서드(멤버 함수)</span><br><span class="line">    int get_balance() &#123;</span><br><span class="line">        return balance;</span><br><span class="line">    &#125;</span><br><span class="line">    // 인스턴스 메서드(멤버 함수)</span><br><span class="line">    void set_balance(int money) &#123;</span><br><span class="line">        if (money &lt; 0) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        balance = money;</span><br><span class="line">    &#125;</span><br><span class="line">private: // #2</span><br><span class="line">    // 인스턴스 멤버(멤버 변수)</span><br><span class="line">    string user;</span><br><span class="line">    int balance; // #3</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>public, protected, private : 접근제어지시자<br>public : 객체를 만들어 사용하는 쪽에서 접근하거나 호출 가능<br>private : 클래스 내부에서만 사용할 수 있고 객체를 통해서는 접근이 불가</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int main(void)&#123;</span><br><span class="line">      Account my_acnt(&quot;greg&quot;, 5000);</span><br><span class="line">      my_acnt.balance; // #4 컴파일 오류 : balance 는 외부에서 접근 불가</span><br><span class="line">      return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>정보은닉으로 접근 불가한 멤버에 대해서 접근하는 방법은 바로 엑세스 함수를 이용하는 것. (get or set)<br>정보은닉을 이용하면 숨긴 멤버에 들어갈 값을 엑세스 함수를 통해서 제어할 수 있다는 장점이 있다.<br>위의 예시 같은 경우는 balance 는 항상 set_balance 를 통해서만 접근 가능하기 때문에 음수가 들어가는 것을 예방할 수 있음</p>
+<br>
+
+<h4 id="파이썬의-정보은닉"><a href="#파이썬의-정보은닉" class="headerlink" title="파이썬의 정보은닉"></a>파이썬의 정보은닉</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Account:</span><br><span class="line">    def __init__(self, name, money):</span><br><span class="line">        self.user = name</span><br><span class="line">        self.balance = money</span><br><span class="line">    def get_balance(self):</span><br><span class="line">        return self.balance</span><br><span class="line">    def set_balance(self, money):</span><br><span class="line">        if money &lt; 0:</span><br><span class="line">            return</span><br><span class="line">        self.balance = money</span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    my_acnt = Account(&apos;greg&apos;, 5000)</span><br><span class="line">    my_acnt.balance = -3000   #1 balance 멤버에 바로 접근하여 음수값을 대입해버림</span><br><span class="line">    print(my_acnt.get_balance())</span><br></pre></td></tr></table></figure>
+
+<p>파이썬에서는 위에서 보는 바와 같이 정보은닉이 불가능하다.<br>하지만 정보은닉처럼 기능하도록 할 수 있는 방법이 2가지 있다. 그러나 완벽한 정보은닉은 아니므로 주의. </p>
+<ol>
+<li>숨기려는 멤버 앞에 언더바( _ )를 두 개 붙이기</li>
+<li>프로퍼티 기법</li>
+</ol>
+<br>
+
+<h5 id="1-숨기려는-멤버-앞에-언더바-를-두-개-붙이기"><a href="#1-숨기려는-멤버-앞에-언더바-를-두-개-붙이기" class="headerlink" title="1. 숨기려는 멤버 앞에 언더바( _ )를 두 개 붙이기"></a>1. 숨기려는 멤버 앞에 언더바( _ )를 두 개 붙이기</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Account:</span><br><span class="line">    def __init__(self, name, money):</span><br><span class="line">        self.user = name</span><br><span class="line">        self.__balance = money  #1</span><br><span class="line">    def get_balance(self):</span><br><span class="line">        return self.__balance   #2</span><br><span class="line">    def set_balance(self, money):</span><br><span class="line">        if money &lt; 0:</span><br><span class="line">            return</span><br><span class="line">        self.__balance = money  #3</span><br><span class="line">if __name__ = = &quot;__main__&quot;:</span><br><span class="line">    my_acnt = Account(&apos;greg&apos;, 5000)</span><br><span class="line">    my_acnt.__balance = -3000   #4</span><br><span class="line">    print(my_acnt.get_balance())</span><br></pre></td></tr></table></figure>
+
+<p>위의 코드 출력결과는 5000이다. 정보은닉이 된것처럼 보일 수 있지만, 아래를 확인해보면 그렇지 않다는 것을 알 수 있다. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(my_acnt.__dict__)</span><br></pre></td></tr></table></figure>
+
+<p>결과 :<br>{‘user’: ‘greg’, ‘_Account__balance’: 5000, ‘__balance’: -3000}  </p>
+<p>언더바 2개를 붙인 변수는 클래스가 생성되면서 ‘_클래스__멤버’ 라는 이름으로 변하게 된다.<br>__balance 는 객체 my_acnt의 멤버이다.   </p>
+<p>결과적으로 언더바 2개를 붙인 변수는 접근하기가 까다로워져서 개발자의 실수를 막아주지만<br>일부러 해당 변수를 수정하려는 움직임까지는 막지 못한다. </p>
+<br>
+
+<h5 id="2-프로터티-기법-변수에-접근하는-것처럼-보이지만-사실은-매서드를-호출하는-것임"><a href="#2-프로터티-기법-변수에-접근하는-것처럼-보이지만-사실은-매서드를-호출하는-것임" class="headerlink" title="2. 프로터티 기법 : 변수에 접근하는 것처럼 보이지만 사실은 매서드를 호출하는 것임"></a>2. 프로터티 기법 : 변수에 접근하는 것처럼 보이지만 사실은 매서드를 호출하는 것임</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Account:</span><br><span class="line">    def __init__(self, name, money):</span><br><span class="line">        self.user = name</span><br><span class="line">        # 인스턴스 멤버 선언이 아니라 #3의 setter 메서드를 호출</span><br><span class="line">        self.balance = money     #1</span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def balance(self):           #2 데코레이터 @property : balance 의 getter 함수처럼 동작</span><br><span class="line">        return self._balance</span><br><span class="line"></span><br><span class="line">    @balance.setter</span><br><span class="line">    def balance(self, money):    #3 </span><br><span class="line">        if money &lt; 0:</span><br><span class="line">            return</span><br><span class="line"></span><br><span class="line">        # 실제 인스턴스 멤버 선언이 일어나는 부분(#1 실행시(생성자 호출시))</span><br><span class="line">        self._balance = money</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    my_acnt = Account(&apos;greg&apos;, 5000)</span><br><span class="line">    my_acnt.balance = -3000      #4 balance 라는 변수에 직접 접근하지 않고, setter 함수를 통해 접근하므로 음수로 변경되지 않는다.</span><br><span class="line"></span><br><span class="line">    print(my_acnt.balance)       #5</span><br></pre></td></tr></table></figure>
+
+<p>하지만 이 방법 역시 ‘my_acnt.<strong>dict</strong>‘ 호출을 통해 멤버를 확인할 수 있고 해당 멤버 값에 접근하여 음수로 변경하게 되면 setter 함수를 통해 변경하는게 아니므로 음수값으로 변경이 되어버린다 ㅠㅠㅠ<br>파이썬에서는 완벽한 정보은닉은 불가능하다. </p>
+<br>
+
+
+<h2 id="절차-지향으로-학급-성적-평가-프로그램-만들기"><a href="#절차-지향으로-학급-성적-평가-프로그램-만들기" class="headerlink" title="절차 지향으로 학급 성적 평가 프로그램 만들기"></a>절차 지향으로 학급 성적 평가 프로그램 만들기</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">import openpyxl</span><br><span class="line">import math</span><br><span class="line"></span><br><span class="line">def get_data_from_excel(filename):</span><br><span class="line">    raw_data = &#123;&#125;</span><br><span class="line">    wb = openpyxl.load_workbook(filename)  # 엑셀 파일 로드</span><br><span class="line">    ws = wb.active  # 활성 시트 가져오기 </span><br><span class="line">    g = ws.rows  # 활성 시트의 행 모음</span><br><span class="line">    for name, score in g:</span><br><span class="line">        raw_data[name.value] = score.value  # 각 행의 1열 name 은 key, 2열인 score 는 value 로 딕셔너리에 저장하기</span><br><span class="line"></span><br><span class="line">    return raw_data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def average(scores):</span><br><span class="line">    s = 0</span><br><span class="line"></span><br><span class="line">    for score in scores:  # 모든 점수 더하여 모든 학생의 총 점수 구하기 </span><br><span class="line">        s += score</span><br><span class="line"></span><br><span class="line">    avrg = round(s/len(scores), 1)  # 전체 평균 점수 </span><br><span class="line"></span><br><span class="line">    return avrg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def variance(scores):</span><br><span class="line">    s= 0</span><br><span class="line"></span><br><span class="line">    for score in scores:</span><br><span class="line">        s += (score - avrg) ** 2  </span><br><span class="line"></span><br><span class="line">    variance = round(s/len(scores), 1)  # 분산</span><br><span class="line">    </span><br><span class="line">    return variance</span><br><span class="line"></span><br><span class="line">def std_dev(variance):</span><br><span class="line">    std_dev = round(math.sqrt(variance),1)  # 표준편차 </span><br><span class="line">    return std_dev</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def print_msg(avrg, variance, std_dev):</span><br><span class="line">    print(&quot;평균: &#123;0&#125;, 분산: &#123;1&#125;, 표준편차: &#123;2&#125;&quot;.format(avrg, variance, std_dev))</span><br><span class="line"></span><br><span class="line">    if avrg &lt;50 and std_dev &gt;20:  # 각 평균점수와 표준편차에 따라서 다른 메시지 출력해주기 </span><br><span class="line">        print(&quot;성적이 너무 저조하고 학생들의 실력 차이가 너무 크다.&quot;)</span><br><span class="line">    elif avrg &gt; 50 and std_dev &gt;20:</span><br><span class="line">        print(&quot;성적은 평균 이상이지만 학생들이 실력 차이가 크다. 주의 요망!&quot;)</span><br><span class="line">    elif avrg &lt; 50 and std_dev &lt;20:</span><br><span class="line">        print(&quot;학생들의 실력 차이는 크지 않지만 성적이 너무 저조하다. 주의 요망!&quot;)</span><br><span class="line">    elif avrg &gt; 50 and std_dev &lt;20:</span><br><span class="line">        print(&quot;성적도 평균 이상이고 학생들의 실력 차이도 크지 않다.&quot;)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    </span><br><span class="line">    raw_data = get_data_from_excel(&apos;cs06_class_2_3.xlsx&apos;)</span><br><span class="line">    scores = list(raw_data.values())</span><br><span class="line"></span><br><span class="line">    avrg = average(scores)</span><br><span class="line">    variance = variance(scores)</span><br><span class="line">    deviation = std_dev(variance)</span><br><span class="line"></span><br><span class="line">    print_msg(avrg, variance, deviation)</span><br></pre></td></tr></table></figure>
+
+<p>함수들의 이름만 보아도 이 프로그램이 무슨 일을 하는 프로그램인지 한 눈에 파악할 수 있다.<br>함수의 구현 내용을 몰라도 함수의 이름만 가지고도 프로그래머가 필요한 기능들을 가져다가 쓸 수 있다. </p>
+<br>
+
+<h2 id="객체-지향으로-학급-성적-평가-프로그램-만들기"><a href="#객체-지향으로-학급-성적-평가-프로그램-만들기" class="headerlink" title="객체 지향으로 학급 성적 평가 프로그램 만들기"></a>객체 지향으로 학급 성적 평가 프로그램 만들기</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">import math</span><br><span class="line"></span><br><span class="line">class Stat:</span><br><span class="line">    def average(self, scores):</span><br><span class="line">        s = 0</span><br><span class="line">        for score in scores:</span><br><span class="line">            s += score</span><br><span class="line">        return round(s/len(scores), 1)</span><br><span class="line"></span><br><span class="line">    def variance(self, scores, avrg):</span><br><span class="line">        s= 0</span><br><span class="line">        for score in scores:</span><br><span class="line">            s += (score - avrg) ** 2</span><br><span class="line">        return round(s/len(scores), 1)</span><br><span class="line"></span><br><span class="line">    def std_dev(self, variance):</span><br><span class="line">        return round(math.sqrt(variance), 1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import openpyxl</span><br><span class="line"></span><br><span class="line">class DataHandler:</span><br><span class="line">    evaluator = Stat()                      #1</span><br><span class="line"></span><br><span class="line">    @classmethod</span><br><span class="line">    def get_data_from_excel(cls, filename): #2</span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        wb = openpyxl.load_workbook(filename)</span><br><span class="line">        ws = wb.active</span><br><span class="line">        g = ws.rows</span><br><span class="line"></span><br><span class="line">        for name, score in g:</span><br><span class="line">            dic[name.value] = score.value</span><br><span class="line"></span><br><span class="line">        return dic</span><br><span class="line"></span><br><span class="line">    def __init__(self, filename, year_class):</span><br><span class="line">        self.rawdata = DataHandler.get_data_from_excel(filename)</span><br><span class="line">        self.year_class = year_class</span><br><span class="line">        # 연산한 값을 저장해 두는 저장소</span><br><span class="line">        # 필요할 때 연산하되</span><br><span class="line">        # 이미 연산된 값이면 연산 없이 저장된 값을 반환</span><br><span class="line">        self.cache = &#123; &#125;                    #3</span><br><span class="line"></span><br><span class="line">    def get_scores(self):</span><br><span class="line">        if &apos;scores&apos; not in self.cache:</span><br><span class="line">            self.cache[&apos;scores&apos;] = list(self.rawdata.values())</span><br><span class="line"></span><br><span class="line">        return self.cache.get(&apos;scores&apos;)</span><br><span class="line"></span><br><span class="line">    def get_average(self):               #4</span><br><span class="line">        if &apos;average&apos; not in self.cache:  #5</span><br><span class="line">            self.cache[&apos;average&apos;] = self.evaluator.average(self.get_scores())</span><br><span class="line"></span><br><span class="line">        return self.cache.get(&apos;average&apos;) #6</span><br><span class="line"></span><br><span class="line">    def get_variance(self):</span><br><span class="line">        if &quot;variance&quot; not in self.cache:</span><br><span class="line">            self.cache[&quot;variance&quot;] = self.evaluator.variance(</span><br><span class="line">                self.get_scores(), self.get_average())</span><br><span class="line"></span><br><span class="line">        return self.cache.get(&quot;variance&quot;)</span><br><span class="line"></span><br><span class="line">    def get_standard_deviation(self):</span><br><span class="line">        if &quot;standard_deviation&quot; not in self.cache:</span><br><span class="line">            self.cache[&quot;standard_deviation&quot;] = self.evaluator.std_dev(</span><br><span class="line">                self.get_variance())</span><br><span class="line"></span><br><span class="line">        return self.cache.get(&quot;standard_deviation&quot;)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    def evaluate_class(self, total_avrg, sd):       #7</span><br><span class="line">        avrg = self.get_average()</span><br><span class="line">        std_dev = self.get_standard_deviation()</span><br><span class="line"></span><br><span class="line">        if avrg &lt;total_avrg and std_dev &gt;sd:</span><br><span class="line">            print(&quot;성적이 너무 저조하고 학생들의 실력 차이가 너무 크다.&quot;)</span><br><span class="line">        elif avrg &gt; total_avrg and std_dev &gt;sd:</span><br><span class="line">            print(&quot;성적은 평균 이상이지만 학생들의 실력 차이가 크다. 주의 요망!&quot;)</span><br><span class="line">        elif avrg &lt; total_avrg and std_dev &lt;sd:</span><br><span class="line">            print(&quot;학생들의 실력 차이는 크지 않지만 성적이 너무 저조하다. 주의 요망!&quot;)</span><br><span class="line">        elif avrg &gt; total_avrg and std_dev &lt;sd:</span><br><span class="line">            print(&quot;성적도 평균 이상이고 학생들의 실력 차이도 크지 않다.&quot;)</span><br><span class="line"></span><br><span class="line">    def get_evaluation(self, total_avrg, sd = 20):  #8</span><br><span class="line">        print(&apos;*&apos; * 50)</span><br><span class="line">        print(&apos;&#123;&#125; 반 성적 분석 결과&apos;.format(self.year_class))</span><br><span class="line">        print(</span><br><span class="line">        &quot;&#123;0&#125;반의 평균은 &#123;1&#125;점이고 분산은 &#123;2&#125;이며 따라서 표준편차는 &#123;3&#125;이다&quot;.format(</span><br><span class="line">            self.year_class,</span><br><span class="line">            self.get_average(),</span><br><span class="line">            self.get_variance(),</span><br><span class="line">            self.get_standard_deviation()))</span><br><span class="line">        print(&apos;*&apos; * 50)</span><br><span class="line">        print(&apos;&#123;&#125; 반 종합 평가&apos;.format(self.year_class)) </span><br><span class="line">        print(&apos;*&apos; * 50) </span><br><span class="line">        self.evaluate_class(total_avrg, sd)</span><br><span class="line"></span><br><span class="line"># 전체 학년 평균: 50점</span><br><span class="line">if __name__ == &quot;__main__&quot;:    </span><br><span class="line">    dh = DataHandler(&apos;cs06_class_2_3.xlsx&apos;, &apos;2-3&apos;)</span><br><span class="line">    dh.get_evaluation(50)</span><br></pre></td></tr></table></figure></section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#5mincs" >
+    <span class="tag-code">5mincs</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/08/03/5mincs/cswithpython4/">
+        <span class="nav-arrow">← </span>
+        
+          5분 컴공 4 / 차곡차곡 쌓이는 함수
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2020/08/09/5mincs/cswithpython6/">
+        
+          5분 컴공 6 / 클래스
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#프로그래밍-패러다임"><span class="toc-nav-text">프로그래밍 패러다임</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#what-is-절차-지향-프로그래밍"><span class="toc-nav-text">what is 절차 지향 프로그래밍</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#what-is-객체-지향-프로그래밍"><span class="toc-nav-text">what is 객체 지향 프로그래밍</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#캡슐화"><span class="toc-nav-text">캡슐화</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#클래스"><span class="toc-nav-text">클래스</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#정보은닉"><span class="toc-nav-text">정보은닉</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#파이썬은-정보은닉을-제공하지-않으므로-C-의-정보은닉을-살펴보기로함"><span class="toc-nav-text">파이썬은 정보은닉을 제공하지 않으므로 C++의 정보은닉을 살펴보기로함</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#파이썬의-정보은닉"><span class="toc-nav-text">파이썬의 정보은닉</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#1-숨기려는-멤버-앞에-언더바-를-두-개-붙이기"><span class="toc-nav-text">1. 숨기려는 멤버 앞에 언더바( _ )를 두 개 붙이기</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#2-프로터티-기법-변수에-접근하는-것처럼-보이지만-사실은-매서드를-호출하는-것임"><span class="toc-nav-text">2. 프로터티 기법 : 변수에 접근하는 것처럼 보이지만 사실은 매서드를 호출하는 것임</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#절차-지향으로-학급-성적-평가-프로그램-만들기"><span class="toc-nav-text">절차 지향으로 학급 성적 평가 프로그램 만들기</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#객체-지향으로-학급-성적-평가-프로그램-만들기"><span class="toc-nav-text">객체 지향으로 학급 성적 평가 프로그램 만들기</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://miniminis.github.io/2020/08/09/5mincs/cswithpython5/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+  <script>
+    var gitmentConfig = "miniminis";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "5분 컴공 5 / 절차 지향 프로그래밍 vs 객체 지향 프로그래밍",
+        owner: "miniminis",
+        repo: "miniminis.github.io",
+        oauth: {
+          client_id: "6777a600f48bea19d4c9",
+          client_secret: "a873dcd4221c63013a85e792d2f3f0db2d90e245"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <!-- <br> -->
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

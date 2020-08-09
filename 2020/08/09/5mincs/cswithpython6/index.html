@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="flash&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      5분 컴공 6 / 클래스 | Flashlog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/css/plugins/gitment.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+    <script src="/js/gitment.js"></script>
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149033629-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-149033629-1');
+    </script>
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png">
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Flashlog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags2/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about2/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags2/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about2/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>5분 컴공 6 / 클래스</h2>
+  <p class="post-date">2020-08-09</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p><em>120분</em></p>
+<p><a href="http://www.yes24.com/Product/goods/58552941?scode=029" target="_blank" rel="noopener">[컴퓨터사이언스 부트캠프 with 파이썬]</a> 책을 보면서 컴퓨터 공학 기초를 공부하고 있습니다.<br>시간이 많이 없어서 틈틈히 짬나는대로 책을 읽고 정리하고 있습니다.</p>
+<br>
+
+<h2 id="클래스"><a href="#클래스" class="headerlink" title="클래스"></a>클래스</h2><ol>
+<li>is-a 관계 : 상속</li>
+<li>has-a 관계</li>
+</ol>
+<h2 id="1-is-a-관계-상속"><a href="#1-is-a-관계-상속" class="headerlink" title="1. is-a 관계 : 상속"></a>1. is-a 관계 : 상속</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Computer:</span><br><span class="line">    def __init__(self, cpu, ram):</span><br><span class="line">        self.CPU = cpu</span><br><span class="line">        self.RAM = ram</span><br><span class="line"></span><br><span class="line">    def browse(self):</span><br><span class="line">        print(&apos;browse&apos;)</span><br><span class="line"></span><br><span class="line">    def work(self):</span><br><span class="line">        print(&apos;work&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Laptop(Computer):                    #1 Computer 상속</span><br><span class="line">    # 멤버 추가</span><br><span class="line">    def __init__(self, cpu, ram, battery):</span><br><span class="line">        super().__init__(cpu, ram)       #2  Computer 부모 클래스가 가지고 있는 멤버변수와 매서드를 상속받음</span><br><span class="line">        self.battery = battery             #3 Laptop 만의 멤버 추가</span><br><span class="line">    # 메서드 추가</span><br><span class="line">    def move(self, to):                    #4  Laptop 만의 매서드 추가</span><br><span class="line">        print(&apos;move to &#123;&#125;&apos;.format(to))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    lap = Laptop(&apos;intel&apos;, 16, &apos;powerful&apos;)</span><br><span class="line">    lap.browse()       #5 super 를 통해 상속받은 browse 매서드를 호출</span><br><span class="line">    lap.work()</span><br><span class="line">    lap.move(&apos;office&apos;) #6 새롭게 정의한 move 매서드로 호출</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-has-a-관계-합성과-통합"><a href="#2-has-a-관계-합성과-통합" class="headerlink" title="2.  has-a 관계 : 합성과 통합"></a>2.  has-a 관계 : 합성과 통합</h2><h3 id="합성-cpu-ram-computer"><a href="#합성-cpu-ram-computer" class="headerlink" title="합성 : cpu, ram - computer"></a>합성 : cpu, ram - computer</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class CPU:</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">class RAM:</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">class Computer:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.cpu = CPU()  #1</span><br><span class="line">        self.ram = RAM()</span><br></pre></td></tr></table></figure>
+
+<p>computer 가 만들어질때 cpu 와 ram 이 같이 만들어지고, computer 가 없어질때 같이 사라진다. –&gt; 합성의 관계</p>
+<br>
+
+<h3 id="통합의-관계-gun-policeman"><a href="#통합의-관계-gun-policeman" class="headerlink" title="통합의 관계 : gun - policeman"></a>통합의 관계 : gun - policeman</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">class Gun:</span><br><span class="line">    def __init__(self, kind):</span><br><span class="line">        self.kind = kind</span><br><span class="line"></span><br><span class="line">    def bang(self):</span><br><span class="line">        print(&apos;bang bang!&apos;)</span><br><span class="line"></span><br><span class="line">class Police:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.gun = None          #1 최초로 경찰이 될 때에는 총이 없는 상태</span><br><span class="line"></span><br><span class="line">    def acquire_gun(self, gun):  #2 이 매서드를 통해 총을 소지할 수 있고 </span><br><span class="line">        self.gun = gun</span><br><span class="line"></span><br><span class="line">    def release_gun(self):       #3 이 매서드를 통해 총을 반납한다. </span><br><span class="line">        gun = self.gun</span><br><span class="line">        self.gun = None</span><br><span class="line">        return gun</span><br><span class="line"></span><br><span class="line">    def shoot(self):              #4 총이 있으면 방아쇠를 당기고, 없으면 메시지를 출력 </span><br><span class="line">        if self.gun:</span><br><span class="line">            self.gun.bang()</span><br><span class="line">        else:</span><br><span class="line">            print(&quot;Unable to shoot&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    p1 = Police()                 #4</span><br><span class="line">    print(&apos;p1 shoots&apos;)</span><br><span class="line"></span><br><span class="line">    p1.shoot()</span><br><span class="line">    print(&apos;&apos;)</span><br><span class="line"></span><br><span class="line">    # p1은 아직 총을 소유하지 않음.</span><br><span class="line">    revolver = Gun(&apos;Revolver&apos;)</span><br><span class="line"></span><br><span class="line">    # p1이 revolver를 획득</span><br><span class="line">    p1.acquire_gun(revolver)      #5</span><br><span class="line">    </span><br><span class="line">    # 이제 p1이 총을 소유하므로</span><br><span class="line">    # revolver는 None이 된다.</span><br><span class="line">    revolver = None</span><br><span class="line">    print(&apos;p1 shoots again&apos;)</span><br><span class="line">    p1.shoot()</span><br><span class="line">    print(&apos;&apos;)</span><br><span class="line"></span><br><span class="line">    # p1이 총을 반납했으므로</span><br><span class="line">    # 더 이상 총을 소유하지 않는다.</span><br><span class="line">    revolver = p1.release_gun()   #6</span><br><span class="line">    print(&apos;p1 shoots again&apos;)</span><br><span class="line">    p1.shoot()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="다형성과-매서드-오버라이딩"><a href="#다형성과-매서드-오버라이딩" class="headerlink" title="다형성과 매서드 오버라이딩"></a>다형성과 매서드 오버라이딩</h2><ul>
+<li>다형성: 상속관계에 있는 다양한 클래스의 관계에서 같은 이름의 매서드를 호출할 때, 각 객체가 서로 다르게 구현된 매서드를 호출함으로써 서로 다른 행동, 기능, 결과를 가져오는 것</li>
+<li>매서드 오버라이딩 : 파생 클래스 안에서 상속받은 매서드를 다시 구현하는 것</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class CarOwner:</span><br><span class="line">    def __init__(self, name):</span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    def concentrate(self):</span><br><span class="line">        print(&apos;&#123;&#125; can not do anything else&apos;.format(self.name))</span><br><span class="line">    # 나머지 메서드</span><br><span class="line"></span><br><span class="line">class Car:</span><br><span class="line">    def __init__(self, owner_name):</span><br><span class="line">        self.owner = CarOwner(owner_name)</span><br><span class="line"></span><br><span class="line">    def drive(self):              #1</span><br><span class="line">        self.owner.concentrate()  #2</span><br><span class="line">        print(&apos;&#123;&#125; is driving now.&apos;.format(self.owner.name))  #3</span><br><span class="line"></span><br><span class="line">    # 나머지 메서드</span><br><span class="line"></span><br><span class="line">class SelfDrivingCar(Car):</span><br><span class="line">    def drive(self):                       #4</span><br><span class="line">        print(&apos;Car is driving by itself&apos;)  #5</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    car = Car(&apos;Greg&apos;)</span><br><span class="line">    car.drive()           #6</span><br><span class="line">    print(&apos;&apos;)</span><br><span class="line"></span><br><span class="line">    s_car = SelfDrivingCar(&apos;John&apos;)</span><br><span class="line">    s_car.drive()         #7</span><br></pre></td></tr></table></figure>
+
+<p>실행결과 :  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Greg can not do anything else</span><br><span class="line">Greg is driving now.</span><br><span class="line">Car is driving by itself</span><br></pre></td></tr></table></figure>
+
+<p>같은 이름의 매서드를 호출해도 다른 결과를 가져온다. –&gt; 다형성!</p>
+<br>
+
+<h2 id="클래스-설계시-유의사항"><a href="#클래스-설계시-유의사항" class="headerlink" title="클래스 설계시 유의사항"></a>클래스 설계시 유의사항</h2><ol>
+<li>공통 부분을 기본 클래스로 묶는다. 이렇게 하면 코드를 재사용할 수 있다.   </li>
+<li>부모가 추상 클래스인 경우를 제외하고, 파생 클래스에서 기본 클래스의 여러 메서드를<br>오버라이딩한다면 파생 클래스는 만들지 않는 것이 좋다.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">게임 만들기 </span><br><span class="line">- 캐릭터 클래스 </span><br><span class="line">- 플레이어 클래스</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">from abc import ABCMeta, abstractmethod</span><br><span class="line"></span><br><span class="line">class Character(metaclass=ABCMeta):</span><br><span class="line">    def __init__(self, name, hp, power):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.hp = hp</span><br><span class="line">        self.power = power</span><br><span class="line">    </span><br><span class="line">    @abstractmethod</span><br><span class="line">    def attack(self, other, attack_kind):</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    @abstractmethod</span><br><span class="line">    def get_damage(self, power, attack_kind):</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return (&apos;&#123;&#125; : &#123;&#125;&apos;.format(self.name, self.hp))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">class Player(Character):</span><br><span class="line">    def __init__(self, name=&apos;player&apos;, hp=100, power=10, *attack_kinds):</span><br><span class="line">        super().__init__(name, hp, power)</span><br><span class="line">    </span><br><span class="line">        # 추가된 인스턴스 멤버</span><br><span class="line">        self.skills = [ ]</span><br><span class="line">        for attack_kind in attack_kinds:</span><br><span class="line">            self.skills.append(attack_kind)</span><br><span class="line"></span><br><span class="line">    # 재정의된 attack( ) 메서드</span><br><span class="line">    # 반드시 재정의되어야 한다</span><br><span class="line">    def attack(self, other, attack_kind):</span><br><span class="line">        if attack_kind in self.skills:</span><br><span class="line">            other.get_damage(self.power, attack_kind)</span><br><span class="line"></span><br><span class="line">    # 재정의된 get_damage( ) 메서드</span><br><span class="line">    # 반드시 재정의되어야 한다</span><br><span class="line">    def get_damage(self, power, attack_kind):</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        만약 공격 종류가</span><br><span class="line">        플레이어의 기술 중 하나라면</span><br><span class="line">        피해가 절반으로 감소한다</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        if attack_kind in self.skills:</span><br><span class="line">            self.hp -= (power//2)</span><br><span class="line">        else:</span><br><span class="line">            self.hp -= power</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 불과 얼음 몬스터는 모두 Character 클래스에서 추가된</span><br><span class="line"># attack_kind 멤버를 가지고 있으며</span><br><span class="line"># attack( ) 메서드와 get_damage( ) 메서드는 같은 행동을 한다</span><br><span class="line"># 공통된 부분은 Monster라는 부모 클래스를 만들어 거기에 둔다</span><br><span class="line">class Monster(Character):</span><br><span class="line">    def __init__(self, name, hp, power):</span><br><span class="line">        super().__init__(name, hp, power)</span><br><span class="line">        self.attack_kind = &apos;None&apos;</span><br><span class="line"></span><br><span class="line">    def attack(self, other, attack_kind):</span><br><span class="line">        if self.attack_kind == attack_kind:</span><br><span class="line">            other.get_damage(self.power, attack_kind)</span><br><span class="line"></span><br><span class="line">    # 플레이어가 불 공격을 할 때</span><br><span class="line">    # 공격받는 객체가 얼음 몬스터라면 체력이 깎이고</span><br><span class="line">    # 공격받는 객체가 불 몬스터라면 오히려 체력이 늘어난다</span><br><span class="line">    def get_damage(self, power, attack_kind):</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        몬스터는 자신과 타입이 같은 공격을 당하면</span><br><span class="line">        오히려 체력이 늘어납니다</span><br><span class="line">        조심해서 공격하세요</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        if self.attack_kind == attack_kind:</span><br><span class="line">            self.hp += power</span><br><span class="line">        else:</span><br><span class="line">            self.hp -= power</span><br><span class="line"></span><br><span class="line">    def get_attack_kind(self):</span><br><span class="line">        return self.attack_kind</span><br><span class="line"></span><br><span class="line">class IceMonster(Monster):</span><br><span class="line">    def __init__(self, name = &apos;Ice monster&apos;, hp = 50, power = 10):</span><br><span class="line">        super().__init__(name, hp, power)</span><br><span class="line">        self.attack_kind = &apos;ICE&apos;</span><br><span class="line"></span><br><span class="line">class FireMonster(Monster):</span><br><span class="line">    def __init__(self, name = &apos;Fire monster&apos;, hp = 50, power = 20):</span><br><span class="line">        super().__init__(name, hp, power)</span><br><span class="line">        self.attack_kind = &apos;FIRE&apos;</span><br><span class="line"></span><br><span class="line">    # 메서드 추가</span><br><span class="line">    # FireMonster만의 행동</span><br><span class="line">    def fireball(self):</span><br><span class="line">        print(&apos;fireball&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    player = Player(&apos;sword master&apos;,100, 30, &apos;ICE&apos;)</span><br><span class="line">    monsters = [ ]</span><br><span class="line">    monsters.append(IceMonster( ) )</span><br><span class="line">    monsters.append(FireMonster( ) )</span><br><span class="line"></span><br><span class="line">    for monster in monsters:</span><br><span class="line">        print(monster)</span><br><span class="line"></span><br><span class="line">    for monster in monsters:</span><br><span class="line">        # 공격을 받는 몬스터 객체가</span><br><span class="line">        # 어떤 몬스터인지에 따라 호출되는 메서드가 달라지고</span><br><span class="line">        # 그에 따라 결과도 달라진다</span><br><span class="line">        player.attack(monster, &apos;ICE&apos;)</span><br><span class="line"></span><br><span class="line">    print(&apos;after the player attacked&apos;)</span><br><span class="line">    for monster in monsters:</span><br><span class="line">        print(monster)</span><br><span class="line">    print(&apos;&apos;)</span><br><span class="line"></span><br><span class="line">    print(player)</span><br><span class="line"></span><br><span class="line">    for monster in monsters:</span><br><span class="line">        # 플레이어가 ICE 공격만 가지고 있으므로</span><br><span class="line">        # 아이스 몬스터가 공격할 때는 공격력이 절반(10)만 깎이고</span><br><span class="line">        # 파이어 몬스터가 공격할 때는 공격력이 그대로(20) 깎인다</span><br><span class="line">        # 모든 공격이 끝난 후 플레이어의 체력은</span><br><span class="line">        # 100 - ((10//2) + 20) = 75</span><br><span class="line">        monster.attack(player, monster.get_attack_kind())</span><br><span class="line">    print(&apos;after monsters attacked&apos;)</span><br><span class="line"></span><br><span class="line">    print(player)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="연산자-오버로딩"><a href="#연산자-오버로딩" class="headerlink" title="연산자 오버로딩"></a>연산자 오버로딩</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">class Point:</span><br><span class="line">    def __init__(self, x = 0, y = 0):</span><br><span class="line">        self.x = x</span><br><span class="line">        self.y = y</span><br><span class="line"></span><br><span class="line">    def set_point(self, x, y):</span><br><span class="line">        self.x = x</span><br><span class="line">        self.y = y</span><br><span class="line"></span><br><span class="line">    def get_point(self):</span><br><span class="line">        return self.x, self.y</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return &apos;(&#123;x&#125;, &#123;y&#125;)&apos;.format(x = self.x, y = self.y)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    # 더하기 연산자(+) 오버로딩</span><br><span class="line">    def __add__(self, n):     #1 오버로딩 이후에는 에러 발생하지 않음. (5,5)출력</span><br><span class="line">        x = self.x + n</span><br><span class="line">        y = self.y + n</span><br><span class="line">        return Point(x, y)</span><br><span class="line">    </span><br><span class="line">    def __radd__(self, n):    #1</span><br><span class="line">        x = self.x + n</span><br><span class="line">        y = self.y + n</span><br><span class="line">        return Point(x, y)</span><br><span class="line"></span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line">    p1 = Point(2, 2)</span><br><span class="line">    p2 = p1 + 3               #1  point 객체와 3을 더할 수 없다는 에러 발생 --&gt; 오버로딩 이후에 정상출력</span><br><span class="line">    p3 = 3 + p1               #3 에러발생  </span><br><span class="line"></span><br><span class="line">print(p2)</span><br><span class="line">print(p3)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">__add__(self, other) : +</span><br><span class="line">__sub__(self, other) : -</span><br><span class="line">__mul__(self, other) : *</span><br><span class="line">__truediv__(self, other) : /</span><br><span class="line">__floordiv__(self, other) : //</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#5mincs" >
+    <span class="tag-code">5mincs</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/08/09/5mincs/cswithpython5/">
+        <span class="nav-arrow">← </span>
+        
+          5분 컴공 5 / 절차 지향 프로그래밍 vs 객체 지향 프로그래밍
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2020/08/09/5mincs/cswithpython7/">
+        
+          5분 컴공 7 / 컴퓨터의 뇌, CPU 에 대하여 알아봅시다
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#클래스"><span class="toc-nav-text">클래스</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-is-a-관계-상속"><span class="toc-nav-text">1. is-a 관계 : 상속</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-has-a-관계-합성과-통합"><span class="toc-nav-text">2.  has-a 관계 : 합성과 통합</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#합성-cpu-ram-computer"><span class="toc-nav-text">합성 : cpu, ram - computer</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#통합의-관계-gun-policeman"><span class="toc-nav-text">통합의 관계 : gun - policeman</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#다형성과-매서드-오버라이딩"><span class="toc-nav-text">다형성과 매서드 오버라이딩</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#클래스-설계시-유의사항"><span class="toc-nav-text">클래스 설계시 유의사항</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#연산자-오버로딩"><span class="toc-nav-text">연산자 오버로딩</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://miniminis.github.io/2020/08/09/5mincs/cswithpython6/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+  <script>
+    var gitmentConfig = "miniminis";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "5분 컴공 6 / 클래스",
+        owner: "miniminis",
+        repo: "miniminis.github.io",
+        oauth: {
+          client_id: "6777a600f48bea19d4c9",
+          client_secret: "a873dcd4221c63013a85e792d2f3f0db2d90e245"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <!-- <br> -->
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
