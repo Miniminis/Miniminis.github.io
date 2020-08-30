@@ -18,14 +18,10 @@
   <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   
-    <link rel="stylesheet" href="/css/plugins/gitment.css">
-  
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
   
-  
-    <script src="/js/gitment.js"></script>
   
   
   
@@ -97,7 +93,13 @@
       
         <li class="list-item">
           
-            <a href="/project/" class="item-link">Projects</a>
+            <a href="/project/" class="item-link">Git-repos</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/projects/" class="item-link">Projects</a>
           
         </li>
       
@@ -136,7 +138,13 @@
         
           <li class="menu-item">
             
-              <a href="/project/" class="menu-link">Projects</a>
+              <a href="/project/" class="menu-link">Git-repos</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/projects/" class="menu-link">Projects</a>
             
           </li>
         
@@ -260,10 +268,12 @@
     <!-- 二维码 START -->
     
     <!-- 二维码 END -->
+    <br>
+    <br>
     
-      <!-- Gitment START -->
-      <div id="comments"></div>
-      <!-- Gitment END -->
+      <!-- Disqus START -->
+      <div id="disqus_thread"></div>
+      <!-- Disqus END -->
     
   </article>
   <!-- Article END -->
@@ -334,35 +344,21 @@
 
 
 
+
+
   <script>
-    var gitmentConfig = "miniminis";
-    if (gitmentConfig !== 'undefined') {
-      var gitment = new Gitment({
-        id: "이것이 리눅스다(2020) 08 / 서버를 구축할 때 알아야 할 필수 개념과 명령어 - RPM",
-        owner: "miniminis",
-        repo: "miniminis.github.io",
-        oauth: {
-          client_id: "6777a600f48bea19d4c9",
-          client_secret: "a873dcd4221c63013a85e792d2f3f0db2d90e245"
-        },
-        theme: {
-          render(state, instance) {
-            const container = document.createElement('div')
-            container.lang = "en-US"
-            container.className = 'gitment-container gitment-root-container'
-            container.appendChild(instance.renderHeader(state, instance))
-            container.appendChild(instance.renderEditor(state, instance))
-            container.appendChild(instance.renderComments(state, instance))
-            container.appendChild(instance.renderFooter(state, instance))
-            return container;
-          }
-        }
-      })
-      gitment.render(document.getElementById('comments'))
-    }
+    var disqus_shortname = 'miniminis-github-io-2';
+    
+    var disqus_url = 'https://miniminis.github.io/2020/05/31/linux/linux-thisislinux08/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//go.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
   </script>
-
-
 
 
     <div class="scroll-top">
